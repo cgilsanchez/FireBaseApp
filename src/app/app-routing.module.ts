@@ -5,11 +5,20 @@ import { ItemComponent } from './components/item/item.component'; // Importa el 
 const routes: Routes = [
   {
     path: '',
-    component: ItemComponent, // Usa directamente el componente standalone
+    redirectTo: 'login', // Redirige automáticamente al login
+    pathMatch: 'full', // Asegura que el redireccionamiento sea exacto
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomePageModule),
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then((m) => m.LoginPageModule),
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then((m) => m.RegisterPageModule),
+  },
+  {
+    path: 'home', // Ruta para el componente de crear personas
+    component: ItemComponent, // Usa directamente el componente standalone
   },
 ];
 

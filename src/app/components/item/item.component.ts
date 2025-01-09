@@ -102,5 +102,10 @@ export class ItemComponent implements OnInit {
     }
   }
 
-
+  cancelEdit(): void {
+    this.isEditing = false; // Salir del modo edición
+    this.editingItemId = null; // Limpiar el ID en edición
+    this.newItem = { name: '', description: '' }; // Limpiar el formulario
+  }
+  
 }

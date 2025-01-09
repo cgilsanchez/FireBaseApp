@@ -1,56 +1,96 @@
-.container {
-    padding: 16px;
-  
-    ion-card {
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-  
-    ion-card-title {
+// Contenedor principal del formulario
+.form-container {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+
+  ion-card {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    ion-card-header {
+      background-color: var(--ion-color-primary-tint);
+      color: var(--ion-color-primary-contrast);
       text-align: center;
+      border-radius: 12px 12px 0 0;
+    }
+
+    ion-card-title {
       font-size: 1.4rem;
       font-weight: bold;
-      color: var(--ion-color-primary);
     }
-  
-    .form-buttons {
+
+    ion-card-content {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-    }
-  
-    ion-list-header {
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--ion-color-dark);
-      margin-top: 10px;
-    }
-  
-    ion-item-sliding {
-      margin-bottom: 10px;
-      border-radius: 8px;
-      overflow: hidden;
-  
-      ion-item {
-        border: 1px solid var(--ion-color-light);
-        border-radius: 8px;
-        padding: 10px;
-        background-color: var(--ion-color-light);
-      }
-  
-      ion-item-options {
-        ion-item-option {
-          font-size: 1rem;
-          font-weight: bold;
-  
-          ion-icon {
-            margin-right: 8px;
-          }
-        }
-      }
+      gap: 12px;
     }
   }
-  
+
+  .form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    ion-button {
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+}
+
+// Contenedor de la cuadrícula de tarjetas
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+// Estilo de las tarjetas
+.grid-item {
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--ion-color-primary); /* Borde azul */
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  ion-card-header {
+    background-color: var(--ion-color-light);
+    border-bottom: 1px solid var(--ion-color-medium);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  ion-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--ion-color-dark);
+    }
+  }
+
+  .card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+
+    ion-button {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      height: 30px;
+    }
+  }
+}
