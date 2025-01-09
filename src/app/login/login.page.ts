@@ -30,11 +30,12 @@ export class LoginPage {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       try {
-        await this.authService.login(email, password); // Llama al servicio de autenticación
+        await this.authService.login(email, password); // Intenta iniciar sesión
         console.log('Inicio de sesión exitoso');
-        this.router.navigate(['/create']); // Redirige a la pantalla de creación de personas
+        this.router.navigate(['/home']); // Redirige a la pantalla de creación de personas
       } catch (error) {
-        console.error('Error al iniciar sesión:', error);
+        console.error('Error en el inicio de sesión:');
+        alert('Error al iniciar sesión: '); // Muestra un mensaje de error al usuario
       }
     }
   }

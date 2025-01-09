@@ -19,11 +19,10 @@ export class AuthService {
     }
   }
 
-  // Inicio de sesión
   async login(email: string, password: string): Promise<void> {
     try {
-      await signInWithEmailAndPassword(this.auth, email, password);
-      console.log('Inicio de sesión exitoso');
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      console.log('Inicio de sesión exitoso:', userCredential.user);
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
       throw error;
