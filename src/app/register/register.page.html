@@ -30,9 +30,18 @@
             <small>La contraseña debe tener al menos 6 caracteres.</small>
           </div>
 
+          <!-- Confirmar contraseña -->
+          <ion-item>
+            <ion-label position="floating">Repetir Contraseña</ion-label>
+            <ion-input formControlName="confirmPassword" type="password"></ion-input>
+          </ion-item>
+          <div *ngIf="registerForm.errors?.mismatch && registerForm.get('confirmPassword')?.touched" class="error">
+            <small>Las contraseñas no coinciden.</small>
+          </div>
+
           <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">Registrar</ion-button>
         </form>
-        <ion-button expand="block" color="secondary" [routerLink]="'/login'">
+        <ion-button expand="block" color="secondary" routerLink="/login">
           ¿Ya tienes cuenta? Inicia Sesión
         </ion-button>
       </ion-card-content>
