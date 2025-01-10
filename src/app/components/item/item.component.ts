@@ -1,111 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Para ngModel
-import { CommonModule } from '@angular/common'; // Para *ngFor
-import { IonicModule } from '@ionic/angular'; // Para componentes de Ionic
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { db } from 'src/app/app.module'; // Importar Firestore
+import { Component, Input } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { addDoc, collection, updateDoc, doc } from 'firebase/firestore';
+import { db } from '../../app.module';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule, IonicModule],
+  imports: [CommonModule, FormsModule, IonicModule],
 })
-export class ItemComponent implements OnInit {
-  items: any[] = []; // Lista de ítems
-  newItem = { name: '', description: '' }; // Modelo para ítem (crear/actualizar)
+export class ItemComponent {
+  @Input() item: any = null; // Datos del ítem para editar
+  newItem = { name: '', description: '' }; // Datos para el nuevo ítem o edición
   collectionName = 'documentos'; // Nombre de la colección en Firestore
-  isEditing = false; // Bandera para saber si estamos editando
-  editingItemId: string | null = null; // ID del ítem que se está editando
+  isEditing = false; // Determina si estamos editando o creando
 
-  constructor() {}
+  constructor(private modalController: ModalController) {}
 
   ngOnInit(): void {
-    this.loadItems(); // Cargar los ítems al iniciar el componente
-  }
-
-  // Cargar todos los ítems
-  async loadItems(): Promise<void> {
-    try {
-      const querySnapshot = await getDocs(collection(db, this.collectionName));
-      this.items = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      console.log('Items cargados:', this.items);
-    } catch (error) {
-      console.error('Error al cargar los ítems:', error);
+    // Si se recibe un ítem como entrada, lo cargamos en el formulario
+    if (this.item) {
+      this.newItem = { name: this.item.name, description: this.item.description };
+      this.isEditing = true; // Cambia el modo a edición
     }
   }
 
-  // Manejar el envío del formulario (crear o actualizar)
-  async onSubmit(): Promise<void> {
-    if (this.isEditing) {
-      // Si estamos editando, actualiza el ítem
-      await this.updateItem();
-    } else {
-      // Si no estamos editando, crea un nuevo ítem
-      await this.createItem();
-    }
-  }
-
-  // Crear un nuevo ítem
-  async createItem(): Promise<void> {
+  // Guardar o actualizar el ítem en Firebase
+  async save(): Promise<void> {
     if (this.newItem.name && this.newItem.description) {
       try {
-        await addDoc(collection(db, this.collectionName), this.newItem);
-        console.log('Item creado con éxito');
-        this.newItem = { name: '', description: '' }; // Limpiar el formulario
-        this.loadItems(); // Recargar la lista de ítems
+        if (this.isEditing && this.item.id) {
+          // Si estamos editando, actualizamos el ítem
+          const docRef = doc(db, this.collectionName, this.item.id);
+          await updateDoc(docRef, this.newItem);
+          console.log('Ítem actualizado con éxito:', this.newItem);
+        } else {
+          // Si no estamos editando, creamos un nuevo ítem
+          await addDoc(collection(db, this.collectionName), this.newItem);
+          console.log('Ítem creado con éxito:', this.newItem);
+        }
+        this.modalController.dismiss(this.newItem); // Cierra el modal y envía los datos
       } catch (error) {
-        console.error('Error al crear el ítem:', error);
+        console.error('Error al guardar el ítem:', error);
       }
     } else {
-      console.warn('Por favor, completa los campos antes de crear un ítem.');
+      alert('Por favor, completa todos los campos.');
     }
   }
 
-  // Actualizar un ítem
-  async updateItem(): Promise<void> {
-    if (this.editingItemId) {
-      try {
-        const docRef = doc(db, this.collectionName, this.editingItemId);
-        await updateDoc(docRef, this.newItem);
-        console.log('Item actualizado con éxito');
-        this.newItem = { name: '', description: '' }; // Limpiar el formulario
-        this.isEditing = false; // Salir del modo edición
-        this.editingItemId = null; // Limpiar el ID del ítem en edición
-        this.loadItems(); // Recargar la lista de ítems
-      } catch (error) {
-        console.error('Error al actualizar el ítem:', error);
-      }
-    }
+  // Cerrar el modal sin guardar
+  close(): void {
+    this.modalController.dismiss();
   }
-
-  // Cargar un ítem en el formulario para editar
-  editItem(item: any): void {
-    this.newItem = { name: item.name, description: item.description }; // Cargar datos en el formulario
-    this.isEditing = true; // Activar el modo edición
-    this.editingItemId = item.id; // Guardar el ID del ítem que se está editando
-  }
-
-  // Eliminar un ítem
-  async deleteItem(id: string): Promise<void> {
-    try {
-      const docRef = doc(db, this.collectionName, id);
-      await deleteDoc(docRef);
-      console.log('Item eliminado con éxito');
-      this.loadItems(); // Recargar la lista de ítems
-    } catch (error) {
-      console.error('Error al eliminar el ítem:', error);
-    }
-  }
-
-  cancelEdit(): void {
-    this.isEditing = false; // Salir del modo edición
-    this.editingItemId = null; // Limpiar el ID en edición
-    this.newItem = { name: '', description: '' }; // Limpiar el formulario
-  }
-  
 }

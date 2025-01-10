@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ItemComponent } from './components/item/item.component'; // Importa el componente standalone
 
 const routes: Routes = [
   {
@@ -17,8 +16,8 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then((m) => m.RegisterPageModule),
   },
   {
-    path: 'home', // Ruta para el componente de crear personas
-    component: ItemComponent, // Usa directamente el componente standalone
+    path: 'home', // Ruta para la página principal
+    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
   },
 ];
 

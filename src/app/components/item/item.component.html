@@ -1,62 +1,26 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Gestión de Personas</ion-title>
+    <ion-title>{{ isEditing ? 'Editar Persona' : 'Crear Persona' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="form-container">
-    <!-- Formulario -->
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>{{ isEditing ? 'Actualizar Persona' : 'Crear Nueva Persona' }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <form (ngSubmit)="onSubmit()">
-          <ion-item>
-            <ion-label position="floating">Nombre</ion-label>
-            <ion-input [(ngModel)]="newItem.name" name="name" required></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Descripción</ion-label>
-            <ion-input [(ngModel)]="newItem.description" name="description" required></ion-input>
-          </ion-item>
-          <div class="form-buttons">
-            <ion-button expand="block" color="primary" type="submit">
-              {{ isEditing ? 'Actualizar' : 'Crear' }}
-            </ion-button>
-            <ion-button
-              *ngIf="isEditing"
-              expand="block"
-              color="medium"
-              (click)="cancelEdit()"
-            >
-              Cancelar
-            </ion-button>
-          </div>
-        </form>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <form (ngSubmit)="save()">
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="newItem.name" name="name" required></ion-input>
+    </ion-item>
 
-  <!-- Lista de Personas -->
-  <div class="grid-container">
-    <ion-card *ngFor="let item of items" class="grid-item">
-      <ion-card-header>
-        <ion-card-title>Persona</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p><strong>Nombre:</strong> {{ item.name }}</p>
-        <p><strong>Descripción:</strong> {{ item.description }}</p>
-        <div class="card-buttons">
-          <ion-button fill="outline" size="small" color="tertiary" (click)="editItem(item)">
-            Editar
-          </ion-button>
-          <ion-button fill="outline" size="small" color="danger" (click)="deleteItem(item.id)">
-            Eliminar
-          </ion-button>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-input [(ngModel)]="newItem.description" name="description" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit">
+      {{ isEditing ? 'Actualizar' : 'Crear' }}
+    </ion-button>
+  </form>
 </ion-content>
