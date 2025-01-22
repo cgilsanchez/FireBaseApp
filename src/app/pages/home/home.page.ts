@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../app.module'; // Firestore
-import { ItemComponent } from '../components/item/item.component'; // Componente Item
+import { db } from '../../app.module'; // Firestore
+import { ItemComponent } from '../../components/item/item.component'; // Componente Item
 
 @Component({
   selector: 'app-home',

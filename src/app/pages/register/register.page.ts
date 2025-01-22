@@ -3,7 +3,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { RouterModule } from '@angular/router'; // Importa RouterModule
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular'; // Importa IonicModule
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
