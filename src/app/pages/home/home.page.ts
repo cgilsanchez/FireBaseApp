@@ -18,6 +18,8 @@ export class HomePage implements OnInit {
   items: any[] = []; // Lista de ítems desde Firestore
   collectionName = 'documentos'; // Nombre de la colección en Firestore
 
+  
+
   constructor(private modalController: ModalController) {}
 
   ngOnInit(): void {
