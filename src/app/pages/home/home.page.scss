@@ -1,27 +1,69 @@
-#container {
+/* Estilos Generales */
+ion-toolbar {
+  --background: #ff9800; /* Naranja vibrante */
+  --color: white;
+}
+
+/* Contenedor de tarjetas en filas de 2 o 3 */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
+  gap: 20px;
+  padding: 10px;
+  justify-content: center;
+}
+
+/* Tarjeta personalizada */
+.custom-card {
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  overflow: hidden;
+  background: white;
+}
+
+/* Efecto hover */
+.custom-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezado de la tarjeta con gradiente */
+.card-header {
+  background: linear-gradient(135deg, #ff9800, #ffcc80);
+  color: white;
+  padding: 15px;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  font-weight: bold;
+  border-radius: 10px 10px 0 0;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+/* Contenedor de botones */
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+/* Botones */
+ion-button {
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
 }
 
-#container a {
-  text-decoration: none;
+ion-button[color="primary"] {
+  --background: #ff9800;
+  --color: white;
+}
+
+ion-button[color="danger"] {
+  --background: #d32f2f;
+  --color: white;
+}
+
+/* Botón flotante */
+ion-fab-button {
+  --background: #ff9800;
+  --color: white;
 }
