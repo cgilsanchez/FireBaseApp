@@ -1,0 +1,28 @@
+<div class="recetas-container">
+  <h2>Recetas</h2>
+
+  <button (click)="abrirModal()">Añadir Nueva Receta</button>
+
+  <div *ngIf="recetas.length === 0">
+    <p>No hay recetas disponibles.</p>
+  </div>
+
+  <div class="receta-card" *ngFor="let receta of recetas">
+    <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen receta" />
+    <h3>{{ receta.titulo }}</h3>
+    <p><strong>Chef:</strong> {{ getChefNombre(receta.chefId) }}</p>
+    
+    <button (click)="verDetalles(receta)">Ver Detalles</button>
+    <button (click)="editarReceta(receta)">Editar</button>
+    <button (click)="eliminarReceta(receta.id)">Eliminar</button>
+    <button (click)="toggleFavorito(receta)">
+      {{ receta.favorito ? '❤️ Quitar Favorito' : '🤍 Marcar Favorito' }}
+    </button>
+  </div>
+
+  <!-- Modal de formulario de recetas -->
+  <app-receta-form *ngIf="modalAbierto" [receta]="recetaSeleccionada" (cerrarModal)="cerrarModal()"></app-receta-form>
+  
+  <!-- Modal de detalles de receta -->
+  <app-receta-detalle *ngIf="modalDetalleAbierto" [receta]="recetaDetalle" (cerrarModal)="cerrarModalDetalle()"></app-receta-detalle>
+</div>
