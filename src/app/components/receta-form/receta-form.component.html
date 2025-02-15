@@ -1,0 +1,32 @@
+<div class="modal-container">
+  <h2>{{ receta?.id ? 'Editar Receta' : 'Nueva Receta' }}</h2>
+
+  <form (ngSubmit)="guardarReceta()">
+    <label>Título:</label>
+    <input type="text" [(ngModel)]="receta.titulo" name="titulo" required />
+
+    <label>Ingredientes:</label>
+    <input type="text" [(ngModel)]="nuevoIngrediente" placeholder="Añadir ingrediente" />
+    <button type="button" (click)="agregarIngrediente()">Agregar</button>
+    <ul>
+      <li *ngFor="let ing of receta.ingredientes">
+        {{ ing }} <button type="button" (click)="eliminarIngrediente(ing)">X</button>
+      </li>
+    </ul>
+
+    <label>Descripción:</label>
+    <textarea [(ngModel)]="receta.descripcion" name="descripcion" required></textarea>
+
+    <label>Seleccionar Chef:</label>
+    <select [(ngModel)]="receta.chefId" name="chefId">
+      <option *ngFor="let chef of chefs" [value]="chef.id">{{ chef.nombre }}</option>
+    </select>
+
+    <label>Imagen:</label>
+    <input type="file" (change)="seleccionarImagen($event)" />
+    <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa" />
+
+    <button type="submit">Guardar</button>
+    <button type="button" (click)="cerrar()">Cancelar</button>
+  </form>
+</div>
