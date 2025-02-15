@@ -1,13 +1,54 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="warning">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button> <!-- Agregamos el botón del menú -->
+      <ion-menu-button></ion-menu-button> <!-- ✅ Habilita el menú hamburguesa -->
     </ion-buttons>
     <ion-title>Recetas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <h2>Lista de Recetas</h2>
-  <!-- Aquí puedes agregar el contenido de recetas -->
-</ion-content>
+<ion-content class="ion-padding">
+  <div class="container">
+    <h2>Lista de Recetas</h2>
+
+  
+  
+
+    <!-- Lista de recetas -->
+    <div *ngIf="recetas.length === 0">
+      <p>No hay recetas disponibles.</p>
+    </div>
+
+    <ion-card *ngFor="let receta of recetas">
+      <ion-card-header>
+        <ion-card-title>{{ receta.titulo }}</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen receta" style="width: 100%; border-radius: 8px;">
+        <p><strong>Chef:</strong> {{ receta.chefId }}</p>
+        <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
+      </ion-card-content>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full" color="secondary" (click)="abrirModal(receta)">Editar</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="full" color="danger" (click)="eliminarReceta(receta.id!)">Eliminar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+    <!-- Modal de creación/edición de receta -->
+    <app-receta-form *ngIf="modalAbierto" [receta]="recetaSeleccionada!" (cerrarModal)="cerrarModal()"></app-receta-form>
+
+  </div>
+
+  <!-- Botón flotante para agregar recetas -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning" (click)="abrirModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
