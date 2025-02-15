@@ -1,32 +1,61 @@
-<div class="modal-container">
-  <h2>{{ receta?.id ? 'Editar Receta' : 'Nueva Receta' }}</h2>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ isEditing ? 'Editar Receta' : 'Crear Receta' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-  <form (ngSubmit)="guardarReceta()">
-    <label>Título:</label>
-    <input type="text" [(ngModel)]="receta.titulo" name="titulo" required />
+<ion-content class="ion-padding">
+  <form (ngSubmit)="save()">
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input [(ngModel)]="receta.titulo" name="titulo" required></ion-input>
+    </ion-item>
 
-    <label>Ingredientes:</label>
-    <input type="text" [(ngModel)]="nuevoIngrediente" placeholder="Añadir ingrediente" />
-    <button type="button" (click)="agregarIngrediente()">Agregar</button>
-    <ul>
-      <li *ngFor="let ing of receta.ingredientes">
-        {{ ing }} <button type="button" (click)="eliminarIngrediente(ing)">X</button>
-      </li>
-    </ul>
 
-    <label>Descripción:</label>
-    <textarea [(ngModel)]="receta.descripcion" name="descripcion" required></textarea>
+    <ion-item>
+      <ion-label position="stacked">Ingredientes</ion-label>
+      <ion-input [(ngModel)]="nuevoIngrediente" name="nuevoIngrediente" placeholder="Añadir ingrediente"></ion-input>
+      <ion-button fill="clear" (click)="agregarIngrediente()">+</ion-button>
+    </ion-item>
 
-    <label>Seleccionar Chef:</label>
-    <select [(ngModel)]="receta.chefId" name="chefId">
-      <option *ngFor="let chef of chefs" [value]="chef.id">{{ chef.nombre }}</option>
-    </select>
 
-    <label>Imagen:</label>
-    <input type="file" (change)="seleccionarImagen($event)" />
-    <img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa" />
+    <ion-list>
+      <ion-item *ngFor="let ing of receta.ingredientes">
+        {{ ing }}
+        <ion-button fill="clear" color="danger" (click)="eliminarIngrediente(ing)">X</ion-button>
+      </ion-item>
+    </ion-list>
 
-    <button type="submit">Guardar</button>
-    <button type="button" (click)="cerrar()">Cancelar</button>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="receta.descripcion" name="descripcion" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Chef</ion-label>
+      <ion-select [(ngModel)]="receta.chefId" name="chefId" required>
+        <ion-select-option *ngFor="let chef of chefs" [value]="chef.id">
+          {{ chef.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    
+
+    
+    <ion-item>
+      <ion-label>Imagen</ion-label>
+      <input type="file" (change)="seleccionarImagen($event)">
+    </ion-item>
+
+    <ion-img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa"></ion-img>
+
+    <ion-button expand="block" type="submit">
+      {{ isEditing ? 'Actualizar' : 'Crear' }}
+    </ion-button>
   </form>
-</div>
+</ion-content>

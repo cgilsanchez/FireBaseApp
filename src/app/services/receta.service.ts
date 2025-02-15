@@ -1,42 +1,62 @@
 import { Injectable } from '@angular/core';
-import { collection, addDoc, updateDoc, deleteDoc, doc, getFirestore } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL, getStorage } from 'firebase/storage';
-import { Receta } from '../models/receta.model';
-import { Observable } from 'rxjs';
-import { collectionData } from 'rxfire/firestore';
-import { db } from '../app.module'; // ✅ Usar la instancia ya inicializada
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from 'firebase/firestore';
+import { db } from '../app.module'; // Importamos la instancia de Firestore inicializada
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecetaService {
-  private recetasCollection = collection(db, 'recetas'); // ✅ Usa db en lugar de Firestore
+  private collectionName = 'recetas'; // Nombre de la colección en Firestore
 
   constructor() {}
 
-  getRecetas(): Observable<Receta[]> {
-    return collectionData(this.recetasCollection, { idField: 'id' }) as Observable<Receta[]>;
+  // Crear una nueva receta
+  async createReceta(data: any): Promise<void> {
+    try {
+      await addDoc(collection(db, this.collectionName), data);
+      console.log('Receta creada con éxito');
+    } catch (error) {
+      console.error('Error al crear la receta:', error);
+    }
   }
 
-  async addReceta(receta: Receta) {
-    return await addDoc(this.recetasCollection, receta);
+  // Obtener todas las recetas
+  async getRecetas(): Promise<any[]> {
+    try {
+      const querySnapshot = await getDocs(collection(db, this.collectionName));
+      return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    } catch (error) {
+      console.error('Error al obtener recetas:', error);
+      return [];
+    }
   }
 
-  async updateReceta(id: string, receta: Partial<Receta>) {
-    const recetaDoc = doc(db, `recetas/${id}`);
-    return await updateDoc(recetaDoc, receta);
+  // Actualizar una receta existente
+  async updateReceta(id: string, data: any): Promise<void> {
+    try {
+      const docRef = doc(db, this.collectionName, id);
+      await updateDoc(docRef, data);
+      console.log('Receta actualizada con éxito');
+    } catch (error) {
+      console.error('Error al actualizar la receta:', error);
+    }
   }
 
-  async deleteReceta(id: string) {
-    const recetaDoc = doc(db, `recetas/${id}`);
-    return await deleteDoc(recetaDoc);
-  }
-
-  async uploadImage(file: File, recetaId: string): Promise<string> {
-    const filePath = `recetas/${recetaId}_${file.name}`;
-    const storageRef = ref(getStorage(), filePath);
-    
-    await uploadBytes(storageRef, file);
-    return await getDownloadURL(storageRef);
+  // Eliminar una receta
+  async deleteReceta(id: string): Promise<void> {
+    try {
+      const docRef = doc(db, this.collectionName, id);
+      await deleteDoc(docRef);
+      console.log('Receta eliminada con éxito');
+    } catch (error) {
+      console.error('Error al eliminar la receta:', error);
+    }
   }
 }

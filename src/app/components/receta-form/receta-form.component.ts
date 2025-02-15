@@ -1,33 +1,64 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../app.module';
 import { RecetaService } from '../../services/receta.service';
-import { Receta } from '../../models/receta.model';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormsModule } from '@angular/forms'; // Importar FormsModule
 
 @Component({
-  standalone: true,
   selector: 'app-receta-form',
   templateUrl: './receta-form.component.html',
   styleUrls: ['./receta-form.component.scss'],
-  imports: [FormsModule] // Agregar FormsModule en imports
+  standalone: true,
+  imports: [CommonModule, FormsModule, IonicModule],
 })
 export class RecetaFormComponent implements OnInit {
-  @Input() receta: Receta = { titulo: '', ingredientes: [], descripcion: '', chefId: '' };
-  @Output() cerrarModal = new EventEmitter<void>();
-
+  @Input() receta: any = { titulo: '', ingredientes: [], descripcion: '', chefId: '' };
+  isEditing = false;
   chefs: any[] = [];
   nuevoIngrediente: string = '';
   imagenArchivo: File | null = null;
   imagenPreview: string | null = null;
+  collectionName = 'documentos'; // Nombre de la colección donde están los chefs
 
-  constructor(private recetaService: RecetaService, private firestore: AngularFirestore) {}
+  constructor(private modalController: ModalController, private recetaService: RecetaService) {}
 
-  ngOnInit() {
-    // Obtener chefs desde Firestore
-    this.firestore.collection('chefs').valueChanges({ idField: 'id' }).subscribe(data => {
-      this.chefs = data;
-    });
+  async ngOnInit() {
+    this.loadChefs(); // Cargar chefs al iniciar el modal
+    if (this.receta.id) {
+      this.isEditing = true;
+    }
+  }
+
+  async loadChefs() {
+    try {
+      const querySnapshot = await getDocs(collection(db, this.collectionName));
+      this.chefs = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        nombre: doc.data()['name'] // 📌 Asegúrate de que `name` es el campo correcto en Firestore
+      }));
+    } catch (error) {
+      console.error('Error al cargar los chefs:', error);
+    }
+  }
+
+  async save(): Promise<void> {
+    if (this.receta.titulo && this.receta.descripcion) {
+      try {
+        if (this.isEditing) {
+          await this.recetaService.updateReceta(this.receta.id, this.receta);
+        } else {
+          await this.recetaService.createReceta(this.receta);
+        }
+        this.modalController.dismiss(this.receta);
+      } catch (error) {
+        console.error('Error al guardar la receta:', error);
+      }
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
   }
 
   agregarIngrediente() {
@@ -38,7 +69,7 @@ export class RecetaFormComponent implements OnInit {
   }
 
   eliminarIngrediente(ing: string) {
-    this.receta.ingredientes = this.receta.ingredientes.filter(i => i !== ing);
+    this.receta.ingredientes = this.receta.ingredientes.filter((i: string) => i !== ing);
   }
 
   seleccionarImagen(event: any) {
@@ -51,24 +82,7 @@ export class RecetaFormComponent implements OnInit {
     }
   }
 
-  async guardarReceta() {
-    try {
-      if (this.receta.id) {
-        await this.recetaService.updateReceta(this.receta.id, this.receta);
-      } else {
-        const docRef = await this.recetaService.addReceta(this.receta);
-        if (this.imagenArchivo) {
-          const imagenUrl = await this.recetaService.uploadImage(this.imagenArchivo, docRef.id);
-          await this.recetaService.updateReceta(docRef.id, { imagenUrl });
-        }
-      }
-      this.cerrarModal.emit();
-    } catch (error) {
-      console.error('Error al guardar receta:', error);
-    }
-  }
-
-  cerrar() {
-    this.cerrarModal.emit();
+  close(): void {
+    this.modalController.dismiss();
   }
 }
