@@ -1,0 +1,11 @@
+<div class="modal-container">
+  <h2>{{ receta.titulo }}</h2>
+  <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" />
+  <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
+  <p><strong>Ingredientes:</strong></p>
+  <ul>
+    <li *ngFor="let ing of receta.ingredientes">{{ ing }}</li>
+  </ul>
+  <p><strong>Chef:</strong> {{ getChefNombre(receta.chefId) }}</p>
+  <button (click)="cerrar()">Cerrar</button>
+</div>

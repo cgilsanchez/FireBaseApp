@@ -18,10 +18,13 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage), // Usa loadComponent
-  },  {
-    path: 'recetas',
-    loadChildren: () => import('./pages/recetas/recetas.module').then( m => m.RecetasPageModule)
   },
+  {
+    path: 'recetas',
+    loadComponent: () => import('./pages/recetas/recetas.page').then(m => m.RecetasPage)
+  }
+  
+  ,
   {
     path: 'favoritos',
     loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
