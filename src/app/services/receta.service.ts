@@ -71,7 +71,31 @@ export class RecetaService {
     }
   }
   
+  async toggleFavorito(id: string, esFavorito: boolean): Promise<void> {
+    try {
+      const docRef = doc(db, this.collectionName, id);
+      await updateDoc(docRef, { esFavorito });
+      console.log(`Receta ${id} actualizada como favorita: ${esFavorito}`);
+    } catch (error) {
+      console.error('Error al actualizar favorito:', error);
+    }
+  }
 
+  // Obtener solo las recetas favoritas
+  async getFavoritas(): Promise<any[]> {
+    try {
+      const querySnapshot = await getDocs(collection(db, this.collectionName));
+      return querySnapshot.docs
+        .map((doc) => ({ id: doc.id, esFavorito: false, ...doc.data() })) // 🔥 Asegurar que esFavorito siempre está definido
+        .filter((receta) => receta.esFavorito === true);
+    } catch (error) {
+      console.error('Error al obtener recetas favoritas:', error);
+      return [];
+    }
+  }
+  
+  
+  
   // Actualizar una receta con imagen opcional
   async updateReceta(id: string, data: any, imageFile?: File): Promise<void> {
     try {

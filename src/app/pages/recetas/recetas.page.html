@@ -20,6 +20,18 @@
       <ion-card *ngFor="let receta of recetas" class="receta-card" (click)="openDetailModal(receta)">
         <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img" />
 
+
+        <ion-card-header>
+          <ion-card-title class="receta-titulo">
+            {{ receta.titulo }}
+            <ion-icon 
+              [name]="receta.esFavorito ? 'star' : 'star-outline'"
+              [class.favorito]="receta.esFavorito"
+              (click)="toggleFavorito(receta, $event)">
+            </ion-icon>
+          </ion-card-title>
+        </ion-card-header>
+
         <ion-card-header>
           <ion-card-title class="receta-titulo">{{ receta.titulo }}</ion-card-title>
         </ion-card-header>

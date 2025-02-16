@@ -28,6 +28,14 @@ export class RecetasPage implements OnInit {
     this.recetas = await this.recetaService.getRecetas();
   }
 
+  // Método para marcar o desmarcar como favorito
+async toggleFavorito(receta: any, event: Event): Promise<void> {
+  event.stopPropagation(); // Evita que el evento se propague y abra el modal
+  receta.esFavorito = !receta.esFavorito; // Cambia el estado localmente
+  await this.recetaService.toggleFavorito(receta.id, receta.esFavorito); // Actualiza en Firestore
+}
+
+
   // Abrir el modal para crear una nueva receta
   async openCreateModal(): Promise<void> {
     const modal = await this.modalController.create({
