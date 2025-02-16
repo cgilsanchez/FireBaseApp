@@ -1,11 +1,27 @@
-<div class="modal-container">
-  <h2>{{ receta.titulo }}</h2>
-  <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" />
-  <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
-  <p><strong>Ingredientes:</strong></p>
-  <ul>
-    <li *ngFor="let ing of receta.ingredientes">{{ ing }}</li>
-  </ul>
-  <p><strong>Chef:</strong> {{ getChefNombre(receta.chefId) }}</p>
-  <button (click)="cerrar()">Cerrar</button>
-</div>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Detalles de la Receta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="detalle-img" />
+
+    <ion-card-header>
+      <ion-card-title>{{ receta.titulo }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Chef:</strong> {{ receta.chefNombre }}</p>
+      <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
+      <p><strong>Ingredientes:</strong></p>
+      <ul>
+        <li *ngFor="let ingrediente of receta.ingredientes">{{ ingrediente }}</li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

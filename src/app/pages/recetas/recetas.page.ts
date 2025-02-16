@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RecetaService } from '../../services/receta.service';
 import { RecetaFormComponent } from '../../components/receta-form/receta-form.component';
+import { RecetaDetalleComponent } from '../../components/receta-detalle/receta-detalle.component'; // 📌 Importo el modal de detalles
 
 @Component({
   standalone: true,
@@ -36,7 +37,7 @@ export class RecetasPage implements OnInit {
 
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.loadRecetas(); // Recargar la lista después de agregar una receta
+        this.loadRecetas();
       }
     });
 
@@ -53,8 +54,19 @@ export class RecetasPage implements OnInit {
 
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.loadRecetas(); // Recargar la lista después de actualizar una receta
+        this.loadRecetas();
       }
+    });
+
+    await modal.present();
+  }
+
+  // 📌 Abrir el modal para ver detalles de la receta
+  async openDetailModal(receta: any): Promise<void> {
+    const modal = await this.modalController.create({
+      component: RecetaDetalleComponent,
+      componentProps: { receta },
+      cssClass: 'receta-detalle-modal',
     });
 
     await modal.present();
