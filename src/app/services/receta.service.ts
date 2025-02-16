@@ -7,19 +7,36 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore';
-import { db } from '../app.module'; // Importamos la instancia de Firestore inicializada
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db } from '../app.module';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecetaService {
-  private collectionName = 'recetas'; // Nombre de la colección en Firestore
+  private collectionName = 'recetas';
+  private storage = getStorage();
 
   constructor() {}
 
-  // Crear una nueva receta
-  async createReceta(data: any): Promise<void> {
+  // Subir imagen a Firebase Storage
+  async uploadImage(file: File): Promise<string> {
     try {
+      const storageRef = ref(this.storage, `recetas/${file.name}`);
+      await uploadBytes(storageRef, file);
+      return await getDownloadURL(storageRef);
+    } catch (error) {
+      console.error('Error al subir la imagen:', error);
+      throw error;
+    }
+  }
+
+  // Crear una nueva receta con imagen opcional
+  async createReceta(data: any, imageFile?: File): Promise<void> {
+    try {
+      if (imageFile) {
+        data.imageUrl = await this.uploadImage(imageFile);
+      }
       await addDoc(collection(db, this.collectionName), data);
       console.log('Receta creada con éxito');
     } catch (error) {
@@ -31,16 +48,36 @@ export class RecetaService {
   async getRecetas(): Promise<any[]> {
     try {
       const querySnapshot = await getDocs(collection(db, this.collectionName));
-      return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      let recetas = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  
+      // Obtener nombres de chefs
+      const chefsSnapshot = await getDocs(collection(db, 'documentos')); // Asegúrate de que esta es la colección correcta
+      const chefsMap: { [key: string]: string } = {}; 
+  
+      chefsSnapshot.docs.forEach((chef) => {
+        chefsMap[chef.id] = chef.data()['name']; // Asigna el nombre del chef a su ID
+      });
+  
+      // Reemplazar chefId con el nombre del chef
+      recetas = recetas.map((receta: any) => ({
+        ...receta,
+        chefNombre: receta.chefId ? chefsMap[receta.chefId] || 'Desconocido' : 'Desconocido',
+      }));
+      
+      return recetas;
     } catch (error) {
       console.error('Error al obtener recetas:', error);
       return [];
     }
   }
+  
 
-  // Actualizar una receta existente
-  async updateReceta(id: string, data: any): Promise<void> {
+  // Actualizar una receta con imagen opcional
+  async updateReceta(id: string, data: any, imageFile?: File): Promise<void> {
     try {
+      if (imageFile) {
+        data.imageUrl = await this.uploadImage(imageFile);
+      }
       const docRef = doc(db, this.collectionName, id);
       await updateDoc(docRef, data);
       console.log('Receta actualizada con éxito');
