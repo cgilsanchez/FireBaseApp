@@ -19,10 +19,20 @@
       <ion-card-header>
         <ion-card-title>{{ receta.titulo }}</ion-card-title>
       </ion-card-header>
-      
+
+      <!-- Mostrar imagen de la receta -->
+      <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img"/>
+
       <ion-card-content>
-        <p><strong>Chef:</strong> {{ receta.chefId }}</p>
+        <p><strong>Chef:</strong> {{ receta.chefNombre }}</p>
+
         <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
+
+        <!-- Mostrar ingredientes -->
+        <p><strong>Ingredientes:</strong></p>
+        <ul>
+          <li *ngFor="let ing of receta.ingredientes">{{ ing }}</li>
+        </ul>
       </ion-card-content>
 
       <ion-row>
