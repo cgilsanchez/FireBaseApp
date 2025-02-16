@@ -9,41 +9,40 @@
 
 <ion-content class="ion-padding">
   <div class="container">
-    <h2>Lista de Recetas</h2>
+    <h2 class="titulo">Lista de Recetas</h2>
 
     <div *ngIf="recetas.length === 0">
       <p>No hay recetas disponibles.</p>
     </div>
 
-    <ion-card *ngFor="let receta of recetas">
-      <ion-card-header>
-        <ion-card-title>{{ receta.titulo }}</ion-card-title>
-      </ion-card-header>
+    <!-- Grid de recetas -->
+    <div class="grid-container">
+      <ion-card *ngFor="let receta of recetas" class="receta-card">
+        <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img" />
 
-      <!-- Mostrar imagen de la receta -->
-      <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img"/>
+        <ion-card-header>
+          <ion-card-title class="receta-titulo">{{ receta.titulo }}</ion-card-title>
+        </ion-card-header>
 
-      <ion-card-content>
-        <p><strong>Chef:</strong> {{ receta.chefNombre }}</p>
+        <ion-card-content>
+          <p><strong>Chef:</strong> {{ receta.chefNombre }}</p>
+          <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
+          <p><strong>Ingredientes:</strong></p>
+          <ul>
+            <li *ngFor="let ingrediente of receta.ingredientes">{{ ingrediente }}</li>
+          </ul>
+        </ion-card-content>
 
-        <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
-
-        <!-- Mostrar ingredientes -->
-        <p><strong>Ingredientes:</strong></p>
-        <ul>
-          <li *ngFor="let ing of receta.ingredientes">{{ ing }}</li>
-        </ul>
-      </ion-card-content>
-
-      <ion-row>
-        <ion-col>
-          <ion-button expand="full" color="secondary" (click)="openEditModal(receta)">Editar</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button expand="full" color="danger" (click)="deleteReceta(receta.id)">Eliminar</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-card>
+        <ion-row class="btn-container">
+          <ion-col>
+            <ion-button expand="full" color="secondary" (click)="openEditModal(receta)">Editar</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="full" color="danger" (click)="deleteReceta(receta.id)">Eliminar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </div>
   </div>
 
   <!-- Botón flotante para agregar recetas -->
