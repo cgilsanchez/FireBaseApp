@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../app.module';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { db, storage } from '../../app.module';
 import { RecetaService } from '../../services/receta.service';
 
 @Component({
@@ -15,7 +16,7 @@ import { RecetaService } from '../../services/receta.service';
   imports: [CommonModule, FormsModule, IonicModule],
 })
 export class RecetaFormComponent implements OnInit {
-  @Input() receta: any = { titulo: '', ingredientes: [], descripcion: '', chefId: '' };
+  @Input() receta: any = { titulo: '', ingredientes: [], descripcion: '', chefId: '', imagenUrl: '' };
   isEditing = false;
   chefs: any[] = [];
   nuevoIngrediente: string = '';
@@ -29,6 +30,7 @@ export class RecetaFormComponent implements OnInit {
     this.loadChefs(); // Cargar chefs al iniciar el modal
     if (this.receta.id) {
       this.isEditing = true;
+      this.imagenPreview = this.receta.imagenUrl || null; // Mostrar la imagen actual si existe
     }
   }
 
@@ -37,7 +39,7 @@ export class RecetaFormComponent implements OnInit {
       const querySnapshot = await getDocs(collection(db, this.collectionName));
       this.chefs = querySnapshot.docs.map(doc => ({
         id: doc.id,
-        nombre: doc.data()['name'] // 📌 Asegúrate de que `name` es el campo correcto en Firestore
+        nombre: doc.data()['name']
       }));
     } catch (error) {
       console.error('Error al cargar los chefs:', error);
@@ -47,6 +49,10 @@ export class RecetaFormComponent implements OnInit {
   async save(): Promise<void> {
     if (this.receta.titulo && this.receta.descripcion) {
       try {
+        if (this.imagenArchivo) {
+          this.receta.imagenUrl = await this.uploadImage();
+        }
+        
         if (this.isEditing) {
           await this.recetaService.updateReceta(this.receta.id, this.receta);
         } else {
@@ -80,6 +86,13 @@ export class RecetaFormComponent implements OnInit {
       reader.onload = () => this.imagenPreview = reader.result as string;
       reader.readAsDataURL(file);
     }
+  }
+
+  async uploadImage(): Promise<string> {
+    if (!this.imagenArchivo) return '';
+    const storageRef = ref(storage, `recetas/${Date.now()}_${this.imagenArchivo.name}`);
+    await uploadBytes(storageRef, this.imagenArchivo);
+    return await getDownloadURL(storageRef);
   }
 
   close(): void {
