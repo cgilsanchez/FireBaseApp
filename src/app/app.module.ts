@@ -11,6 +11,7 @@ import { getStorage } from 'firebase/storage';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { environment } from '../environments/environment';
+import { PasswordVisibilityPipe } from './pipes/password-visibility.pipe';
 
 
 // Inicialización de Firebase
