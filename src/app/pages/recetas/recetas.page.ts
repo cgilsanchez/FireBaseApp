@@ -31,8 +31,8 @@ export class RecetasPage implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter(): void {
-    // 🔥 Reafirmamos la suscripción cada vez que la vista entra
-    this.subscribeToRecetas();
+    console.log("📌 Volviendo a la página de recetas, recargando...");
+    this.forceReloadRecetas(); // 🔥 Cargar los datos de nuevo al entrar
   }
 
   // 🔥 Suscribirse en tiempo real a los cambios en la colección "recetas"
@@ -49,6 +49,16 @@ export class RecetasPage implements OnInit, OnDestroy {
         console.log('📌 Cambio en recetas:', change);
         this.updateRecetas(change);
       });
+  }
+
+  // 🔥 Cargar las recetas de Firestore manualmente cuando se entra a la página
+  async forceReloadRecetas(): Promise<void> {
+    try {
+      this.recetas = await this.recetaService.getRecetas();
+      console.log("📌 Recetas recargadas:", this.recetas);
+    } catch (error) {
+      console.error("❌ Error al cargar recetas:", error);
+    }
   }
 
   // 🔥 Actualizar el array de recetas en base a los cambios en Firestore
