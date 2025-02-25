@@ -5,17 +5,27 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { LoginPageRoutingModule } from './login-routing.module';
-import { LoginPage } from './login.page'; // Importa el componente standalone
+import { LoginPage } from './login.page'; // Importa el componente
+import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe'; // Importa el Pipe
+import { HoverColorDirective } from '../../directives/hover-color.directive'; // Importa la Directiva
 
 @NgModule({
+  declarations: [
+    LoginPage, 
+    PasswordVisibilityPipe, 
+    HoverColorDirective // Declara la Directiva aquí
+  ],
   imports: [
     CommonModule,
-    ReactiveFormsModule, // Importar formularios reactivos
+    ReactiveFormsModule,
     IonicModule,
-    RouterModule, // Importar módulos de Ionic
-    LoginPageRoutingModule,
-    LoginPage, // Importa el componente standalone aquí
+    RouterModule,
+    LoginPageRoutingModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Permite los componentes de Ionic
+  exports: [
+    PasswordVisibilityPipe, 
+    HoverColorDirective // Exporta la Directiva si la usarás en otros módulos
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class LoginPageModule {}
