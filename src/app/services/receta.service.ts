@@ -6,6 +6,7 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  getDoc,
 } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db } from '../app.module';
@@ -50,26 +51,27 @@ export class RecetaService {
       const querySnapshot = await getDocs(collection(db, this.collectionName));
       let recetas = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   
-      // Obtener nombres de chefs
-      const chefsSnapshot = await getDocs(collection(db, 'documentos')); // Asegúrate de que esta es la colección correcta
-      const chefsMap: { [key: string]: string } = {}; 
+      // 🔥 Obtener nombres de chefs desde la colección correcta
+      const chefsSnapshot = await getDocs(collection(db, 'documentos'));
+      const chefsMap: { [key: string]: string } = {};
   
       chefsSnapshot.docs.forEach((chef) => {
-        chefsMap[chef.id] = chef.data()['name']; // Asigna el nombre del chef a su ID
+        chefsMap[chef.id] = chef.data()['name'].trim(); // 🔥 Asegurar que no tenga espacios adicionales
       });
   
-      // Reemplazar chefId con el nombre del chef
+      // 🔥 Reemplazar chefId con el nombre del chef
       recetas = recetas.map((receta: any) => ({
         ...receta,
         chefNombre: receta.chefId ? chefsMap[receta.chefId] || 'Desconocido' : 'Desconocido',
       }));
-      
+  
       return recetas;
     } catch (error) {
       console.error('Error al obtener recetas:', error);
       return [];
     }
   }
+  
   
   async toggleFavorito(id: string, esFavorito: boolean): Promise<void> {
     try {
@@ -80,6 +82,23 @@ export class RecetaService {
       console.error('Error al actualizar favorito:', error);
     }
   }
+  
+  async getChefById(chefId: string): Promise<any> {
+    try {
+      const chefRef = doc(db, 'documentos', chefId);
+      const chefSnap = await getDoc(chefRef);
+  
+      if (chefSnap.exists()) {
+        return chefSnap.data();
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error('Error al obtener el chef:', error);
+      return null;
+    }
+  }
+  
 
   // Obtener solo las recetas favoritas
   async getFavoritas(): Promise<any[]> {
