@@ -1,72 +1,81 @@
 {
     "LOGIN": {
-    "TITLE": "Login",
-    "EMAIL": "Email Address",
-    "PASSWORD": "Password",
-    "LOGIN_BUTTON": "Login",
-    "REGISTER_LINK": "Don't have an account? Register",
-    "ERROR_INVALID_CREDENTIALS": "Invalid credentials. Please try again."
+        "TITLE": "Login",
+        "EMAIL": "Email Address",
+        "PASSWORD": "Password",
+        "LOGIN_BUTTON": "Login",
+        "REGISTER_LINK": "Don't have an account? Register",
+        "ERROR_INVALID_CREDENTIALS": "Invalid credentials. Please try again."
     },
     "REGISTER": {
-    "TITLE": "Create Account",
-    "USERNAME": "Username",
-    "EMAIL": "Email Address",
-    "PASSWORD": "Password",
-    "CONFIRM_PASSWORD": "Confirm Password",
-    "ERROR_USERNAME_REQUIRED": "Name is required",
-    "ERROR_EMAIL_REQUIRED": "Valid email is required",
-    "ERROR_PASSWORD_LENGTH": "Password must be at least 6 characters long",
-    "ERROR_PASSWORD_MISMATCH": "Passwords do not match",
-    "REGISTER_BUTTON": "Create Account",
-    "LOGIN_LINK": "Already have an account? Login"
+        "TITLE": "Create Account",
+        "USERNAME": "Username",
+        "EMAIL": "Email Address",
+        "PASSWORD": "Password",
+        "CONFIRM_PASSWORD": "Confirm Password",
+        "ERROR_USERNAME_REQUIRED": "Name is required",
+        "ERROR_EMAIL_REQUIRED": "Valid email is required",
+        "ERROR_PASSWORD_LENGTH": "Password must be at least 6 characters long",
+        "ERROR_PASSWORD_MISMATCH": "Passwords do not match",
+        "REGISTER_BUTTON": "Create Account",
+        "LOGIN_LINK": "Already have an account? Login"
     },
     "RECIPES": {
-    "TITLE": "Recipes",
-    "NAME": "Name",
-    "CHEF": "Chef",
-    "NO_CHEF": "No Chef",
-    "INGREDIENTS": "Ingredients",
-    "DESCRIPTION": "Description",
-    "ADD_RECIPE": "Add Recipe",
-    "EDIT_RECIPE": "Edit Recipe",
-    "NEW_RECIPE": "New Recipe",
-    "DELETE_RECIPE": "Delete Recipe",
-    "UPLOAD_IMAGE": " Upload Image",
-    "SAVE_BUTTON": "Save Recipe"
+        "TITLE": "Recipes",
+        "NAME": "Name",
+        "CHEF": "Chef",
+        "NO_CHEF": "No Chef",
+        "INGREDIENTS": "Ingredients",
+        "DESCRIPTION": "Description",
+        "ADD_RECIPE": "Add Recipe",
+        "EDIT_RECIPE": "Edit Recipe",
+        "NEW_RECIPE": "New Recipe",
+        "DELETE_RECIPE": "Delete Recipe",
+        "UPLOAD_IMAGE": "Upload Image",
+        "SAVE_BUTTON": "Save Recipe",
+        "NO_RECIPES": "No recipes available."
     },
     "CHEFS": {
-    "TITLE": "Chefs",
-    "ADD_CHEF": "Add Chef",
-    "EDIT_CHEF": "Edit Chef",
-    "NEW_CHEF": "New Chef",
-    "NAME": "Chef Name",
-    "DELETE_CHEF": "Delete Chef",
-    "CLOSE": "Close",
-    "SAVE_BUTTON": "Save Chef"
+        "TITLE": "Chefs",
+        "ADD_CHEF": "Add Chef",
+        "EDIT_CHEF": "Edit Chef",
+        "NEW_CHEF": "New Chef",
+        "NAME": "Chef Name",
+        "DELETE_CHEF": "Delete Chef",
+        "CLOSE": "Close",
+        "SAVE_BUTTON": "Save Chef"
     },
     "USER": {
-    "TITLE": "User Profile",
-    "USERNAME": "Username",
-    "EMAIL": "Email Address",
-    "EDIT_USERNAME": "Edit Name",
-    "EDIT_EMAIL": "Edit Email"
+        "TITLE": "User Profile",
+        "USERNAME": "Username",
+        "EMAIL": "Email Address",
+        "EDIT_USERNAME": "Edit Name",
+        "EDIT_EMAIL": "Edit Email"
     },
     "FAVORITES": {
-    "TITLE": "Favorites",
-    "NO_FAVORITES": "You have no favorite recipes."
+        "TITLE": "Favorites",
+        "NO_FAVORITES": "You have no favorite recipes."
     },
     "MENU": {
-    "TITLE": "Receteo",
-    "RECIPES": "Recipes",
-    "CHEFS": "Chefs",
-    "USERS": "Users",
-    "FAVORITES": "Favorites",
-    "LANGUAGE": "Traduction",
-    "LOGOUT": "Logout"
+        "TITLE": "Receteo",
+        "HOME": "Home",
+        "RECIPES": "Recipes",
+        "CHEFS": "Chefs",
+        "USERS": "Users",
+        "FAVORITES": "Favorites",
+        "LANGUAGE": "Language",
+        "LOGOUT": "Logout"
     },
     "SPLASH": {
-    "LOADING": "Loading..."
+        "LOADING": "Loading..."
+    },
+    "MODALS": {
+        "CLOSE": "Close",
+        "CONFIRM": "Confirm",
+        "CANCEL": "Cancel"
+    },
+    "ERRORS": {
+        "GENERAL_ERROR": "An error occurred. Please try again later.",
+        "LOADING_ERROR": "Failed to load data."
     }
-
-    
 }

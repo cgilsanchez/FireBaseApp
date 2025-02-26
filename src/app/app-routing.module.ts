@@ -1,35 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login', // Redirige automáticamente al login
-    pathMatch: 'full', // Asegura que el redireccionamiento sea exacto
+    redirectTo: 'login', // 🔥 Redirige automáticamente al login
+    pathMatch: 'full',
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/login/login.page').then((m) => m.LoginPage), // Usa loadComponent
+    loadComponent: () => import('./pages/login/login.page').then((m) => m.LoginPage),
   },
   {
     path: 'register',
-    loadComponent: () => import('./pages/register/register.page').then((m) => m.RegisterPage), // Usa loadComponent
+    loadComponent: () => import('./pages/register/register.page').then((m) => m.RegisterPage),
   },
   {
     path: 'home',
-    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage), // Usa loadComponent
+    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
+    canActivate: [AuthGuard], // 🔥 Protegido
   },
   {
     path: 'recetas',
-    loadComponent: () => import('./pages/recetas/recetas.page').then(m => m.RecetasPage)
-  }
-  
-  ,
+    loadComponent: () => import('./pages/recetas/recetas.page').then((m) => m.RecetasPage),
+    canActivate: [AuthGuard], // 🔥 Protegido
+  },
   {
     path: 'favoritos',
-    loadChildren: () => import('./pages/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+    loadComponent: () => import('./pages/favoritos/favoritos.page').then((m) => m.FavoritosPage),
+    canActivate: [AuthGuard], // 🔥 Protegido
   },
-
 ];
 
 @NgModule({

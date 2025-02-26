@@ -24,7 +24,12 @@ export class LanguageService {
     });
   }
 
-  translate(key: string): string {
+  getTranslation(key: string): string {
     return this.translations[key] || key; // Si no se encuentra, devuelve la clave original
+  }
+
+  // 🔥 Para actualizar el componente automáticamente
+  getTranslations() {
+    return this.language.asObservable();
   }
 }

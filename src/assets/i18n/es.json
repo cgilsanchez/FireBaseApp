@@ -1,75 +1,81 @@
 {
     "LOGIN": {
-    "TITLE": "Iniciar Sesión",
-    "EMAIL": "Correo Electrónico",
-    "PASSWORD": "Contraseña",
-    "LOGIN_BUTTON": "Iniciar Sesión",
-    "REGISTER_LINK": "¿No tienes cuenta? Regístrate",
-    "ERROR_INVALID_CREDENTIALS": "Credenciales incorrectas. Intenta nuevamente."
+        "TITLE": "Iniciar Sesión",
+        "EMAIL": "Correo Electrónico",
+        "PASSWORD": "Contraseña",
+        "LOGIN_BUTTON": "Iniciar Sesión",
+        "REGISTER_LINK": "¿No tienes cuenta? Regístrate",
+        "ERROR_INVALID_CREDENTIALS": "Credenciales incorrectas. Intenta nuevamente."
     },
     "REGISTER": {
-    "TITLE": "Crear Cuenta",
-    "USERNAME": "Nombre de Usuario",
-    "EMAIL": "Correo Electrónico",
-    "PASSWORD": "Contraseña",
-    "CONFIRM_PASSWORD": "Confirmar Contraseña",
-    "ERROR_USERNAME_REQUIRED": "Nombre requerido",
-    "ERROR_EMAIL_REQUIRED": "Correo válido requerido",
-    "ERROR_PASSWORD_LENGTH": "Contraseña debe tener al menos 6 caracteres",
-    "ERROR_PASSWORD_MISMATCH": "Las contraseñas no coinciden",
-    "REGISTER_BUTTON": "Crear Cuenta",
-    "LOGIN_LINK": "¿Ya tienes cuenta? Inicia Sesión"
+        "TITLE": "Crear Cuenta",
+        "USERNAME": "Nombre de Usuario",
+        "EMAIL": "Correo Electrónico",
+        "PASSWORD": "Contraseña",
+        "CONFIRM_PASSWORD": "Confirmar Contraseña",
+        "ERROR_USERNAME_REQUIRED": "Nombre requerido",
+        "ERROR_EMAIL_REQUIRED": "Correo válido requerido",
+        "ERROR_PASSWORD_LENGTH": "La contraseña debe tener al menos 6 caracteres",
+        "ERROR_PASSWORD_MISMATCH": "Las contraseñas no coinciden",
+        "REGISTER_BUTTON": "Crear Cuenta",
+        "LOGIN_LINK": "¿Ya tienes cuenta? Inicia Sesión"
     },
     "RECIPES": {
-    "TITLE": "Recetas",
-    "NAME": "Nombre",
-    "CHEF": "Chef",
-    "NO_CHEF": "Sin Chef",
-    "INGREDIENTS": "Ingredientes",
-    "DESCRIPTION": "Descripción",
-    "ADD_RECIPE": "Añadir Receta",
-    "EDIT_RECIPE": "Editar Receta",
-    "NEW_RECIPE": "Nueva Receta",
-    "DELETE_RECIPE": "Borrar Receta",
-    "UPLOAD_IMAGE": " Subir Imagen",
-    "SAVE_BUTTON": "Guardar Receta"
+        "TITLE": "Recetas",
+        "NAME": "Nombre",
+        "CHEF": "Chef",
+        "NO_CHEF": "Sin Chef",
+        "INGREDIENTS": "Ingredientes",
+        "DESCRIPTION": "Descripción",
+        "ADD_RECIPE": "Añadir Receta",
+        "EDIT_RECIPE": "Editar Receta",
+        "NEW_RECIPE": "Nueva Receta",
+        "DELETE_RECIPE": "Borrar Receta",
+        "UPLOAD_IMAGE": "Subir Imagen",
+        "SAVE_BUTTON": "Guardar Receta",
+        "NO_RECIPES": "No hay recetas disponibles."
     },
     "CHEFS": {
-    "TITLE": "Chefs",
-    "ADD_CHEF": "Añadir Chef",
-    "EDIT_CHEF": "Editar Chef",
-    "NEW_CHEF": "Nuevo Chef",
-    "NAME": "Nombre del Chef",
-    "DELETE_CHEF": "Borrar Chef",
-    "CLOSE": "Cerrar",
-    "SAVE_BUTTON": "Guardar Chef"
+        "TITLE": "Chefs",
+        "ADD_CHEF": "Añadir Chef",
+        "EDIT_CHEF": "Editar Chef",
+        "NEW_CHEF": "Nuevo Chef",
+        "NAME": "Nombre del Chef",
+        "DELETE_CHEF": "Borrar Chef",
+        "CLOSE": "Cerrar",
+        "SAVE_BUTTON": "Guardar Chef"
     },
     "USER": {
-    "TITLE": "Perfil de Usuario",
-    "USERNAME": "Nombre de Usuario",
-    "EMAIL": "Correo Electrónico",
-    "EDIT_USERNAME": "Editar Nombre",
-    "EDIT_EMAIL": "Editar Email"
+        "TITLE": "Perfil de Usuario",
+        "USERNAME": "Nombre de Usuario",
+        "EMAIL": "Correo Electrónico",
+        "EDIT_USERNAME": "Editar Nombre",
+        "EDIT_EMAIL": "Editar Correo Electrónico"
     },
     "FAVORITES": {
-    "TITLE": "Favoritos",
-    "NO_FAVORITES": "No tienes recetas favoritas."
+        "TITLE": "Favoritos",
+        "NO_FAVORITES": "No tienes recetas favoritas."
     },
     "MENU": {
-    "TITLE": "Receteo",
-    "RECIPES": "Recetas",
-    "CHEFS": "Chefs",
-    "USERS": "Usuarios",
-    "FAVORITES": "Favoritos",
-    "LOGOUT": "Cerrar sesión",
-    "LANGUAGE": "Traducir"
+        "TITLE": "Receteo",
+        "HOME": "Inicio",
+        "RECIPES": "Recetas",
+        "CHEFS": "Chefs",
+        "USERS": "Usuarios",
+        "FAVORITES": "Favoritos",
+        "LANGUAGE": "Idioma",
+        "LOGOUT": "Cerrar sesión"
     },
     "SPLASH": {
-    "LOADING": "Cargando..."
+        "LOADING": "Cargando..."
+    },
+    "MODALS": {
+        "CLOSE": "Cerrar",
+        "CONFIRM": "Confirmar",
+        "CANCEL": "Cancelar"
+    },
+    "ERRORS": {
+        "GENERAL_ERROR": "Ocurrió un error. Inténtalo nuevamente.",
+        "LOADING_ERROR": "Error al cargar los datos."
     }
-    
-
-
-
-    
 }
