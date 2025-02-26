@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { PushNotificationsService } from './services/push-notifications.service';
+import { LanguageService } from './services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { PushNotificationsService } from './services/push-notifications.service'
 export class AppComponent {
   showMenu = false; // Ocultar menú en login y register
 
-  constructor(private router: Router, private pushService: PushNotificationsService) {
+  constructor(private router: Router, private pushService: PushNotificationsService,private languageService: LanguageService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const hiddenRoutes = ['/login', '/register'];
@@ -27,4 +28,9 @@ export class AppComponent {
   private initPushNotifications(): void {
     this.pushService.requestPermission();
   }
+
+  changeLanguage(lang: string) {
+    this.languageService.setLanguage(lang);
+  }
 }
+
