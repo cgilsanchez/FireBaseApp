@@ -9,12 +9,15 @@ import { User } from 'firebase/auth';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  standalone:false,
+  standalone: false,
 })
 export class AppComponent {
   isAuthenticated = false; // 🔥 Controla si el usuario está autenticado
   showSplash: boolean = false; // 🔥 Controla la visibilidad del Splash
-  user: User | null = null; // 🔥 Almacena la información del usuario autenticado
+  showToolbar: boolean = false; // 🔥 Controla si la barra de navegación debe mostrarse
+  user: User | null = null; // 🔥 Información del usuario autenticado
+  showDropdown: boolean = false; // 🔥 Controla el menú desplegable del usuario
+  private previousUrl: string = ''; // 🔥 Guarda la URL anterior
 
   constructor(
     private router: Router,
@@ -34,21 +37,29 @@ export class AppComponent {
       }
     });
 
-    // 🔥 Gestionar Splash Screen y ocultar menú en Login/Register
+    // 🔥 Gestionar la visibilidad de la barra y el Splash Screen
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const hiddenRoutes = ['/login', '/register'];
 
+        // 🔥 Ocultar la barra de navegación en Login y Register
+        this.showToolbar = !hiddenRoutes.includes(event.urlAfterRedirects);
+
+        // 🔥 Ocultar menú lateral en Login y Register
         if (hiddenRoutes.includes(event.urlAfterRedirects)) {
-          this.isAuthenticated = false; // 🔥 Ocultar menú
+          this.isAuthenticated = false;
         }
 
-        if (event.urlAfterRedirects === '/home' && this.isAuthenticated) {
+        // 🔥 Mostrar Splash solo si venimos del Login y vamos a Home
+        if (this.previousUrl === '/login' && event.urlAfterRedirects === '/home') {
           this.showSplash = true;
           setTimeout(() => {
             this.showSplash = false; // 🔥 Ocultar Splash después de 3 segundos
           }, 3000);
         }
+
+        // 🔥 Guardar la URL anterior para la próxima navegación
+        this.previousUrl = event.urlAfterRedirects;
       }
     });
 
@@ -61,10 +72,17 @@ export class AppComponent {
     this.pushService.requestPermission();
   }
 
+  // 🔥 Mostrar/ocultar dropdown del usuario
+  toggleDropdown(): void {
+    this.showDropdown = !this.showDropdown;
+  }
+
   // 🔥 Cerrar sesión
   logout() {
     this.authService.logout().then(() => {
+      this.showDropdown = false; // 🔥 Cerrar el menú desplegable
       this.router.navigate(['/login']);
     });
   }
+  
 }
