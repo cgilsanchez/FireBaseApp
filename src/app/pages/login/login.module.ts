@@ -9,6 +9,8 @@ import { LoginPage } from './login.page'; // Importa el componente
 import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe'; // Importa el Pipe
 import { HoverColorDirective } from '../../directives/hover-color.directive'; // Importa la Directiva
 
+
+
 @NgModule({
   declarations: [
     LoginPage, 
@@ -20,7 +22,8 @@ import { HoverColorDirective } from '../../directives/hover-color.directive'; //
     ReactiveFormsModule,
     IonicModule,
     RouterModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
+    
   ],
   exports: [
     PasswordVisibilityPipe, 
