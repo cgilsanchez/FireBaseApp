@@ -29,23 +29,14 @@
       </ion-item>
     </ion-list>
     
-    
-
     <!-- Descripción -->
     <ion-item>
       <ion-label position="stacked">Descripción</ion-label>
       <ion-textarea formControlName="descripcion"></ion-textarea>
     </ion-item>
 
-    <!-- Selección de Chef -->
-    <ion-item>
-      <ion-label position="stacked">Chef</ion-label>
-      <ion-select formControlName="chefId">
-        <ion-select-option *ngFor="let chef of chefs" [value]="chef.id">
-          {{ chef.nombre }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+    <!-- Selección de Chef (Usando Custom Value Accessor) -->
+    <app-chef-selector formControlName="chefId"></app-chef-selector>
 
     <!-- Subida de Imagen -->
     <ion-item>
