@@ -2,7 +2,7 @@
   <div class="form-container">
     <ion-card appHoverColor="purple"> <!-- La tarjeta cambia de color al pasar el mouse -->
       <ion-card-header>
-        <ion-card-title appHoverColor="blue">Iniciar Sesión</ion-card-title> <!-- Cambia a azul -->
+        <ion-card-title appHoverColor="orange">Iniciar Sesión</ion-card-title> <!-- Cambia a azul -->
       </ion-card-header>
       <ion-card-content>
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
@@ -33,7 +33,7 @@
             <small>Introduce tu contraseña.</small>
           </div>
 
-          <ion-button expand="block" type="submit" [disabled]="loginForm.invalid" appHoverColor="red">
+          <ion-button expand="block" type="submit" [disabled]="loginForm.invalid" appHoverColor="black">
             Iniciar sesión
           </ion-button>
         </form>

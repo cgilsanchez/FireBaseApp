@@ -1,86 +1,68 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+/* 📌 Importar Variables del theme */
+@import "theme/variables.scss"; 
 
-/* Core CSS required for Ionic components to work properly */
+/* Core CSS necesario para Ionic */
 @import "@ionic/angular/css/core.css";
 
-/* Basic CSS for apps built with Ionic */
+/* CSS base de Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 
-/* Optional CSS utils that can be commented out */
+/* CSS opcional de Ionic */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
-
-
-
-/* Definir colores globales */
+/* 🔥 🎨 PALETA DE COLORES (Optimizada con tonos cálidos) */
 :root {
-  --primary-color: #FF9800; /* 🔥 Naranja Principal */
-  --secondary-color: #FFC107; /* ✨ Naranja Claro */
-  --background-color: #F5F5F5; /* 🎨 Fondo claro */
-  --nav-background: #283593; /* 🔵 Azul oscuro */
-  --text-color: #212121; /* ⚫ Negro Suave */
-  --button-hover: #e68900; /* 🟠 Naranja oscuro al pasar mouse */
+  --primary-color: #FF8C00;  /* 🔥 Naranja intenso */
+  --secondary-color: #FFD700; /* ✨ Amarillo dorado */
+  --background-color: #FFF8E1; /* 🎨 Fondo beige claro */
+  --nav-background: #FF6F00; /* 🟠 Naranja oscuro */
+  --text-color: #3E2723; /* ⚫ Marrón oscuro */
+  --button-hover: #E65100; /* 🟠 Naranja más oscuro al pasar mouse */
+  --card-background: #FFFFFF; /* 🎴 Fondo de tarjetas */
+  --menu-background: #FFAB40; /* 🍊 Naranja pastel para el menú */
 }
 
-/* 🔥 Estilos globales */
+/* 🔥 Estilos Globales */
 body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-/* 🔹 Barra de navegación */
+/* 🔹 Barra de Navegación */
 ion-toolbar {
   --background: var(--nav-background);
   --color: white;
 }
 
-/* 🔸 Botones principales */
+/* 🔸 Botones */
 ion-button {
-  --background: var(--primary-color);
-  --color: white;
-  --border-radius: 8px;
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+  --border-radius: 10px;
 }
 
 ion-button:hover {
-  --background: var(--button-hover);
+  --background: var(--hover-primary);
 }
+
 
 /* 🔹 Tarjetas */
 ion-card {
-  background: white;
+  background: var(--card-background);
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* 🔸 Menú lateral */
 ion-menu {
-  --background: white;
+  --background: var(--menu-background);
 }
 
 ion-menu ion-header {
@@ -88,15 +70,6 @@ ion-menu ion-header {
   --color: white;
 }
 
-/* 🔥 Fondos oscuros en elementos clave */
-.important-section {
-  background: var(--nav-background);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-  /* 🔥 Estilos para el icono del usuario en la barra de navegación */
 /* 🔥 Estilos para el icono del usuario en la barra de navegación */
 .user-profile {
   position: relative;
@@ -107,30 +80,35 @@ ion-menu ion-header {
 }
 
 .user-icon {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid white;
+  border: 3px solid white;
+  transition: transform 0.3s ease;
 }
 
-/* 🔥 Estilos para el menú desplegable del usuario */
+.user-icon:hover {
+  transform: scale(1.1);
+}
+
+/* 🔥 Menú desplegable del usuario */
 .dropdown {
   position: absolute;
   top: 60px;
   right: 10px;
-  background: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: var(--card-background);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  padding: 10px;
-  min-width: 200px;
+  padding: 15px;
+  min-width: 220px;
   text-align: center;
   z-index: 1000;
 }
 
 .user-name {
   font-weight: bold;
-  margin: 0;
+  margin-bottom: 5px;
 }
 
 .user-email {
@@ -141,4 +119,11 @@ ion-menu ion-header {
 
 .dropdown ion-button {
   width: 100%;
+  --background: var(--primary-color);
+  --color: white;
+  --border-radius: 8px;
+}
+
+.dropdown ion-button:hover {
+  --background: var(--button-hover);
 }

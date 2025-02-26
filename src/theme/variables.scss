@@ -1,2 +1,42 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+// 📌 VARIABLES GLOBALES (COLORES PRINCIPALES)
+:root {
+    --primary-color: #FF9800;  /* 🔥 Naranja Principal */
+    --secondary-color: #FFA726; /* 🍂 Naranja Suave */
+    --accent-color: #FFD54F;    /* 🌟 Amarillo Arena */
+    --background-color: #FAF3E0; /* 🎨 Beige Claro */
+    --text-color: #4E342E;      /* 🔤 Marrón Oscuro para mejor contraste */
+    --border-color: #8D6E63;    /* 🟤 Marrón Claro para bordes suaves */
+
+    // 🟡 Tonos adicionales para Hover y Efectos
+    --hover-primary: #E68900; /* 🟠 Naranja más oscuro */
+    --hover-secondary: #F57C00; /* 🟠 Naranja más intenso */
+    --menu-background: #FFAB40; /* 🍊 Naranja pastel para el menú */
+}
+
+// 📌 Definir colores en el sistema de colores de Ionic
+:root {
+    --ion-color-primary: var(--primary-color);
+    --ion-color-primary-rgb: 255, 152, 0;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: #e68900;
+    --ion-color-primary-tint: #ffa726;
+
+    --ion-color-secondary: var(--secondary-color);
+    --ion-color-secondary-rgb: 255, 167, 38;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast-rgb: 255, 255, 255;
+    --ion-color-secondary-shade: #f57c00;
+    --ion-color-secondary-tint: #ffcc80;
+
+    --ion-color-tertiary: var(--accent-color);
+    --ion-color-tertiary-rgb: 255, 213, 79;
+    --ion-color-tertiary-contrast: #4E342E;
+    --ion-color-tertiary-contrast-rgb: 78, 52, 46;
+    --ion-color-tertiary-shade: #ffca28;
+    --ion-color-tertiary-tint: #fff59d;
+
+    --ion-background-color: var(--background-color);
+    --ion-text-color: var(--text-color);
+    --ion-border-color: var(--border-color);
+}
