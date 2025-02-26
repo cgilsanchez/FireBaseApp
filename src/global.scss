@@ -41,6 +41,78 @@ ion-toolbar {
   --color: white;
 }
 
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra verticalmente si hay espacio */
+  width: 100%;
+}
+
+/* Estilos para el grid de recetas */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Una columna por defecto */
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+/* En pantallas medianas (tablets), mostrar dos columnas */
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* En pantallas grandes (PC), mostrar tres columnas */
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Estilos de la tarjeta */
+.receta-card {
+  max-width: 400px; /* Define un tamaño máximo para las tarjetas */
+  width: 100%;
+  margin: 0 auto; /* Asegura que cada tarjeta se centre dentro de su columna */
+  text-align: center;
+}
+
+/* Imagen dentro de la tarjeta */
+.receta-img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Botones dentro de la tarjeta */
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+/* Estilo para el contenedor de los chefs */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Estilo para cada tarjeta de chef */
+.custom-card {
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+}
+
+
+
 /* 🔸 Botones */
 ion-button {
   --background: var(--ion-color-primary);
