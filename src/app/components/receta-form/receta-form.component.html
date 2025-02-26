@@ -8,45 +8,46 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form (ngSubmit)="save()">
+  <form [formGroup]="recetaForm" (ngSubmit)="save()">
+    
+    <!-- Campo de Título -->
     <ion-item>
       <ion-label position="stacked">Título</ion-label>
-      <ion-input [(ngModel)]="receta.titulo" name="titulo" required></ion-input>
+      <ion-input formControlName="titulo"></ion-input>
     </ion-item>
-
-
+    
+    <!-- Ingredientes -->
     <ion-item>
       <ion-label position="stacked">Ingredientes</ion-label>
-      <ion-input [(ngModel)]="nuevoIngrediente" name="nuevoIngrediente" placeholder="Añadir ingrediente"></ion-input>
       <ion-button fill="clear" (click)="agregarIngrediente()">+</ion-button>
     </ion-item>
 
-
     <ion-list>
-      <ion-item *ngFor="let ing of receta.ingredientes">
-        {{ ing }}
-        <ion-button fill="clear" color="danger" (click)="eliminarIngrediente(ing)">X</ion-button>
+      <ion-item *ngFor="let ing of ingredientes.controls; let i = index">
+        <ion-input [formControl]="getIngredienteControl(i)"></ion-input>
+        <ion-button fill="clear" color="danger" (click)="eliminarIngrediente(i)">X</ion-button>
       </ion-item>
     </ion-list>
+    
+    
 
-
+    <!-- Descripción -->
     <ion-item>
       <ion-label position="stacked">Descripción</ion-label>
-      <ion-textarea [(ngModel)]="receta.descripcion" name="descripcion" required></ion-textarea>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
     </ion-item>
 
+    <!-- Selección de Chef -->
     <ion-item>
       <ion-label position="stacked">Chef</ion-label>
-      <ion-select [(ngModel)]="receta.chefId" name="chefId" required>
+      <ion-select formControlName="chefId">
         <ion-select-option *ngFor="let chef of chefs" [value]="chef.id">
           {{ chef.nombre }}
         </ion-select-option>
       </ion-select>
     </ion-item>
 
-    
-
-    
+    <!-- Subida de Imagen -->
     <ion-item>
       <ion-label>Imagen</ion-label>
       <input type="file" (change)="seleccionarImagen($event)">
@@ -54,7 +55,8 @@
 
     <ion-img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa"></ion-img>
 
-    <ion-button expand="block" type="submit">
+    <!-- Botón Guardar -->
+    <ion-button expand="block" type="submit" [disabled]="recetaForm.invalid">
       {{ isEditing ? 'Actualizar' : 'Crear' }}
     </ion-button>
   </form>

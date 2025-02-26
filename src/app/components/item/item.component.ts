@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { addDoc, collection, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../../app.module';
@@ -11,48 +11,54 @@ import { db } from '../../app.module';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule], // ✅ Se usa ReactiveFormsModule
 })
-export class ItemComponent {
+export class ItemComponent implements OnInit {
   @Input() item: any = null; // Datos del ítem para editar
-  newItem = { name: '', description: '' }; // Datos para el nuevo ítem o edición
-  collectionName = 'documentos'; // Nombre de la colección en Firestore
-  isEditing = false; // Determina si estamos editando o creando
+  itemForm!: FormGroup; // ✅ Formulario Reactivo
+  collectionName = 'documentos';
+  isEditing = false;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    // Si se recibe un ítem como entrada, lo cargamos en el formulario
+    this.initForm();
+
+    // Si hay un ítem, lo precargamos en el formulario
     if (this.item) {
-      this.newItem = { name: this.item.name, description: this.item.description };
-      this.isEditing = true; // Cambia el modo a edición
+      this.isEditing = true;
+      this.itemForm.patchValue(this.item);
     }
   }
 
-  // Guardar o actualizar el ítem en Firebase
+  initForm() {
+    this.itemForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+    });
+  }
+
   async save(): Promise<void> {
-    if (this.newItem.name && this.newItem.description) {
-      try {
-        if (this.isEditing && this.item.id) {
-          // Si estamos editando, actualizamos el ítem
-          const docRef = doc(db, this.collectionName, this.item.id);
-          await updateDoc(docRef, this.newItem);
-          console.log('Ítem actualizado con éxito:', this.newItem);
-        } else {
-          // Si no estamos editando, creamos un nuevo ítem
-          await addDoc(collection(db, this.collectionName), this.newItem);
-          console.log('Ítem creado con éxito:', this.newItem);
-        }
-        this.modalController.dismiss(this.newItem); // Cierra el modal y envía los datos
-      } catch (error) {
-        console.error('Error al guardar el ítem:', error);
+    if (this.itemForm.invalid) {
+      this.itemForm.markAllAsTouched();
+      return;
+    }
+
+    try {
+      if (this.isEditing && this.item.id) {
+        const docRef = doc(db, this.collectionName, this.item.id);
+        await updateDoc(docRef, this.itemForm.value);
+        console.log('Ítem actualizado con éxito:', this.itemForm.value);
+      } else {
+        await addDoc(collection(db, this.collectionName), this.itemForm.value);
+        console.log('Ítem creado con éxito:', this.itemForm.value);
       }
-    } else {
-      alert('Por favor, completa todos los campos.');
+      this.modalController.dismiss(this.itemForm.value);
+    } catch (error) {
+      console.error('Error al guardar el ítem:', error);
     }
   }
 
-  // Cerrar el modal sin guardar
   close(): void {
     this.modalController.dismiss();
   }

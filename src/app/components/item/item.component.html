@@ -8,18 +8,25 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="save()">
+  <form [formGroup]="itemForm" (ngSubmit)="save()">
+    
     <ion-item>
       <ion-label position="stacked">Nombre</ion-label>
-      <ion-input [(ngModel)]="newItem.name" name="name" required></ion-input>
+      <ion-input formControlName="name"></ion-input>
     </ion-item>
+    <div *ngIf="itemForm.get('name')?.invalid && itemForm.get('name')?.touched" class="error">
+      <small>Introduce un nombre.</small>
+    </div>
 
     <ion-item>
       <ion-label position="stacked">Descripción</ion-label>
-      <ion-input [(ngModel)]="newItem.description" name="description" required></ion-input>
+      <ion-input formControlName="description"></ion-input>
     </ion-item>
+    <div *ngIf="itemForm.get('description')?.invalid && itemForm.get('description')?.touched" class="error">
+      <small>Introduce una descripción.</small>
+    </div>
 
-    <ion-button expand="block" type="submit">
+    <ion-button expand="block" type="submit" [disabled]="itemForm.invalid">
       {{ isEditing ? 'Actualizar' : 'Crear' }}
     </ion-button>
   </form>

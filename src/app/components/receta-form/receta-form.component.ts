@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { collection, getDocs } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -13,25 +13,68 @@ import { RecetaService } from '../../services/receta.service';
   templateUrl: './receta-form.component.html',
   styleUrls: ['./receta-form.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule], // ✅ Ahora usa ReactiveFormsModule
 })
 export class RecetaFormComponent implements OnInit {
-  @Input() receta: any = { titulo: '', ingredientes: [], descripcion: '', chefId: '', imagenUrl: '' };
+  @Input() receta: any;
   isEditing = false;
-  chefs: any[] = [];
-  nuevoIngrediente: string = '';
+  recetaForm!: FormGroup; // ✅ Se define correctamente el FormGroup
   imagenArchivo: File | null = null;
   imagenPreview: string | null = null;
-  collectionName = 'documentos'; // Nombre de la colección donde están los chefs
+  chefs: any[] = [];
+  collectionName = 'documentos';
 
-  constructor(private modalController: ModalController, private recetaService: RecetaService) {}
+  constructor(
+    private modalController: ModalController,
+    private recetaService: RecetaService,
+    private fb: FormBuilder
+  ) {}
 
   async ngOnInit() {
-    this.loadChefs(); // Cargar chefs al iniciar el modal
-    if (this.receta.id) {
+    this.loadChefs();
+    this.initForm();
+
+    if (this.receta?.id) {
       this.isEditing = true;
-      this.imagenPreview = this.receta.imagenUrl || null; // Mostrar la imagen actual si existe
+      this.recetaForm.patchValue({
+        titulo: this.receta.titulo,
+        descripcion: this.receta.descripcion,
+        chefId: this.receta.chefId,
+        imagenUrl: this.receta.imagenUrl,
+      });
+      this.imagenPreview = this.receta.imagenUrl || null;
+
+      // Cargar ingredientes en el FormArray
+      this.receta.ingredientes.forEach((ing: string) => {
+        this.ingredientes.push(this.fb.control(ing, Validators.required));
+      });
     }
+  }
+
+  initForm() {
+    this.recetaForm = this.fb.group({
+      titulo: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      chefId: ['', Validators.required],
+      ingredientes: this.fb.array([]), // ✅ FormArray para ingredientes dinámicos
+      imagenUrl: [''],
+    });
+  }
+
+  get ingredientes(): FormArray {
+    return this.recetaForm.get('ingredientes') as FormArray;
+  }
+
+  agregarIngrediente() {
+    this.ingredientes.push(this.fb.control('', Validators.required));
+  }
+  getIngredienteControl(index: number): FormControl {
+    return this.ingredientes.at(index) as FormControl;
+  }
+  
+
+  eliminarIngrediente(index: number) {
+    this.ingredientes.removeAt(index);
   }
 
   async loadChefs() {
@@ -47,35 +90,27 @@ export class RecetaFormComponent implements OnInit {
   }
 
   async save(): Promise<void> {
-    if (this.receta.titulo && this.receta.descripcion) {
-      try {
-        if (this.imagenArchivo) {
-          this.receta.imagenUrl = await this.uploadImage();
-        }
-        
-        if (this.isEditing) {
-          await this.recetaService.updateReceta(this.receta.id, this.receta);
-        } else {
-          await this.recetaService.createReceta(this.receta);
-        }
-        this.modalController.dismiss(this.receta);
-      } catch (error) {
-        console.error('Error al guardar la receta:', error);
+    if (this.recetaForm.invalid) {
+      this.recetaForm.markAllAsTouched();
+      return;
+    }
+
+    try {
+      if (this.imagenArchivo) {
+        const imageUrl = await this.uploadImage();
+        this.recetaForm.patchValue({ imagenUrl: imageUrl });
       }
-    } else {
-      alert('Por favor, completa todos los campos.');
-    }
-  }
 
-  agregarIngrediente() {
-    if (this.nuevoIngrediente.trim()) {
-      this.receta.ingredientes.push(this.nuevoIngrediente.trim());
-      this.nuevoIngrediente = '';
-    }
-  }
+      if (this.isEditing) {
+        await this.recetaService.updateReceta(this.receta.id, this.recetaForm.value);
+      } else {
+        await this.recetaService.createReceta(this.recetaForm.value);
+      }
 
-  eliminarIngrediente(ing: string) {
-    this.receta.ingredientes = this.receta.ingredientes.filter((i: string) => i !== ing);
+      this.modalController.dismiss(this.recetaForm.value);
+    } catch (error) {
+      console.error('Error al guardar la receta:', error);
+    }
   }
 
   seleccionarImagen(event: any) {

@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-recetas',
   templateUrl: './recetas.page.html',
   styleUrls: ['./recetas.page.scss'],
-  imports: [CommonModule, IonicModule, FormsModule, RecetaFormComponent],
+  imports: [CommonModule, IonicModule, FormsModule],
 })
 export class RecetasPage implements OnInit, OnDestroy {
   recetas: any[] = []; // Lista de recetas obtenidas de Firestore

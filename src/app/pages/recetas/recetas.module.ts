@@ -13,9 +13,6 @@ import { RecetaFormComponent } from '../../components/receta-form/receta-form.co
     RecetasPageRoutingModule,
     RecetaFormComponent,
     ReactiveFormsModule  // ✅ Se importa aquí, pero NO en declarations
-  ],
-  exports: [
-    RecetaFormComponent
   ]
 })
 export class RecetasPageModule {}
