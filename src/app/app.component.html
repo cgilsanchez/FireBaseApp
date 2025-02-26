@@ -29,7 +29,7 @@
   <!-- 🔥 Menú lateral -->
   <ion-menu *ngIf="isAuthenticated" contentId="main-content" side="start">
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color = "warning">
         <ion-title>Menú</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -37,8 +37,8 @@
     <ion-content>
       <ion-list>
         <ion-item routerLink="/home" routerDirection="root">
-          <ion-icon slot="start" name="home-outline"></ion-icon>
-          Home
+          <ion-icon slot="start" name="people-outline"></ion-icon>
+          Chefs
         </ion-item>
         <ion-item routerLink="/recetas" routerDirection="root">
           <ion-icon slot="start" name="restaurant-outline"></ion-icon>

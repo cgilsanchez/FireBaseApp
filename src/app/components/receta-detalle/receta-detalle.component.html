@@ -1,27 +1,36 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="warning">
     <ion-title>Detalles de la Receta</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Cerrar</ion-button>
+      <ion-button (click)="close()">CERRAR</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card>
+<ion-content class="detalle-receta-container">
+  <!-- Imagen destacada -->
+  <div class="imagen-container">
     <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="detalle-img" />
+  </div>
 
-    <ion-card-header>
-      <ion-card-title>{{ receta.titulo }}</ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      <p><strong>Chef:</strong> {{ receta.chefNombre }}</p>
-      <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
-      <p><strong>Ingredientes:</strong></p>
+  <!-- Contenido de la receta -->
+  <div class="contenido-detalle">
+    <h1 class="titulo-receta">{{ receta.titulo }}</h1>
+    <p class="chef-nombre">
+      <ion-icon name="person-circle-outline"></ion-icon> Chef: {{ receta.chefNombre }}
+    </p>
+    <div class="ingredientes-container">
+      <h3><ion-icon name="list-outline"></ion-icon> Ingredientes:</h3>
       <ul>
-        <li *ngFor="let ingrediente of receta.ingredientes">{{ ingrediente }}</li>
+        <li *ngFor="let ingrediente of receta.ingredientes">
+          <ion-icon name="leaf-outline"></ion-icon> {{ ingrediente }}
+        </li>
       </ul>
-    </ion-card-content>
-  </ion-card>
+    </div>
+    <p class="descripcion">
+      <ion-icon name="book-outline"></ion-icon> {{ receta.descripcion }}
+    </p>
+
+  
+  </div>
 </ion-content>

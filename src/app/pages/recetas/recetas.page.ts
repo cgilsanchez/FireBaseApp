@@ -142,9 +142,8 @@ export class RecetasPage implements OnInit, OnDestroy {
 
   // Eliminar una receta
   async deleteReceta(id: string): Promise<void> {
-    if (confirm('¿Seguro que quieres eliminar esta receta?')) {
       await this.recetaService.deleteReceta(id);
-    }
+    
   }
 
   // 🔥 Desuscribirse de Firestore al salir de la página

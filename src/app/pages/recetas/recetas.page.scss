@@ -44,3 +44,55 @@
   display: flex;
   justify-content: space-between;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espaciado entre botones */
+  margin-top: 15px; /* Espaciado hacia arriba */
+  margin-bottom: 20px; /* Agregamos espacio hacia abajo */
+}
+
+.card-content {
+  padding-bottom: 20px; /* Espaciado interno dentro de la tarjeta */
+}
+
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+.edit-button {
+  background-color: #ffa500; /* Naranja */
+  color: white;
+  border: none;
+}
+
+.edit-button:hover {
+  background-color: #e69500;
+  transform: scale(1.05);
+}
+
+.delete-button {
+  background-color: #d32f2f; /* Rojo */
+  color: white;
+  border: none;
+}
+
+.delete-button:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
+
+.action-button ion-icon {
+  font-size: 18px;
+}

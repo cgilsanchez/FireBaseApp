@@ -35,19 +35,18 @@
 
         <ion-card-content>
           <p><strong>Chef:</strong> {{ receta.chefNombre }}</p>
-          <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
-          <p><strong>Ingredientes:</strong></p>
-          <ul>
-            <li *ngFor="let ingrediente of receta.ingredientes">{{ ingrediente }}</li>
-          </ul>
+        
         </ion-card-content>
 
         <ion-row class="btn-container">
           <ion-col>
-            <ion-button expand="full" color="secondary" (click)="openEditModal(receta); $event.stopPropagation()">Editar</ion-button>
+            <ion-button expand="full" color="secondary" (click)="openEditModal(receta); $event.stopPropagation()">
+              <ion-icon slot="start" name="create-outline"></ion-icon>Editar</ion-button>
+            
           </ion-col>
           <ion-col>
-            <ion-button expand="full" color="danger" (click)="deleteReceta(receta.id); $event.stopPropagation()">Eliminar</ion-button>
+            <ion-button expand="full" color="danger" (click)="deleteReceta(receta.id); $event.stopPropagation()">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>Eliminar</ion-button>
           </ion-col>
         </ion-row>
       </ion-card>

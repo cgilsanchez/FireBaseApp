@@ -47,8 +47,10 @@
     <ion-img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa"></ion-img>
 
     <!-- Botón Guardar -->
-    <ion-button expand="block" type="submit" [disabled]="recetaForm.invalid">
-      {{ isEditing ? 'Actualizar' : 'Crear' }}
-    </ion-button>
+    <div class="modal-footer">
+      <ion-button expand="block" type="submit" [disabled]="recetaForm.invalid">
+        {{ isEditing ? 'Actualizar' : 'Crear' }}
+      </ion-button>
+    </div>
   </form>
 </ion-content>

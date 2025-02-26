@@ -15,10 +15,10 @@ import { ItemComponent } from '../../components/item/item.component'; // Compone
   imports: [CommonModule, IonicModule, FormsModule, ItemComponent],
 })
 export class HomePage implements OnInit {
-  items: any[] = []; // Lista de ítems desde Firestore
+  items: any[] = []; // Lista completa de chefs
+  filteredChefs: any[] = []; // Lista filtrada de chefs
+  searchText: string = ''; // Texto del buscador
   collectionName = 'documentos'; // Nombre de la colección en Firestore
-
-  
 
   constructor(private modalController: ModalController) {}
 
@@ -26,7 +26,6 @@ export class HomePage implements OnInit {
     this.loadItems(); // Cargar los ítems al iniciar la página
   }
 
-  // Cargar ítems desde Firebase
   async loadItems(): Promise<void> {
     try {
       const querySnapshot = await getDocs(collection(db, this.collectionName));
@@ -34,12 +33,21 @@ export class HomePage implements OnInit {
         id: doc.id,
         ...doc.data(),
       }));
+      this.filteredChefs = [...this.items]; // Inicialmente, todos los chefs visibles
     } catch (error) {
       console.error('Error al cargar los ítems:', error);
     }
   }
 
-  // Abrir el modal para crear un nuevo ítem
+  // 🔍 Filtrar chefs por nombre
+  filterChefs(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.filteredChefs = this.items.filter(chef =>
+      chef.name.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  // 📌 Abrir modal para crear un chef
   async openCreateModal(): Promise<void> {
     const modal = await this.modalController.create({
       component: ItemComponent,
@@ -48,31 +56,31 @@ export class HomePage implements OnInit {
 
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.loadItems(); // Recargar la lista después de agregar un ítem
+        this.loadItems();
       }
     });
 
     await modal.present();
   }
 
-  // Abrir el modal para editar un ítem
+  // 📌 Abrir modal para editar un chef
   async openEditModal(item: any): Promise<void> {
     const modal = await this.modalController.create({
       component: ItemComponent,
-      componentProps: { item }, // Pasar el ítem al modal
+      componentProps: { item },
       cssClass: 'item-modal',
     });
 
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.loadItems(); // Recargar la lista después de actualizar un ítem
+        this.loadItems();
       }
     });
 
     await modal.present();
   }
 
-  // Eliminar un ítem
+  // 🗑️ Eliminar un chef
   async deleteItem(id: string): Promise<void> {
     try {
       await deleteDoc(doc(db, this.collectionName, id));

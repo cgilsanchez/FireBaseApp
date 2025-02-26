@@ -23,4 +23,19 @@
         font-size: 0.85rem;
         margin-top: 4px;
     }
+    ion-item {
+        display: flex;
+        align-items: center; /* Asegura la alineación vertical */
+        position: relative;
+    }
+    
+    ion-button.eye-button {
+        position: absolute;
+        right: 10px; /* Ajusta la posición horizontal si es necesario */
+        height: 20px; /* Asegura que el botón tenga una altura acorde */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px; /* Ajusta este valor para bajarlo ligeramente */
+    }
     
