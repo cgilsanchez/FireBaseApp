@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // Importa RouterModule
+import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular'; // Importa IonicModule
+import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
-  standalone: true, // Configura el componente como standalone
-  imports: [ReactiveFormsModule, RouterModule, IonicModule], // Asegúrate de incluir RouterModule aquí
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterModule, IonicModule],
 })
 export class RegisterPage {
   registerForm: FormGroup;
@@ -21,13 +21,13 @@ export class RegisterPage {
     private router: Router
   ) {
     this.registerForm = this.fb.group({
+      name: ['', [Validators.required]], // 🔥 Campo de nombre obligatorio
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
     }, { validator: this.passwordsMatchValidator });
   }
 
-  // Validador personalizado para confirmar que las contraseñas coinciden
   passwordsMatchValidator(form: FormGroup): null | { mismatch: boolean } {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
@@ -36,11 +36,11 @@ export class RegisterPage {
 
   async onRegister(): Promise<void> {
     if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value;
+      const { name, email, password } = this.registerForm.value;
       try {
-        await this.authService.register(email, password); // Llama al servicio de autenticación
+        await this.authService.register(email, password, name); // 🔥 Ahora registra con nombre
         console.log('Registro exitoso');
-        this.router.navigate(['/login']); // Redirige al login
+        this.router.navigate(['/login']);
       } catch (error) {
         console.error('Error en el registro:', error);
       }

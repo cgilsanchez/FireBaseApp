@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User, updateProfile } from 'firebase/auth';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -16,31 +16,35 @@ export class AuthService {
     });
   }
 
-  // 📌 Devuelve si el usuario está autenticado
   isAuthenticated(): Observable<boolean> {
     return this.authState.asObservable().pipe(map(user => !!user));
   }
 
-  // 📌 Obtener el usuario actual
-  getCurrentUser(): User | null {
-    return this.auth.currentUser;
+  getCurrentUser(): Observable<User | null> {
+    return this.authState.asObservable();
   }
 
-  // 📌 Registrar usuario
-  async register(email: string, password: string): Promise<void> {
+  // 📌 **Registrar usuario con nombre**
+  async register(email: string, password: string, displayName: string): Promise<void> {
     const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+    await updateProfile(userCredential.user, { displayName }); // 🔥 Guardar nombre en Firebase
     this.authState.next(userCredential.user);
   }
 
-  // 📌 Iniciar sesión
   async login(email: string, password: string): Promise<void> {
     const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
     this.authState.next(userCredential.user);
   }
 
-  // 📌 Cerrar sesión
   async logout(): Promise<void> {
     await signOut(this.auth);
     this.authState.next(null);
+  }
+
+  async updateUserProfile(name: string): Promise<void> {
+    if (this.auth.currentUser) {
+      await updateProfile(this.auth.currentUser, { displayName: name });
+      this.authState.next({ ...this.auth.currentUser });
+    }
   }
 }
