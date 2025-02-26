@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe'; // Importa el Pipe aquí
 import { HoverColorDirective } from 'src/app/directives/hover-color.directive';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
