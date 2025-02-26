@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RecetasPageRoutingModule } from './recetas-routing.module';
 import { RecetaFormComponent } from '../../components/receta-form/receta-form.component';
@@ -11,7 +11,11 @@ import { RecetaFormComponent } from '../../components/receta-form/receta-form.co
     FormsModule,
     IonicModule,
     RecetasPageRoutingModule,
-    RecetaFormComponent // ✅ Se importa aquí, pero NO en declarations
+    RecetaFormComponent,
+    ReactiveFormsModule  // ✅ Se importa aquí, pero NO en declarations
+  ],
+  exports: [
+    RecetaFormComponent
   ]
 })
 export class RecetasPageModule {}

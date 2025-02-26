@@ -1,53 +1,58 @@
-<ion-content>
-  <div class="form-container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Crear Cuenta</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-          <!-- Campo de nombre -->
-          <ion-item>
-            <ion-label position="floating">Nombre</ion-label>
-            <ion-input formControlName="name" type="text"></ion-input>
-          </ion-item>
-          <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error">
-            <small>Introduce tu nombre.</small>
-          </div>
+<ion-content class="ion-padding">
+  <div class="auth-container">
+    <!-- Imagen de perfil en la parte superior -->
+    <div class="auth-logo">
+      <img src="assets/images/recipe-logo.webp" alt="User Logo" />
+    </div>
 
-          <!-- Campo de correo -->
-          <ion-item>
-            <ion-label position="floating">Correo Electrónico</ion-label>
-            <ion-input formControlName="email" type="email"></ion-input>
-          </ion-item>
-          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
-            <small>Introduce un correo válido.</small>
-          </div>
+    <h1 class="auth-title">Crear Cuenta</h1>
 
-          <!-- Campo de contraseña -->
-          <ion-item>
-            <ion-label position="floating">Contraseña</ion-label>
-            <ion-input formControlName="password" type="password"></ion-input>
-          </ion-item>
-          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
-            <small>La contraseña debe tener al menos 6 caracteres.</small>
-          </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <!-- Campo de nombre -->
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error">
+        <small>Introduce tu nombre.</small>
+      </div>
 
-          <!-- Confirmar contraseña -->
-          <ion-item>
-            <ion-label position="floating">Repetir Contraseña</ion-label>
-            <ion-input formControlName="confirmPassword" type="password"></ion-input>
-          </ion-item>
-          <div *ngIf="registerForm.errors?.mismatch && registerForm.get('confirmPassword')?.touched" class="error">
-            <small>Las contraseñas no coinciden.</small>
-          </div>
+      <!-- Campo de correo -->
+      <ion-item>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
+        <small>Introduce un correo válido.</small>
+      </div>
 
-          <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">Registrar</ion-button>
-        </form>
-        <ion-button expand="block" color="secondary" routerLink="/login">
-          ¿Ya tienes cuenta? Inicia Sesión
-        </ion-button>
-      </ion-card-content>
-    </ion-card>
+      <!-- Campo de contraseña -->
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+      </ion-item>
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
+        <small>La contraseña debe tener al menos 6 caracteres.</small>
+      </div>
+
+      <!-- Confirmar contraseña -->
+      <ion-item>
+        <ion-label position="floating">Repetir Contraseña</ion-label>
+        <ion-input formControlName="confirmPassword" type="password"></ion-input>
+      </ion-item>
+      <div *ngIf="registerForm.errors?.mismatch && registerForm.get('confirmPassword')?.touched" class="error">
+        <small>Las contraseñas no coinciden.</small>
+      </div>
+
+      <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
+        Registrar
+      </ion-button>
+
+      <ion-button expand="block" fill="outline" color="secondary" routerLink="/login">
+        ¿Ya tienes cuenta? Inicia sesión
+      </ion-button>
+    </form>
   </div>
 </ion-content>
+
+
+

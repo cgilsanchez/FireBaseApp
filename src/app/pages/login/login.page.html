@@ -1,47 +1,39 @@
-<ion-content>
-  <div class="form-container">
-    <ion-card appHoverColor="purple"> <!-- La tarjeta cambia de color al pasar el mouse -->
-      <ion-card-header>
-        <ion-card-title appHoverColor="orange">Iniciar Sesión</ion-card-title> <!-- Cambia a azul -->
-      </ion-card-header>
-      <ion-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-          <!-- Campo de correo -->
-          <ion-item>
-            <ion-label position="floating" appHoverColor="green">Correo Electrónico</ion-label>
-            <ion-input formControlName="email" type="email"></ion-input>
-          </ion-item>
-          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
-            <small>Introduce un correo válido.</small>
-          </div>
+<ion-content class="ion-padding">
+  <div class="auth-container">
+    <!-- Imagen de perfil en la parte superior -->
+    <div class="auth-logo">
+      <img src="assets/images/recipe-logo.webp" alt="User Logo" />
+    </div>
 
-          <!-- Campo de contraseña con icono de ojo -->
-          <ion-item>
-            <ion-label position="floating" appHoverColor="orange">Contraseña</ion-label>
-            <ion-input 
-              formControlName="password" 
-              [type]="isPasswordVisible | passwordVisibility">
-            </ion-input>
-            <ion-button 
-              fill="clear" 
-              slot="end" 
-              (click)="isPasswordVisible = !isPasswordVisible">
-              <ion-icon [name]="isPasswordVisible ? 'eye-off' : 'eye'"></ion-icon>
-            </ion-button>
-          </ion-item>
-          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
-            <small>Introduce tu contraseña.</small>
-          </div>
+    <h1 class="auth-title">Iniciar Sesión</h1>
 
-          <ion-button expand="block" type="submit" [disabled]="loginForm.invalid" appHoverColor="black">
-            Iniciar sesión
-          </ion-button>
-        </form>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <ion-item>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
+        <small>Introduce un correo válido.</small>
+      </div>
 
-        <ion-button expand="block" color="secondary" routerLink="/register" appHoverColor="blue">
-          ¿No tienes cuenta? Regístrate
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'"></ion-input>
+        <ion-button fill="clear" slot="end" (click)="isPasswordVisible = !isPasswordVisible">
+          <ion-icon [name]="isPasswordVisible ? 'eye-off' : 'eye'"></ion-icon>
         </ion-button>
-      </ion-card-content>
-    </ion-card>
+      </ion-item>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+        <small>Introduce tu contraseña.</small>
+      </div>
+
+      <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
+        Iniciar sesión
+      </ion-button>
+
+      <ion-button expand="block" fill="outline" color="secondary" routerLink="/register">
+        ¿No tienes cuenta? Regístrate
+      </ion-button>
+    </form>
   </div>
 </ion-content>
