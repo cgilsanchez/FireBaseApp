@@ -9,9 +9,11 @@ import { AuthService } from './services/auth.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: false,
+  
 })
 export class AppComponent {
   isAuthenticated = false; // 🔥 Controla si el usuario está autenticado
+  showSplash: boolean = false; // 🔥 Controla la visibilidad del Splash
 
   constructor(
     private router: Router,
@@ -24,12 +26,19 @@ export class AppComponent {
       this.isAuthenticated = authState;
     });
 
-    // 🔥 Ocultar el menú en Login y Register aunque el usuario esté autenticado
+    // 🔥 Escuchar cambios en la ruta y gestionar el Splash
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const hiddenRoutes = ['/login', '/register'];
         if (hiddenRoutes.includes(event.urlAfterRedirects)) {
-          this.isAuthenticated = false; // 🔥 Forzar ocultar el menú en Login y Register
+          this.isAuthenticated = false; // 🔥 Ocultar el menú en Login y Register
+        }
+
+        if (event.urlAfterRedirects === '/home') {
+          this.showSplash = true;
+          setTimeout(() => {
+            this.showSplash = false; // Ocultar el Splash después de 3 segundos
+          }, 3000);
         }
       }
     });

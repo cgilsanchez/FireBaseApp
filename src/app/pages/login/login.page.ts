@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // Importa RouterModule
-import { IonicModule } from '@ionic/angular'; // Importa IonicModule
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe'; // Importa el Pipe aquí
+import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe';
 import { HoverColorDirective } from 'src/app/directives/hover-color.directive';
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  standalone: true, // Configura el componente como standalone
-  imports: [ReactiveFormsModule, RouterModule, IonicModule,PasswordVisibilityPipe,HoverColorDirective], // Asegúrate de incluir RouterModule aquí
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterModule, IonicModule, PasswordVisibilityPipe, HoverColorDirective],
 })
 export class LoginPage {
   loginForm: FormGroup;
@@ -36,7 +35,11 @@ export class LoginPage {
       try {
         await this.authService.login(email, password);
         console.log('Inicio de sesión exitoso');
-        this.router.navigate(['/home']);
+
+        // 🔥 Mostrar Splash y luego redirigir al Home
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 3000);
       } catch (error) {
         console.error('Error en el inicio de sesión:', error);
         alert('Error al iniciar sesión.');

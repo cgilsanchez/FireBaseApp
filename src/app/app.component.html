@@ -1,4 +1,6 @@
 <ion-app>
+  <app-splash *ngIf="showSplash"></app-splash> <!-- 🔥 Agregado el splash screen -->
+
   <ion-menu *ngIf="isAuthenticated" contentId="main-content" side="start">
     <ion-header>
       <ion-toolbar>
@@ -19,7 +21,7 @@
           <ion-icon slot="start" name="heart-outline"></ion-icon>
           Favoritos
         </ion-item>
-        <ion-item routerLink="/login" routerDirection="root">
+        <ion-item (click)="logout()">
           <ion-icon slot="start" name="log-out-outline"></ion-icon>
           Cerrar Sesión
         </ion-item>
