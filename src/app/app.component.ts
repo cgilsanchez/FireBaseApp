@@ -26,14 +26,13 @@ export class AppComponent {
     private languageService: LanguageService
   ) {
     // 🔥 Escuchar cambios en la autenticación
-    this.authService.isAuthenticated().subscribe((authState) => {
-      this.isAuthenticated = authState;
-      if (authState) {
-        this.authService.getCurrentUser().subscribe(user => {
-          this.user = user;
-        });
-      } else {
-        this.user = null;
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.isAuthenticated = !!user;
+      this.user = user;
+
+      // 🔥 Si el usuario está autenticado y está en el login, redirigir al Home
+      if (user && this.router.url === '/login') {
+        this.router.navigate(['/home']);
       }
     });
 
