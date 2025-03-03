@@ -1,14 +1,14 @@
 <ion-content class="ion-padding">
   <div class="auth-container">
     <!-- Imagen de perfil en la parte superior -->
-    <div class="auth-logo">
+    <div class="auth-logo" appHoverColor="gray">
       <img src="assets/images/recipe-logo.webp" alt="User Logo" />
     </div>
 
-    <h1 class="auth-title">Iniciar Sesión</h1>
+    <h1 class="auth-title" appHoverColor="orange">Iniciar Sesión</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <ion-item>
+      <ion-item appHoverColor="gray">
         <ion-label position="floating">Correo Electrónico</ion-label>
         <ion-input formControlName="email" type="email"></ion-input>
       </ion-item>
@@ -16,10 +16,10 @@
         <small>Introduce un correo válido.</small>
       </div>
 
-      <ion-item>
+      <ion-item appHoverColor="gray">
         <ion-label position="floating">Contraseña</ion-label>
         <ion-input formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'"></ion-input>
-        <ion-button fill="clear" slot="end" (click)="isPasswordVisible = !isPasswordVisible">
+        <ion-button fill="clear" slot="end" (click)="isPasswordVisible = !isPasswordVisible" appHoverColor="black">
           <ion-icon [name]="isPasswordVisible ? 'eye-off' : 'eye'"></ion-icon>
         </ion-button>
       </ion-item>
@@ -27,11 +27,13 @@
         <small>Introduce tu contraseña.</small>
       </div>
 
-      <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
+      <!-- Botón con hover color negro -->
+      <ion-button expand="block" type="submit" [disabled]="loginForm.invalid" appHoverColor="black">
         Iniciar sesión
       </ion-button>
 
-      <ion-button expand="block" fill="outline" color="secondary" routerLink="/register">
+      <!-- Botón de registro con hover color negro -->
+      <ion-button expand="block" fill="outline" color="secondary" routerLink="/register" appHoverColor="black">
         ¿No tienes cuenta? Regístrate
       </ion-button>
     </form>
