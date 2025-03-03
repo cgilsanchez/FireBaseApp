@@ -6,19 +6,19 @@ import { IonicModule } from '@ionic/angular';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../app.module';
 import { RecetaService } from '../../services/receta.service';
-import { ChefSelectorComponent } from '../chef-selector/chef-selector.component'; // 🔥 Importamos el componente
+import { ChefSelectorComponent } from '../chef-selector/chef-selector.component';
 
 @Component({
   selector: 'app-receta-form',
   templateUrl: './receta-form.component.html',
   styleUrls: ['./receta-form.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule, ChefSelectorComponent], // 🔥 Lo agregamos a imports
+  imports: [CommonModule, IonicModule, ReactiveFormsModule, ChefSelectorComponent],
 })
 export class RecetaFormComponent implements OnInit {
   @Input() receta: any;
   isEditing = false;
-  recetaForm!: FormGroup; // ✅ Se define correctamente el FormGroup
+  recetaForm!: FormGroup;
   imagenArchivo: File | null = null;
   imagenPreview: string | null = null;
 
@@ -33,8 +33,21 @@ export class RecetaFormComponent implements OnInit {
 
     if (this.receta?.id) {
       this.isEditing = true;
-      this.recetaForm.patchValue(this.receta);
+      this.recetaForm.patchValue({
+        titulo: this.receta.titulo,
+        descripcion: this.receta.descripcion,
+        chefId: this.receta.chefId,
+        imagenUrl: this.receta.imagenUrl || ''
+      });
+
       this.imagenPreview = this.receta.imagenUrl || null;
+      this.ingredientes.clear();
+
+      if (this.receta.ingredientes && Array.isArray(this.receta.ingredientes)) {
+        this.receta.ingredientes.forEach((ing: any) => {
+          this.ingredientes.push(this.fb.control(ing, Validators.required));
+        });
+      }
     }
   }
 
@@ -42,7 +55,7 @@ export class RecetaFormComponent implements OnInit {
     this.recetaForm = this.fb.group({
       titulo: ['', Validators.required],
       descripcion: ['', Validators.required],
-      chefId: ['', Validators.required], // ✅ Ahora está sincronizado con el `Custom Value Accessor`
+      chefId: ['', Validators.required],
       ingredientes: this.fb.array([]),
       imagenUrl: [''],
     });

@@ -35,7 +35,7 @@
       <ion-textarea formControlName="descripcion"></ion-textarea>
     </ion-item>
 
-    <!-- Selección de Chef (Usando Custom Value Accessor) -->
+    <!-- Selección de Chef -->
     <app-chef-selector formControlName="chefId"></app-chef-selector>
 
     <!-- Subida de Imagen -->
@@ -46,7 +46,7 @@
 
     <ion-img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa"></ion-img>
 
-    <!-- Botón Guardar -->
+    <!-- Botón Guardar (Siempre Fijo Abajo) -->
     <div class="modal-footer">
       <ion-button expand="block" type="submit" [disabled]="recetaForm.invalid">
         {{ isEditing ? 'Actualizar' : 'Crear' }}
