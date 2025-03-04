@@ -8,10 +8,18 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
 
-      <ion-title>Receteo</ion-title>
+      <ion-title>{{ 'WELCOME' | translate }}</ion-title>
 
       <ion-buttons slot="end">
-        <!-- 🔥 Icono de usuario que al hacer clic muestra el menú desplegable -->
+        
+        <div class="language-profile" (click)="toggleLanguageMenu()">
+          <ion-icon name="globe-outline"></ion-icon>
+          <span>{{ currentLanguage === 'es' ? 'Idioma' : 'Language' }}</span>
+          <ion-icon *ngIf="showLanguageMenu" name="caret-up-outline"></ion-icon>
+          <ion-icon *ngIf="!showLanguageMenu" name="caret-down-outline"></ion-icon>
+        </div>
+
+        
         <div class="user-profile" (click)="toggleDropdown()">
           <img src="assets/images/cocinero.png" alt="Usuario" class="user-icon" />
         </div>
@@ -19,18 +27,31 @@
     </ion-toolbar>
   </ion-header>
 
+  
+  <div class="dropdown language-dropdown" *ngIf="showLanguageMenu">
+    <p class="dropdown-title">{{ 'SELECT_LANGUAGE' | translate }}</p>
+    <ion-item button (click)="changeLanguage('en')">
+      <ion-label>English</ion-label>
+    </ion-item>
+    <ion-item button (click)="changeLanguage('es')">
+      <ion-label>Español</ion-label>
+    </ion-item>
+  </div>
+
   <!-- 🔥 Menú desplegable al hacer clic en la imagen del usuario -->
   <div class="dropdown" *ngIf="showDropdown">
     <p class="user-name">{{ user?.displayName || 'Usuario' }}</p>
     <p class="user-email">{{ user?.email }}</p>
-    <ion-button expand="full" color="danger" (click)="logout()">Cerrar Sesión</ion-button>
+    <ion-button expand="full" color="danger" (click)="logout()">
+      {{ 'LOGOUT' | translate }}
+    </ion-button>
   </div>
 
   <!-- 🔥 Menú lateral -->
   <ion-menu *ngIf="isAuthenticated" contentId="main-content" side="start">
     <ion-header>
-      <ion-toolbar color = "warning">
-        <ion-title>Menú</ion-title>
+      <ion-toolbar color="warning">
+        <ion-title>{{ 'MENU' | translate }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -38,23 +59,26 @@
       <ion-list>
         <ion-item routerLink="/home" routerDirection="root">
           <ion-icon slot="start" name="people-outline"></ion-icon>
-          Chefs
+          {{ 'CHEFS' | translate }}
         </ion-item>
         <ion-item routerLink="/recetas" routerDirection="root">
           <ion-icon slot="start" name="restaurant-outline"></ion-icon>
-          Recetas
+          {{ 'RECIPES' | translate }}
         </ion-item>
         <ion-item routerLink="/favoritos" routerDirection="root">
           <ion-icon slot="start" name="heart-outline"></ion-icon>
-          Favoritos
+          {{ 'FAVORITES' | translate }}
         </ion-item>
         <ion-item (click)="logout()">
           <ion-icon slot="start" name="log-out-outline"></ion-icon>
-          Cerrar Sesión
+          {{ 'LOGOUT' | translate }}
         </ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>
 
   <ion-router-outlet id="main-content"></ion-router-outlet>
+
+
+
 </ion-app>

@@ -246,3 +246,35 @@ ion-item {
   font-size: 12px;
   margin-top: 5px;
 }
+
+
+.language-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 60px; /* Ajusta la altura para que no se superponga */
+  right: 70px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  width: 180px;
+  z-index: 1000;
+}
+
+.dropdown-title {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.language-dropdown ion-item {
+  text-align: center;
+  justify-content: center;
+}

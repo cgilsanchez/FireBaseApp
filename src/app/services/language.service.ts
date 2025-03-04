@@ -1,35 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
-  private language = new BehaviorSubject<string>('es'); // Idioma por defecto
-  private translations: any = {};
+  private readonly LANG_KEY = 'SELECTED_LANGUAGE';
+  private currentLang = new BehaviorSubject<string>('en'); // 🔥 Idioma inicial
 
-  constructor(private http: HttpClient) {
-    this.loadTranslations(this.language.value);
+  constructor(private translate: TranslateService) {
+    this.initTranslate();
+  }
+
+  private initTranslate() {
+    const savedLang = localStorage.getItem(this.LANG_KEY) || 'en'; // 🔥 Cargar idioma guardado o establecer "en"
+    this.setLanguage(savedLang);
   }
 
   setLanguage(lang: string) {
-    this.language.next(lang);
-    this.loadTranslations(lang);
+    this.translate.setDefaultLang(lang); // 🔥 Idioma por defecto
+    this.translate.use(lang);
+    localStorage.setItem(this.LANG_KEY, lang);
+    this.currentLang.next(lang); // 🔥 Notificar cambios de idioma en tiempo real
   }
 
-  private loadTranslations(lang: string) {
-    this.http.get(`/assets/i18n/${lang}.json`).subscribe(translations => {
-      this.translations = translations;
-    });
+  getCurrentLanguage(): string {
+    return this.translate.currentLang || 'en';
   }
 
-  getTranslation(key: string): string {
-    return this.translations[key] || key; // Si no se encuentra, devuelve la clave original
-  }
-
-  // 🔥 Para actualizar el componente automáticamente
-  getTranslations() {
-    return this.language.asObservable();
+  getCurrentLanguageObservable() {
+    return this.currentLang.asObservable(); // 🔥 Permite suscribirse a los cambios de idioma
   }
 }

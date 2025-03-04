@@ -18,6 +18,8 @@ export class AppComponent {
   user: User | null = null; // 🔥 Información del usuario autenticado
   showDropdown: boolean = false; // 🔥 Controla el menú desplegable del usuario
   private previousUrl: string = ''; // 🔥 Guarda la URL anterior
+  currentLanguage: string = 'en';
+  showLanguageMenu: boolean = false; 
 
   constructor(
     private router: Router,
@@ -62,14 +64,33 @@ export class AppComponent {
       }
     });
 
+    
+
+    // 🔥 Suscribirse a cambios de idioma
+    this.languageService.getCurrentLanguageObservable().subscribe((lang) => {
+      this.currentLanguage = lang;
+    });
+
     // 🔔 Inicializar notificaciones push
     this.initPushNotifications();
+  }
+
+  onLanguageChange(event: Event) {
+    const selectedLang = (event.target as HTMLSelectElement).value;
+    this.changeLanguage(selectedLang);
+  }
+  
+
+  toggleLanguageMenu() {
+    this.showLanguageMenu = !this.showLanguageMenu;
   }
 
   // 🔥 Inicializar notificaciones push
   private initPushNotifications(): void {
     this.pushService.requestPermission();
   }
+
+  
 
   // 🔥 Mostrar/ocultar dropdown del usuario
   toggleDropdown(): void {
@@ -83,5 +104,10 @@ export class AppComponent {
       this.router.navigate(['/login']);
     });
   }
-  
+
+  // 🔥 Cambiar idioma
+  changeLanguage(lang: string) {
+    this.languageService.setLanguage(lang);
+    this.showLanguageMenu = false;
+  }
 }
