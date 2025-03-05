@@ -6,13 +6,14 @@ import { IonicModule } from '@ionic/angular';
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../app.module'; // Firestore
 import { ItemComponent } from '../../components/item/item.component'; // Componente Item
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, ItemComponent],
+  imports: [CommonModule, IonicModule, FormsModule, ItemComponent,TranslateModule],
 })
 export class HomePage implements OnInit {
   items: any[] = []; // Lista completa de chefs
@@ -20,7 +21,8 @@ export class HomePage implements OnInit {
   searchText: string = ''; // Texto del buscador
   collectionName = 'documentos'; // Nombre de la colección en Firestore
 
-  constructor(private modalController: ModalController) {}
+
+  constructor(private modalController: ModalController, private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.loadItems(); // Cargar los ítems al iniciar la página
@@ -88,5 +90,9 @@ export class HomePage implements OnInit {
     } catch (error) {
       console.error('Error al eliminar el ítem:', error);
     }
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
   }
 }

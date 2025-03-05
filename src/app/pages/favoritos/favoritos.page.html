@@ -3,30 +3,29 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button> 
     </ion-buttons>
-    <ion-title>Favoritos</ion-title>
+    <ion-title>{{ 'FAVORITES' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <div class="container">
     
-
     <div *ngIf="recetasFavoritas.length === 0">
-      <p>No tienes recetas favoritas.</p>
+      <p>{{ 'NO_FAVORITE_RECIPES' | translate }}</p>
     </div>
 
     <div class="grid-container">
       <ion-card *ngFor="let receta of recetasFavoritas" class="receta-card">
-        <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img" />
+        <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="{{ 'RECIPE_IMAGE' | translate }}" class="receta-img" />
 
         <ion-card-header>
           <ion-card-title class="receta-titulo">{{ receta.titulo }}</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
-          <p><strong>Chef:</strong> {{ receta.chefNombre }}</p>
-          <p><strong>Descripción:</strong> {{ receta.descripcion }}</p>
-          <p><strong>Ingredientes:</strong></p>
+          <p><strong>{{ 'CHEF' | translate }}:</strong> {{ receta.chefNombre }}</p>
+          <p><strong>{{ 'DESCRIPTION' | translate }}:</strong> {{ receta.descripcion }}</p>
+          <p><strong>{{ 'INGREDIENTS' | translate }}:</strong></p>
           <ul>
             <li *ngFor="let ingrediente of receta.ingredientes">{{ ingrediente }}</li>
           </ul>

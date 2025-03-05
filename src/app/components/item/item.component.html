@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>{{ isEditing ? 'Editar Persona' : 'Crear Persona' }}</ion-title>
+    <ion-title>{{ isEditing ? 'EDIT_PERSON' : 'CREATE_PERSON' | translate }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Cerrar</ion-button>
+      <ion-button (click)="close()">{{ 'CLOSE' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -11,23 +11,23 @@
   <form [formGroup]="itemForm" (ngSubmit)="save()">
     
     <ion-item>
-      <ion-label position="stacked">Nombre</ion-label>
+      <ion-label position="stacked">{{ 'NAME' | translate }}</ion-label>
       <ion-input formControlName="name"></ion-input>
     </ion-item>
     <div *ngIf="itemForm.get('name')?.invalid && itemForm.get('name')?.touched" class="error">
-      <small>Introduce un nombre.</small>
+      <small>{{ 'ERROR_NAME' | translate }}</small>
     </div>
 
     <ion-item>
-      <ion-label position="stacked">Descripción</ion-label>
+      <ion-label position="stacked">{{ 'DESCRIPTION' | translate }}</ion-label>
       <ion-input formControlName="description"></ion-input>
     </ion-item>
     <div *ngIf="itemForm.get('description')?.invalid && itemForm.get('description')?.touched" class="error">
-      <small>Introduce una descripción.</small>
+      <small>{{ 'ERROR_DESCRIPTION' | translate }}</small>
     </div>
 
     <ion-button expand="block" type="submit" [disabled]="itemForm.invalid">
-      {{ isEditing ? 'Actualizar' : 'Crear' }}
+      {{ isEditing ? 'UPDATE' : 'CREATE' | translate }}
     </ion-button>
   </form>
 </ion-content>

@@ -29,7 +29,25 @@
         "UPLOAD_IMAGE": "Subir Imagen",
         "RECIPE_DETAILS": "Detalles de la Receta",
     "CREATE": "Crear",
-    "IMAGE": "Imagen"
+    "IMAGE": "Imagen",
+        "CHEF_MANAGEMENT": "Gestión de Chefs",
+        "SEARCH_CHEF": "Buscar chef...",
+    
+            "EDIT_PERSON": "Editar Persona",
+            "CREATE_PERSON": "Crear Persona",
+            
+            "NAME": "Nombre",
+           
+            "ERROR_NAME": "Introduce un nombre.",
+            "ERROR_DESCRIPTION": "Introduce una descripción.",
+           
+  "NO_FAVORITE_RECIPES": "No tienes recetas favoritas.",
+  "RECIPE_IMAGE": "Imagen de la receta"
+  
+        
+        
+    
+    
       }
       
 

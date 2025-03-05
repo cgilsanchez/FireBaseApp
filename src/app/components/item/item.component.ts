@@ -5,21 +5,22 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { IonicModule } from '@ionic/angular';
 import { addDoc, collection, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../../app.module';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule], // ✅ Se usa ReactiveFormsModule
+  imports: [CommonModule, IonicModule, ReactiveFormsModule,TranslateModule], // ✅ Se usa ReactiveFormsModule
 })
 export class ItemComponent implements OnInit {
-  @Input() item: any = null; // Datos del ítem para editar
-  itemForm!: FormGroup; // ✅ Formulario Reactivo
+  @Input() item: any = null;
+  itemForm!: FormGroup; 
   collectionName = 'documentos';
   isEditing = false;
 
-  constructor(private modalController: ModalController, private fb: FormBuilder) {}
+  constructor(private modalController: ModalController, private fb: FormBuilder,private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -58,6 +59,11 @@ export class ItemComponent implements OnInit {
       console.error('Error al guardar el ítem:', error);
     }
   }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
+  }
+
 
   close(): void {
     this.modalController.dismiss();

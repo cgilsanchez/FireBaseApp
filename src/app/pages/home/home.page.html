@@ -3,22 +3,20 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Gestión de Chefs</ion-title>
+    <ion-title>{{ 'CHEF_MANAGEMENT' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <!-- 🔍 Barra de búsqueda -->
-  <!-- 🔍 Barra de búsqueda con diseño mejorado -->
-<div class="search-container">
-  <ion-searchbar 
-    [(ngModel)]="searchText" 
-    (ionInput)="filterChefs($event)" 
-    placeholder="Buscar chef..." 
-    class="search-bar">
-  </ion-searchbar>
-</div>
-
+  <div class="search-container">
+    <ion-searchbar 
+      [(ngModel)]="searchText" 
+      (ionInput)="filterChefs($event)" 
+      [placeholder]="'SEARCH_CHEF' | translate" 
+      class="search-bar">
+    </ion-searchbar>
+  </div>
 
   <!-- 📌 Lista de Chefs -->
   <div class="card-container">
@@ -30,10 +28,10 @@
       <ion-card-content>
         <div class="button-container">
           <ion-button color="primary" (click)="openEditModal(item)">
-            <ion-icon slot="start" name="create-outline"></ion-icon>Editar
+            <ion-icon slot="start" name="create-outline"></ion-icon>{{ 'EDIT' | translate }}
           </ion-button>
           <ion-button color="danger" (click)="deleteItem(item.id)">
-            <ion-icon slot="start" name="trash-outline"></ion-icon>Eliminar
+            <ion-icon slot="start" name="trash-outline"></ion-icon>{{ 'DELETE' | translate }}
           </ion-button>
         </div>
       </ion-card-content>
