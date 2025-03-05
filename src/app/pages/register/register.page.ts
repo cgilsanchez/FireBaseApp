@@ -4,13 +4,14 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, IonicModule],
+  imports: [ReactiveFormsModule, RouterModule, IonicModule,TranslateModule],
 })
 export class RegisterPage {
   registerForm: FormGroup;
@@ -18,7 +19,8 @@ export class RegisterPage {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required]], // 🔥 Campo de nombre obligatorio
@@ -45,5 +47,9 @@ export class RegisterPage {
         console.error('Error en el registro:', error);
       }
     }
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
   }
 }

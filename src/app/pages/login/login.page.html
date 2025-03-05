@@ -1,40 +1,63 @@
 <ion-content class="ion-padding">
+  <!-- 🔥 Contenedor de idioma -->
+  <!-- 🔥 Botón de idioma en la parte superior -->
+<div class="language-container">
+  <div class="language-profile" (click)="toggleLanguageMenu()">
+    <ion-icon name="globe-outline"></ion-icon>
+    <span>{{ currentLanguage === 'es' ? 'Idioma' : 'Language' }}</span>
+    <ion-icon *ngIf="showLanguageMenu" name="caret-up-outline"></ion-icon>
+    <ion-icon *ngIf="!showLanguageMenu" name="caret-down-outline"></ion-icon>
+  </div>
+
+  <!-- 🔥 Menú desplegable de idioma -->
+  <div class="language-dropdown" *ngIf="showLanguageMenu">
+    <ion-list>
+      <ion-item button (click)="changeLanguage('en')">
+        <ion-label>English    </ion-label>
+      </ion-item>
+      <ion-item button (click)="changeLanguage('es')">
+        <ion-label>Español      </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</div>
+
+
   <div class="auth-container">
-    <!-- Imagen de perfil en la parte superior -->
     <div class="auth-logo" appHoverColor="gray">
       <img src="assets/images/recipe-logo.webp" alt="User Logo" />
     </div>
 
-    <h1 class="auth-title" appHoverColor="orange">Iniciar Sesión</h1>
+    <h1 class="auth-title" appHoverColor="orange">{{ 'LOGIN_TITLE' | translate }}</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <ion-item appHoverColor="gray">
-        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-label position="floating">{{ 'EMAIL' | translate }}</ion-label>
         <ion-input formControlName="email" type="email"></ion-input>
       </ion-item>
       <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error">
-        <small>Introduce un correo válido.</small>
+        <small>{{ 'INVALID_EMAIL' | translate }}</small>
       </div>
 
       <ion-item appHoverColor="gray">
-        <ion-label position="floating">Contraseña</ion-label>
+        <ion-label position="floating">{{ 'PASSWORD' | translate }}</ion-label>
         <ion-input formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'"></ion-input>
         <ion-button fill="clear" slot="end" (click)="isPasswordVisible = !isPasswordVisible" appHoverColor="black">
           <ion-icon [name]="isPasswordVisible ? 'eye-off' : 'eye'"></ion-icon>
         </ion-button>
       </ion-item>
       <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
-        <small>Introduce tu contraseña.</small>
+        <small>{{ 'INVALID_PASSWORD' | translate }}</small>
       </div>
 
-      <!-- Botón con hover color negro -->
+      <!-- Botón de inicio de sesión -->
       <ion-button expand="block" type="submit" [disabled]="loginForm.invalid" appHoverColor="black">
-        Iniciar sesión
+        {{ 'LOGIN_BUTTON' | translate }}
       </ion-button>
 
-      <!-- Botón de registro con hover color negro -->
+      <!-- Botón de registro -->
       <ion-button expand="block" fill="outline" color="secondary" routerLink="/register" appHoverColor="black">
-        ¿No tienes cuenta? Regístrate
+        {{ 'REGISTER_REDIRECT' | translate }}
       </ion-button>
     </form>
   </div>

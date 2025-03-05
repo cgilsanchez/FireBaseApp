@@ -43,8 +43,26 @@
             
                 
             "NO_FAVORITE_RECIPES": "You have no favorite recipes.",
-            "RECIPE_IMAGE": "Recipe image"
+            "RECIPE_IMAGE": "Recipe image",
                 
-              
-              
+            
+            
+                "LOGIN_TITLE": "Login",
+                "EMAIL": "Email",
+                "INVALID_EMAIL": "Please enter a valid email.",
+                "PASSWORD": "Password",
+                "INVALID_PASSWORD": "Please enter your password.",
+                "LOGIN_BUTTON": "Sign In",
+                "REGISTER_REDIRECT": "Don't have an account? Register",
+                "LOGIN_ERROR": "Login failed. Please check your credentials.",
+                
+                "TITLE_": "Create Account",
+
+    "CONFIRM_PASSWORD": "Repeat Password",
+    "BUTTON": "Register",
+    "LOGIN_REDIRECT": "Already have an account? Log in",
+    "ERROR_EMAIL": "Enter a valid email.",
+    "ERROR_PASSWORD": "Password must be at least 6 characters long.",
+    "ERROR_CONFIRM_PASSWORD": "Passwords do not match."
+                
             }

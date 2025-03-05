@@ -42,12 +42,33 @@
             "ERROR_DESCRIPTION": "Introduce una descripción.",
            
   "NO_FAVORITE_RECIPES": "No tienes recetas favoritas.",
-  "RECIPE_IMAGE": "Imagen de la receta"
+  "RECIPE_IMAGE": "Imagen de la receta",
   
         
+  
+    "LOGIN_TITLE": "Iniciar Sesión",
+    "EMAIL": "Correo Electrónico",
+    "INVALID_EMAIL": "Introduce un correo válido.",
+    "PASSWORD": "Contraseña",
+    "INVALID_PASSWORD": "Introduce tu contraseña.",
+    "LOGIN_BUTTON": "Iniciar sesión",
+    "REGISTER_REDIRECT": "¿No tienes cuenta? Regístrate",
+    "LOGIN_ERROR": "Error en el inicio de sesión. Verifica tus credenciales.",
+    
+    "LANGUAGE": "Idioma",
+
+    
+        "TITLE_": "Crear Cuenta",
+        "CONFIRM_PASSWORD": "Repetir Contraseña",
+        "BUTTON": "Registrar",
+        "LOGIN_REDIRECT": "¿Ya tienes cuenta? Inicia sesión",
+        "ERROR_EMAIL": "Introduce un correo válido.",
+        "ERROR_PASSWORD": "La contraseña debe tener al menos 6 caracteres.",
+        "ERROR_CONFIRM_PASSWORD": "Las contraseñas no coinciden."
         
     
     
-      }
-      
+    
+    }
+    
 

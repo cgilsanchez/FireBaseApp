@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page'; // Importa el componente
 import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe'; // Importa el Pipe
 import { HoverColorDirective } from '../../directives/hover-color.directive'; // Importa la Directiva
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -23,6 +24,7 @@ import { HoverColorDirective } from '../../directives/hover-color.directive'; //
     IonicModule,
     RouterModule,
     LoginPageRoutingModule,
+    TranslateService
     
   ],
   exports: [

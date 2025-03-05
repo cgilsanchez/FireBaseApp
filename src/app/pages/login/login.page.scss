@@ -1,41 +1,79 @@
-    .form-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-    }
-    
-    ion-card {
-        max-width: 400px;
-        width: 100%;
-        padding: 16px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    ion-card-title {
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-    
-    .error {
-        color: var(--ion-color-danger);
-        font-size: 0.85rem;
-        margin-top: 4px;
-    }
-    ion-item {
-        display: flex;
-        align-items: center; /* Asegura la alineación vertical */
-        position: relative;
-    }
-    
-    ion-button.eye-button {
-        position: absolute;
-        right: 10px; /* Ajusta la posición horizontal si es necesario */
-        height: 20px; /* Asegura que el botón tenga una altura acorde */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2px; /* Ajusta este valor para bajarlo ligeramente */
-    }
-    
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        ion-card {
+            max-width: 400px;
+            width: 100%;
+            padding: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        ion-card-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: var(--ion-color-danger);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+            ion-item {
+                display: flex;
+                align-items: center; /* Asegura la alineación vertical */
+                position: relative;
+            }
+            
+            ion-button.eye-button {
+                position: absolute;
+                right: 10px; /* Ajusta la posición horizontal si es necesario */
+                height: 20px; /* Asegura que el botón tenga una altura acorde */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 2px; /* Ajusta este valor para bajarlo ligeramente */
+            }
+            .language-container {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            .language-profile {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                font-size: 16px;
+                color: #5a5a5a;
+                transition: color 0.3s ease-in-out;
+            }
+            
+            .language-profile:hover {
+                color: #000;
+            }
+            
+            .language-dropdown {
+                position: absolute;
+                top: 40px;
+                left: 10px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 10px;
+                width: 120px;
+                z-index: 9999;
+            }
+            
+            .language-dropdown ion-item {
+                cursor: pointer;
+            }
+            
