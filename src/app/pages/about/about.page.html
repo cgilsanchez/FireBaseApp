@@ -1,15 +1,23 @@
 <ion-content class="about-container">
-  <!-- Contenedor Principal -->
-  <div class="about-content">
-    
-    <!-- Imagen de perfil -->
-    <div class="profile-container">
-      <img src="assets/images/about.jpeg" alt="Tu Foto" class="profile-img" />
+  <div class="about-wrapper">
+    <!-- Contenedor Principal con animación -->
+    <div class="about-content animate-fade-in">
+      
+      <!-- Imagen de perfil con borde animado -->
+      <div class="profile-container">
+        <img src="assets/images/about.jpeg" alt="Tu Foto" class="profile-img" />
+      </div>
+
+      <!-- Información Personal -->
+      <h1 class="about-title">{{ 'ABOUT' | translate }}</h1>
+      <p class="about-description">{{ 'ABOUT_D' | translate }}</p>
+
+      <!-- Icono de GitHub -->
+    <a href="https://github.com/cgilsanchez" target="_blank" class="github-link">
+      <ion-icon name="logo-github"></ion-icon>
+    </a>
+
+
     </div>
-
-    <!-- Información Personal -->
-    <h1 class="about-title">{{ 'ABOUT.TITLE' | translate }}</h1>
-    <p class="about-description">{{ 'ABOUT.DESCRIPTION' | translate }}</p>
-
   </div>
 </ion-content>

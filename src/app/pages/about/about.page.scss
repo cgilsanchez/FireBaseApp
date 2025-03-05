@@ -1,50 +1,115 @@
-.about-container {
+ion-content {
+    --background: linear-gradient(135deg, #fdf6e3, #fae1dd);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ocupa toda la pantalla */
-    text-align: center;
-    padding: 20px;
+    height: 100vh; /* Ocupar toda la pantalla */
 }
 
+/* Contenedor Principal */
+.about-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+
+/* Tarjeta de información */
+/* Tarjeta de información - Más ancha y centrada */
 .about-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 90%;
-    max-width: 600px;
+    max-width: 800px; /* Antes era 600px, ahora más ancha */
     background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px; /* Aumentamos un poco el padding */
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
 }
 
+
+/* Efecto hover para que se vea más interactivo */
+.about-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Imagen de perfil con efecto circular y glow */
 .profile-container {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 15px;
+    border: 4px solid transparent;
+    background: linear-gradient(135deg, #f48b35, #ffae5e);
+    padding: 4px;
+    box-shadow: 0 0 10px rgba(255, 154, 158, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
 }
 
+.profile-container:hover {
+    box-shadow: 0 0 20px rgba(255, 154, 158, 0.8);
+}
+
+/* Imagen de perfil */
 .profile-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
 }
 
+/* Animación de entrada */
+.animate-fade-in {
+    animation: fadeInZoom 0.8s ease-in-out;
+}
+
+@keyframes fadeInZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Título */
 .about-title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #f48b35, #ffae5e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
+/* Descripción */
 .about-description {
     font-size: 16px;
     color: #555;
-    line-height: 1.5;
-    max-width: 400px;
+    line-height: 1.6;
+    max-width: 700px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    transition: transform 0.2s ease-in-out;
+}
+
+.about-description:hover {
+    transform: scale(1.02);
 }

@@ -1,11 +1,11 @@
 {
-    "WELCOME": "Bienvenido",
-    "MENU": "Menú",
-    "CHEFS": "Chefs",
-    "RECIPES": "Recetas",
-    "FAVORITES": "Favoritos",
-    "LOGOUT": "Cerrar sesión",
-    "SELECT_LANGUAGE": "Seleccionar Idioma",
+        "WELCOME": "Bienvenido",
+        "MENU": "Menú",
+        "CHEFS": "Chefs",
+        "RECIPES": "Recetas",
+        "FAVORITES": "Favoritos",
+        "LOGOUT": "Cerrar sesión",
+        "SELECT_LANGUAGE": "Seleccionar Idioma",
         "RECIPE_LIST": "Lista de Recetas",
         "NO_RECIPES": "No hay recetas disponibles.",
         "CHEF": "Chef",
@@ -28,36 +28,26 @@
         "SELECT_CHEF": "Seleccionar Chef",
         "UPLOAD_IMAGE": "Subir Imagen",
         "RECIPE_DETAILS": "Detalles de la Receta",
-    "CREATE": "Crear",
-    "IMAGE": "Imagen",
+        "CREATE": "Crear",
+        "IMAGE": "Imagen",
         "CHEF_MANAGEMENT": "Gestión de Chefs",
         "SEARCH_CHEF": "Buscar chef...",
-    
-            "EDIT_PERSON": "Editar Persona",
-            "CREATE_PERSON": "Crear Persona",
-            
-            "NAME": "Nombre",
-           
-            "ERROR_NAME": "Introduce un nombre.",
-            "ERROR_DESCRIPTION": "Introduce una descripción.",
-           
-  "NO_FAVORITE_RECIPES": "No tienes recetas favoritas.",
-  "RECIPE_IMAGE": "Imagen de la receta",
-  
-        
-  
-    "LOGIN_TITLE": "Iniciar Sesión",
-    "EMAIL": "Correo Electrónico",
-    "INVALID_EMAIL": "Introduce un correo válido.",
-    "PASSWORD": "Contraseña",
-    "INVALID_PASSWORD": "Introduce tu contraseña.",
-    "LOGIN_BUTTON": "Iniciar sesión",
-    "REGISTER_REDIRECT": "¿No tienes cuenta? Regístrate",
-    "LOGIN_ERROR": "Error en el inicio de sesión. Verifica tus credenciales.",
-    
-    "LANGUAGE": "Idioma",
-
-    
+        "EDIT_PERSON": "Editar Persona",
+        "CREATE_PERSON": "Crear Persona",
+        "NAME": "Nombre",
+        "ERROR_NAME": "Introduce un nombre.",
+        "ERROR_DESCRIPTION": "Introduce una descripción.",
+        "NO_FAVORITE_RECIPES": "No tienes recetas favoritas.",
+        "RECIPE_IMAGE": "Imagen de la receta",
+        "LOGIN_TITLE": "Iniciar Sesión",
+        "EMAIL": "Correo Electrónico",
+        "INVALID_EMAIL": "Introduce un correo válido.",
+        "PASSWORD": "Contraseña",
+        "INVALID_PASSWORD": "Introduce tu contraseña.",
+        "LOGIN_BUTTON": "Iniciar sesión",
+        "REGISTER_REDIRECT": "¿No tienes cuenta? Regístrate",
+        "LOGIN_ERROR": "Error en el inicio de sesión. Verifica tus credenciales.",
+        "LANGUAGE": "Idioma",
         "TITLE_": "Crear Cuenta",
         "CONFIRM_PASSWORD": "Repetir Contraseña",
         "BUTTON": "Registrar",
@@ -67,7 +57,8 @@
         "ERROR_CONFIRM_PASSWORD": "Las contraseñas no coinciden.",
         "FAVORITE_RECIPES":"Lista de Favoritos",
         "FAVORITE":"No hay recetas favoritas",
-        "ABOUT":"Sobre mí"
+        "ABOUT":"Sobre mí",
+        "ABOUT_D":"¡Hola! Soy Carlos Gil, estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma. Me encanta todo lo relacionado con la tecnología y la programación, y siempre estoy buscando aprender cosas nuevas. Disfruto creando aplicaciones y probando diferentes tecnologías para mejorar mis habilidades. Todavía estoy en proceso de descubrir en qué rama quiero especializarme, pero lo que tengo claro es que quiero seguir desarrollando y aprendiendo cada día más. " 
     
     
     
