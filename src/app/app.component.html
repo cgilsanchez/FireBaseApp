@@ -9,23 +9,26 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-
-        <!-- Texto 'Bienvenido' + Idioma -->
-        <div class="header-text">
+    
+        <!-- Texto 'Bienvenido' centrado -->
+        <div class="header-center">
           <span class="welcome-text">{{ 'WELCOME' | translate }}</span>
+        </div>
+    
+        <!-- Contenedor de idioma + usuario alineados a la derecha -->
+        <div class="header-right">
           <div class="language-selector" (click)="toggleLanguageMenu()">
             <ion-icon name="globe-outline"></ion-icon>
-            <ion-icon *ngIf="showLanguageMenu" name="caret-up-outline"></ion-icon>
-            <ion-icon *ngIf="!showLanguageMenu" name="caret-down-outline"></ion-icon>
           </div>
-        </div>
-
-        <!-- Avatar de usuario -->
-        <div class="header-profile" (click)="toggleDropdown()">
-          <img src="assets/images/cocinero.png" alt="Usuario" class="user-icon" />
+    
+          <div class="header-profile" (click)="toggleDropdown()">
+            <img src="assets/images/cocinero.png" alt="Usuario" class="user-icon" />
+          </div>
         </div>
       </div>
     </ion-toolbar>
+    
+    
   </ion-header>
 
   <!-- 🔥 Menú de cambio de idioma -->
@@ -69,10 +72,6 @@
         <ion-item routerLink="/favoritos" routerDirection="root">
           <ion-icon slot="start" name="heart-outline"></ion-icon>
           {{ 'FAVORITES' | translate }}
-        </ion-item>
-        <ion-item (click)="logout()">
-          <ion-icon slot="start" name="log-out-outline"></ion-icon>
-          {{ 'LOGOUT' | translate }}
         </ion-item>
       </ion-list>
     </ion-content>

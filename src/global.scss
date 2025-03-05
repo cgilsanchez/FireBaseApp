@@ -281,56 +281,49 @@ ion-item {
 
 
 
-
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 15px;
   width: 100%;
-  padding: 0 16px;
 }
 
-.header-text {
+/* Centrar el texto de bienvenida */
+.header-center {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Contenedor derecho (icono de idioma + perfil de usuario alineados) */
+.header-right {
   display: flex;
   align-items: center;
-  gap: 10px; /* Espacio entre 'Bienvenido' e icono de idioma */
+  gap: 10px; /* Espacio entre iconos */
+  margin-right: 10px; /* Lo pegamos más a la derecha */
 }
 
+/* Selector de idioma */
 .language-selector {
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 20px;
 }
 
+/* Imagen de usuario más grande */
 .header-profile {
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-left: 10px; /* Asegura espacio entre icono de idioma y avatar */
 }
 
 .user-icon {
-  width: 32px;
-  height: 32px;
+  width: 45px; /* Tamaño más grande */
+  height: 45px;
   border-radius: 50%;
-}
-
-
-.dropdown {
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-}
-
-.language-dropdown {
-  right: 50px;
-}
-
-
-ion-menu-button {
-  margin-right: 10px;
+  object-fit: cover;
 }
