@@ -33,6 +33,12 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/favoritos/favoritos.module').then((m) => m.FavoritosPageModule),
     canActivate: [AuthGuard], // 🔥 Protegido
   },
+  {
+    path: 'about',
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule),
+    canActivate: [AuthGuard],
+  },
+
 ];
 
 @NgModule({

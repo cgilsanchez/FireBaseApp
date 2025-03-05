@@ -36,6 +36,7 @@
             "CREATE_PERSON": "Create Person",
 
             "NAME": "Name",
+            "ABOUT":"About me ",
 
             "ERROR_NAME": "Enter a name.",
             "ERROR_DESCRIPTION": "Enter a description.",
