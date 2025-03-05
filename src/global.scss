@@ -1,5 +1,6 @@
 /* 📌 Importar Variables del theme */
-@import "theme/variables.scss"; 
+@use "theme/variables";
+
 
 /* Core CSS necesario para Ionic */
 @import "@ionic/angular/css/core.css";
@@ -17,86 +18,85 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/* 🔥 🎨 PALETA DE COLORES (Optimizada con tonos cálidos) */
+
 :root {
-  --primary-color: #FF8C00;  /* 🔥 Naranja intenso */
-  --secondary-color: #FFD700; /* ✨ Amarillo dorado */
-  --background-color: #FFF8E1; /* 🎨 Fondo beige claro */
-  --nav-background: #FF6F00; /* 🟠 Naranja oscuro */
-  --text-color: #3E2723; /* ⚫ Marrón oscuro */
-  --button-hover: #E65100; /* 🟠 Naranja más oscuro al pasar mouse */
-  --card-background: #FFFFFF; /* 🎴 Fondo de tarjetas */
-  --menu-background: #FFAB40; /* 🍊 Naranja pastel para el menú */
+  --primary-color: #FF8C00;  
+  --secondary-color: #FFD700; 
+  --background-color: #FFF8E1; 
+  --nav-background: #FF6F00; 
+  --text-color: #3E2723; 
+  --button-hover: #E65100; 
+  --card-background: #FFFFFF; 
+  --menu-background: #FFAB40; 
 }
 
-/* 🔥 Estilos Globales */
+
 body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-/* 🔹 Barra de Navegación */
+
 ion-toolbar {
   --background: var(--nav-background);
   --color: white;
 }
 
 
-/* Contenedor principal */
+
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra verticalmente si hay espacio */
+  align-items: center; 
+  justify-content: center;
   width: 100%;
 }
 
-/* Estilos para el grid de recetas */
+
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr; /* Una columna por defecto */
+  grid-template-columns: 1fr; 
   gap: 1rem;
   justify-content: center;
   width: 100%;
 }
 
-/* En pantallas medianas (tablets), mostrar dos columnas */
+
 @media (min-width: 768px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* En pantallas grandes (PC), mostrar tres columnas */
+
 @media (min-width: 1024px) {
   .grid-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Estilos de la tarjeta */
+
 .receta-card {
-  max-width: 400px; /* Define un tamaño máximo para las tarjetas */
+  max-width: 400px; 
   width: 100%;
-  margin: 0 auto; /* Asegura que cada tarjeta se centre dentro de su columna */
+  margin: 0 auto; 
   text-align: center;
 }
 
-/* Imagen dentro de la tarjeta */
+
 .receta-img {
   width: 100%;
   height: auto;
   border-radius: 10px;
 }
 
-/* Botones dentro de la tarjeta */
 .btn-container {
   display: flex;
   justify-content: space-between;
   padding: 10px;
 }
 
-/* Estilo para el contenedor de los chefs */
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -104,7 +104,7 @@ ion-toolbar {
   gap: 1rem;
 }
 
-/* Estilo para cada tarjeta de chef */
+
 .custom-card {
   max-width: 300px;
   width: 100%;
@@ -113,7 +113,7 @@ ion-toolbar {
 
 
 
-/* 🔸 Botones */
+
 ion-button {
   --background: var(--ion-color-primary);
   --color: var(--ion-color-primary-contrast);
@@ -125,14 +125,14 @@ ion-button:hover {
 }
 
 
-/* 🔹 Tarjetas */
+
 ion-card {
   background: var(--card-background);
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* 🔸 Menú lateral */
+
 ion-menu {
   --background: var(--menu-background);
 }
@@ -142,7 +142,7 @@ ion-menu ion-header {
   --color: white;
 }
 
-/* 🔥 Estilos para el icono del usuario en la barra de navegación */
+
 .user-profile {
   position: relative;
   display: flex;
@@ -164,7 +164,7 @@ ion-menu ion-header {
   transform: scale(1.1);
 }
 
-/* 🔥 Menú desplegable del usuario */
+
 .dropdown {
   position: absolute;
   top: 60px;
@@ -257,7 +257,7 @@ ion-item {
 
 .language-dropdown {
   position: absolute;
-  top: 60px; /* Ajusta la altura para que no se superponga */
+  top: 60px; 
   right: 70px;
   background: white;
   border-radius: 10px;
@@ -277,4 +277,60 @@ ion-item {
 .language-dropdown ion-item {
   text-align: center;
   justify-content: center;
+}
+
+
+
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.header-text {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre 'Bienvenido' e icono de idioma */
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px; /* Asegura espacio entre icono de idioma y avatar */
+}
+
+.user-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+
+.dropdown {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.language-dropdown {
+  right: 50px;
+}
+
+
+ion-menu-button {
+  margin-right: 10px;
 }
