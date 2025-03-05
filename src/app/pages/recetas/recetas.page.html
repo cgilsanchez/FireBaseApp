@@ -3,23 +3,22 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button> 
     </ion-buttons>
-    <ion-title>Recetas</ion-title>
+    <ion-title>{{ 'RECIPE_LIST' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <div class="container">
-    <h2 class="titulo">Lista de Recetas</h2>
+    <h2 class="titulo">{{ 'RECIPE_LIST' | translate }}</h2>
 
     <div *ngIf="recetas.length === 0">
-      <p>No hay recetas disponibles.</p>
+      <p>{{ 'NO_RECIPES' | translate }}</p>
     </div>
 
     <!-- Grid de recetas -->
     <div class="grid-container">
       <ion-card *ngFor="let receta of recetas" class="receta-card" (click)="openDetailModal(receta)">
         <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img" />
-
 
         <ion-card-header>
           <ion-card-title class="receta-titulo">
@@ -32,21 +31,20 @@
           </ion-card-title>
         </ion-card-header>
 
-
         <ion-card-content>
-          <p><strong>Chef:</strong> {{ receta.chefNombre }}</p>
-        
+          <p><strong>{{ 'CHEF' | translate }}:</strong> {{ receta.chefNombre }}</p>
         </ion-card-content>
 
         <ion-row class="btn-container">
           <ion-col>
             <ion-button expand="full" color="secondary" (click)="openEditModal(receta); $event.stopPropagation()">
-              <ion-icon slot="start" name="create-outline"></ion-icon>Editar</ion-button>
-            
+              <ion-icon slot="start" name="create-outline"></ion-icon>{{ 'EDIT' | translate }}
+            </ion-button>
           </ion-col>
           <ion-col>
             <ion-button expand="full" color="danger" (click)="deleteReceta(receta.id); $event.stopPropagation()">
-              <ion-icon slot="start" name="trash-outline"></ion-icon>Eliminar</ion-button>
+              <ion-icon slot="start" name="trash-outline"></ion-icon>{{ 'DELETE' | translate }}
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-card>

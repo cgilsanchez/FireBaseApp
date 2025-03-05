@@ -8,13 +8,14 @@ import { FirestoreSubscriptionService, CollectionChange } from '../../services/f
 import { RecetaFormComponent } from '../../components/receta-form/receta-form.component';
 import { RecetaDetalleComponent } from '../../components/receta-detalle/receta-detalle.component';
 import { Subscription } from 'rxjs';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
   selector: 'app-recetas',
   templateUrl: './recetas.page.html',
   styleUrls: ['./recetas.page.scss'],
-  imports: [CommonModule, IonicModule, FormsModule],
+  imports: [CommonModule, IonicModule, FormsModule,TranslateModule],
 })
 export class RecetasPage implements OnInit, OnDestroy {
   recetas: any[] = []; // Lista de recetas obtenidas de Firestore
@@ -23,7 +24,8 @@ export class RecetasPage implements OnInit, OnDestroy {
   constructor(
     private recetaService: RecetaService,
     private firestoreSubscription: FirestoreSubscriptionService<any>, // 🔥 Inyectamos el servicio de suscripción
-    private modalController: ModalController
+    private modalController: ModalController,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -151,5 +153,9 @@ export class RecetasPage implements OnInit, OnDestroy {
     if (this.recetasSubscription) {
       this.recetasSubscription.unsubscribe();
     }
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
   }
 }

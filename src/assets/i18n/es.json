@@ -5,5 +5,31 @@
     "RECIPES": "Recetas",
     "FAVORITES": "Favoritos",
     "LOGOUT": "Cerrar sesión",
-    "SELECT_LANGUAGE": "Seleccionar Idioma"
-}
+    "SELECT_LANGUAGE": "Seleccionar Idioma",
+    
+
+        "RECIPE_LIST": "Lista de Recetas",
+        "NO_RECIPES": "No hay recetas disponibles.",
+        "CHEF": "Chef",
+        "DESCRIPTION": "Descripción",
+        "INGREDIENTS": "Ingredientes",
+        "ADD_INGREDIENT": "Añadir Ingrediente",
+        "EDIT": "Editar",
+        "DELETE": "Eliminar",
+        "ADD_RECIPE": "Añadir Receta",
+        "CONFIRM_DELETE": "¿Estás seguro de que deseas eliminar esta receta?",
+        "YES": "Sí",
+        "NO": "No",
+        "CANCEL": "Cancelar",
+        "EDIT_RECIPE": "Editar Receta",
+        "CREATE_RECIPE": "Crear Receta",
+        "CLOSE": "Cerrar",
+        "TITLE": "Título",
+        "SAVE": "Guardar",
+        "UPDATE": "Actualizar",
+        "SELECT_CHEF": "Seleccionar Chef",
+        "UPLOAD_IMAGE": "Subir Imagen",
+        "RECIPE_DETAILS": "Detalles de la Receta"
+      }
+      
+
