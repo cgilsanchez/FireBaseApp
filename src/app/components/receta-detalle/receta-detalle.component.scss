@@ -25,6 +25,18 @@
         opacity: 0;
         animation: fadeIn 0.8s ease-in-out forwards;
     }
+        .share-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        
+        ion-button {
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        
     
     @keyframes fadeIn {
         from {
