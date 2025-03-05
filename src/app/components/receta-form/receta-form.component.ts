@@ -7,13 +7,14 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '../../app.module';
 import { RecetaService } from '../../services/receta.service';
 import { ChefSelectorComponent } from '../chef-selector/chef-selector.component';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-receta-form',
   templateUrl: './receta-form.component.html',
   styleUrls: ['./receta-form.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule, ChefSelectorComponent],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule, ChefSelectorComponent,TranslateModule],
 })
 export class RecetaFormComponent implements OnInit {
   @Input() receta: any;
@@ -25,7 +26,8 @@ export class RecetaFormComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private recetaService: RecetaService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -116,6 +118,10 @@ export class RecetaFormComponent implements OnInit {
     const storageRef = ref(storage, `recetas/${Date.now()}_${this.imagenArchivo.name}`);
     await uploadBytes(storageRef, this.imagenArchivo);
     return await getDownloadURL(storageRef);
+  }
+
+  changeLanguage(lang: string) {
+    this.translate.use(lang);
   }
 
   close(): void {

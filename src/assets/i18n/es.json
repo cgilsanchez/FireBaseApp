@@ -6,8 +6,6 @@
     "FAVORITES": "Favoritos",
     "LOGOUT": "Cerrar sesión",
     "SELECT_LANGUAGE": "Seleccionar Idioma",
-    
-
         "RECIPE_LIST": "Lista de Recetas",
         "NO_RECIPES": "No hay recetas disponibles.",
         "CHEF": "Chef",
@@ -21,7 +19,7 @@
         "YES": "Sí",
         "NO": "No",
         "CANCEL": "Cancelar",
-        "EDIT_RECIPE": "Editar Receta",
+        "EDIT_RECIPE": "Editar",
         "CREATE_RECIPE": "Crear Receta",
         "CLOSE": "Cerrar",
         "TITLE": "Título",
@@ -29,7 +27,9 @@
         "UPDATE": "Actualizar",
         "SELECT_CHEF": "Seleccionar Chef",
         "UPLOAD_IMAGE": "Subir Imagen",
-        "RECIPE_DETAILS": "Detalles de la Receta"
+        "RECIPE_DETAILS": "Detalles de la Receta",
+    "CREATE": "Crear",
+    "IMAGE": "Imagen"
       }
       
 

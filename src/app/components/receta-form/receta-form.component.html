@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>{{ isEditing ? 'Editar Receta' : 'Crear Receta' }}</ion-title>
+    <ion-title>{{ isEditing ? 'EDIT_RECIPE' : 'CREATE_RECIPE' | translate }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Cerrar</ion-button>
+      <ion-button (click)="close()">{{ 'CLOSE' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -12,13 +12,13 @@
     
     <!-- Campo de Título -->
     <ion-item>
-      <ion-label position="stacked">Título</ion-label>
+      <ion-label position="stacked">{{ 'TITLE' | translate }}</ion-label>
       <ion-input formControlName="titulo"></ion-input>
     </ion-item>
     
     <!-- Ingredientes -->
     <ion-item>
-      <ion-label position="stacked">Ingredientes</ion-label>
+      <ion-label position="stacked">{{ 'INGREDIENTS' | translate }}</ion-label>
       <ion-button fill="clear" (click)="agregarIngrediente()">+</ion-button>
     </ion-item>
 
@@ -31,7 +31,7 @@
     
     <!-- Descripción -->
     <ion-item>
-      <ion-label position="stacked">Descripción</ion-label>
+      <ion-label position="stacked">{{ 'DESCRIPTION' | translate }}</ion-label>
       <ion-textarea formControlName="descripcion"></ion-textarea>
     </ion-item>
 
@@ -40,16 +40,16 @@
 
     <!-- Subida de Imagen -->
     <ion-item>
-      <ion-label>Imagen</ion-label>
+      <ion-label>{{ 'IMAGE' | translate }}</ion-label>
       <input type="file" (change)="seleccionarImagen($event)">
     </ion-item>
 
     <ion-img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa"></ion-img>
 
-    <!-- Botón Guardar (Siempre Fijo Abajo) -->
+    <!-- Botón Guardar -->
     <div class="modal-footer">
       <ion-button expand="block" type="submit" [disabled]="recetaForm.invalid">
-        {{ isEditing ? 'Actualizar' : 'Crear' }}
+        {{ isEditing ? 'UPDATE' : 'CREATE' | translate }}
       </ion-button>
     </div>
   </form>

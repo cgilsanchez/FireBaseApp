@@ -19,7 +19,7 @@
         "YES": "Yes",
         "NO": "No",
         "CANCEL": "Cancel",
-        "EDIT_RECIPE": "Edit Recipe",
+        "EDIT_RECIPE": "Edit",
         "CREATE_RECIPE": "Create Recipe",
         "CLOSE": "Close",
         "TITLE": "Title",
@@ -27,6 +27,8 @@
         "UPDATE": "Update",
         "SELECT_CHEF": "Select Chef",
         "UPLOAD_IMAGE": "Upload Image",
-        "RECIPE_DETAILS": "Recipe Details"
+        "RECIPE_DETAILS": "Recipe Details",
+        "IMAGE": "Image",
+        "CREATE": "Create"
    
 }
