@@ -11,8 +11,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   selector: 'app-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss'],
-  standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule,TranslateModule], // ✅ Se usa ReactiveFormsModule
+  standalone: false 
 })
 export class ItemComponent implements OnInit {
   @Input() item: any = null;

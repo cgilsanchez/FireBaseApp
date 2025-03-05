@@ -13,8 +13,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   selector: 'app-receta-form',
   templateUrl: './receta-form.component.html',
   styleUrls: ['./receta-form.component.scss'],
-  standalone: true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule, ChefSelectorComponent,TranslateModule],
+  standalone: false
 })
 export class RecetaFormComponent implements OnInit {
   @Input() receta: any;

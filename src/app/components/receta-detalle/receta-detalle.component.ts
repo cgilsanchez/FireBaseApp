@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
   selector: 'app-receta-detalle',
   templateUrl: './receta-detalle.component.html',
   styleUrls: ['./receta-detalle.component.scss'],
-  standalone: true,
-  imports: [CommonModule, IonicModule] // 📌 Agrego IonicModule aquí
+  standalone: false
 })
 export class RecetaDetalleComponent {
   @Input() receta: any;

@@ -8,20 +8,25 @@ import { RecetaFormComponent } from '../../components/receta-form/receta-form.co
 
 // 🔥 Importar `TranslateModule`
 import { TranslateModule } from '@ngx-translate/core';
+import { RecetaDetalleComponent } from 'src/app/components/receta-detalle/receta-detalle.component';
+import { ChefSelectorComponent } from 'src/app/components/chef-selector/chef-selector.component';
 
 @NgModule({
   declarations: [
-    RecetasPage, // ✅ Ahora declaramos la página correctamente
+    RecetasPage,
+    RecetaDetalleComponent ,// ✅ Ahora declaramos la página correctamente
+    RecetaFormComponent,
+    ChefSelectorComponent
     
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    
     IonicModule, // ✅ Importamos correctamente el módulo de Ionic
     RecetasPageRoutingModule,
     TranslateModule ,// ✅ Importamos `TranslateModule` para que funcione `| translate`
-    RecetaFormComponent
   ],
   exports: [
     RecetasPage

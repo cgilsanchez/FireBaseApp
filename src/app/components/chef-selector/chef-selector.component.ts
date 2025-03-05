@@ -17,8 +17,7 @@ import { IonicModule } from '@ionic/angular';
       </ion-select>
     </ion-item>
   `,
-  standalone: true,
-  imports: [CommonModule, IonicModule], // 🔥 Agregamos IonicModule
+  standalone: false,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -51,7 +50,7 @@ export class ChefSelectorComponent implements ControlValueAccessor, OnInit {
 
   onChefChange(value: string) {
     this.selectedChef = value;
-    console.log('Nuevo chef seleccionado:', value); // ✅ Agregar un log
+    console.log('Nuevo chef seleccionado:', value);
     this.onChange(value);
   }
   
