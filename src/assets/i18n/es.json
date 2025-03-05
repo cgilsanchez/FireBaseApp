@@ -64,8 +64,9 @@
         "LOGIN_REDIRECT": "¿Ya tienes cuenta? Inicia sesión",
         "ERROR_EMAIL": "Introduce un correo válido.",
         "ERROR_PASSWORD": "La contraseña debe tener al menos 6 caracteres.",
-        "ERROR_CONFIRM_PASSWORD": "Las contraseñas no coinciden."
-        
+        "ERROR_CONFIRM_PASSWORD": "Las contraseñas no coinciden.",
+        "FAVORITE_RECIPES":"Lista de Favoritos",
+        "FAVORITE":"No hay recetas favoritas"
     
     
     

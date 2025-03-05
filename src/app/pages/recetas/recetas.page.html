@@ -18,23 +18,28 @@
     <!-- Grid de recetas -->
     <div class="grid-container">
       <ion-card *ngFor="let receta of recetas" class="receta-card" (click)="openDetailModal(receta)">
-        <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img" />
-
+        <div class="image-container">
+          <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img" />
+          
+          <!-- 🔥 Estrella flotante en la esquina superior derecha -->
+          <div class="favorito-icon" (click)="toggleFavorito(receta, $event)">
+            <ion-icon 
+              [name]="receta.esFavorito ? 'star' : 'star-outline'"
+              [class.favorito]="receta.esFavorito">
+            </ion-icon>
+          </div>
+        </div>
+      
         <ion-card-header>
           <ion-card-title class="receta-titulo">
             {{ receta.titulo }}
-            <ion-icon 
-              [name]="receta.esFavorito ? 'star' : 'star-outline'"
-              [class.favorito]="receta.esFavorito"
-              (click)="toggleFavorito(receta, $event)">
-            </ion-icon>
           </ion-card-title>
         </ion-card-header>
-
+      
         <ion-card-content>
           <p><strong>{{ 'CHEF' | translate }}:</strong> {{ receta.chefNombre }}</p>
         </ion-card-content>
-
+      
         <ion-row class="btn-container">
           <ion-col>
             <ion-button expand="full" color="secondary" (click)="openEditModal(receta); $event.stopPropagation()">
@@ -48,6 +53,7 @@
           </ion-col>
         </ion-row>
       </ion-card>
+      
     </div>
   </div>
 

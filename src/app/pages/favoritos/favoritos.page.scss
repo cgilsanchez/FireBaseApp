@@ -1,30 +1,60 @@
-.grid-container {
+.favoritos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 50px; // 🔥 Agrega espacio para bajar las recetas
+}
+
+.titulo {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.grid-favoritos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   justify-content: center;
 }
 
 .receta-card {
   width: 100%;
-  max-width: 350px;
   border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-  background: #fff;
+  background: white;
 }
 
 .receta-card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.05);
 }
 
 .receta-img {
   width: 100%;
-  height: 200px; /* Tamaño uniforme */
-  object-fit: cover; /* Ajusta la imagen sin deformarla */
+  height: 200px;
+  object-fit: cover;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+}
+
+
+
+.descripcion {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.no-favorites {
+  text-align: center;
+  font-size: 18px;
+  color: #777;
+  margin-top: 50px;
 }
 
 .receta-titulo {
@@ -38,7 +68,4 @@
   border-bottom-right-radius: 15px;
 }
 
-ion-card-content {
-  padding: 15px;
-  text-align: center;
-}
+

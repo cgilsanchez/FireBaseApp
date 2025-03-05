@@ -96,3 +96,29 @@
 .action-button ion-icon {
   font-size: 18px;
 }
+.image-container {
+  position: relative;
+  width: 100%;
+}
+
+.favorito-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.favorito-icon ion-icon {
+  font-size: 24px;
+  color: gray; /* Color gris cuando NO es favorito */
+  transition: color 0.3s ease-in-out;
+}
+
+/* 🔥 Se pone amarillo cuando es favorito */
+.favorito-icon ion-icon.favorito {
+  color: yellow;
+}
