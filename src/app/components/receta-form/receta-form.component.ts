@@ -122,6 +122,9 @@ export class RecetaFormComponent implements OnInit {
   changeLanguage(lang: string) {
     this.translate.use(lang);
   }
+  getTitle() {
+    return this.isEditing ? this.translate.instant('EDITT_RECIPE') : this.translate.instant('CREATE_RECIPE');
+  }
 
   close(): void {
     this.modalController.dismiss();

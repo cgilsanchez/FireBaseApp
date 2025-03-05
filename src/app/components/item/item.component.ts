@@ -62,7 +62,12 @@ export class ItemComponent implements OnInit {
   changeLanguage(lang: string) {
     this.translate.use(lang);
   }
-
+  
+  getTitle(): string {
+    return this.isEditing
+      ? this.translate.instant('EDITT_PERSON') 
+      : this.translate.instant('CREATE_PERSON');
+  }
 
   close(): void {
     this.modalController.dismiss();
