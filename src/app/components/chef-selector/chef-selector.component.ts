@@ -49,10 +49,13 @@ export class ChefSelectorComponent implements ControlValueAccessor, OnInit {
   }
 
   onChefChange(value: string) {
-    this.selectedChef = value;
-    console.log('Nuevo chef seleccionado:', value);
-    this.onChange(value);
+    if (this.selectedChef !== value) { // 🔥 Evita emitir cambios innecesarios
+      this.selectedChef = value;
+      console.log('Nuevo chef seleccionado:', value);
+      this.onChange(value);
+    }
   }
+  
   
 
   writeValue(value: string): void {
