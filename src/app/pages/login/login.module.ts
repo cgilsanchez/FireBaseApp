@@ -3,20 +3,17 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-
 import { LoginPageRoutingModule } from './login-routing.module';
-import { LoginPage } from './login.page'; // Importa el componente
-import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe'; // Importa el Pipe
-import { HoverColorDirective } from '../../directives/hover-color.directive'; // Importa la Directiva
-import { TranslateService } from '@ngx-translate/core';
+import { LoginPage } from './login.page';
+import { TranslateModule } from '@ngx-translate/core';
 
-
+// ✅ Importar las clases standalone en lugar de declararlas
+import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe';
+import { HoverColorDirective } from '../../directives/hover-color.directive';
 
 @NgModule({
   declarations: [
-    LoginPage, 
-    PasswordVisibilityPipe, 
-    HoverColorDirective // Declara la Directiva aquí
+    LoginPage
   ],
   imports: [
     CommonModule,
@@ -24,13 +21,10 @@ import { TranslateService } from '@ngx-translate/core';
     IonicModule,
     RouterModule,
     LoginPageRoutingModule,
-    TranslateService
-    
-  ],
-  exports: [
-    PasswordVisibilityPipe, 
-    HoverColorDirective // Exporta la Directiva si la usarás en otros módulos
+    TranslateModule,
+    PasswordVisibilityPipe,
+    HoverColorDirective
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class LoginPageModule {}
+export class LoginPageModule { }

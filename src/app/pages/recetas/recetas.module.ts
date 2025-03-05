@@ -11,16 +11,20 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    RecetasPage,
-    RecetaFormComponent // 🔥 Aquí va en `declarations`
+    RecetasPage, // ✅ Ahora declaramos la página correctamente
+    
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule, // ✅ Se mantiene aquí
-    IonicModule,
+    ReactiveFormsModule,
+    IonicModule, // ✅ Importamos correctamente el módulo de Ionic
     RecetasPageRoutingModule,
-    TranslateModule // ✅ Importamos `TranslateModule` aquí para usar `| translate`
+    TranslateModule ,// ✅ Importamos `TranslateModule` para que funcione `| translate`
+    RecetaFormComponent
+  ],
+  exports: [
+    RecetasPage
   ]
 })
 export class RecetasPageModule { }

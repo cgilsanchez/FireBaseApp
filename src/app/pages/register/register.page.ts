@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
-  standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, IonicModule,TranslateModule],
+  standalone:false
 })
 export class RegisterPage {
   registerForm: FormGroup;
@@ -40,7 +37,7 @@ export class RegisterPage {
     if (this.registerForm.valid) {
       const { name, email, password } = this.registerForm.value;
       try {
-        await this.authService.register(email, password, name); // 🔥 Ahora registra con nombre
+        await this.authService.register(email, password, name);
         console.log('Registro exitoso');
         this.router.navigate(['/login']);
       } catch (error) {

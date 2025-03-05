@@ -11,11 +11,11 @@ import { Subscription } from 'rxjs';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
-  standalone: true,
+  standalone: false,
   selector: 'app-recetas',
   templateUrl: './recetas.page.html',
   styleUrls: ['./recetas.page.scss'],
-  imports: [CommonModule, IonicModule, FormsModule,TranslateModule],
+  
 })
 export class RecetasPage implements OnInit, OnDestroy {
   recetas: any[] = []; // Lista de recetas obtenidas de Firestore
@@ -34,16 +34,16 @@ export class RecetasPage implements OnInit, OnDestroy {
 
   ionViewWillEnter(): void {
     console.log("📌 Volviendo a la página de recetas, recargando...");
-    this.forceReloadRecetas(); // 🔥 Cargar los datos de nuevo al entrar
+    this.forceReloadRecetas(); //Cargar los datos de nuevo al entrar
   }
 
   // 🔥 Suscribirse en tiempo real a los cambios en la colección "recetas"
   subscribeToRecetas(): void {
     if (this.recetasSubscription) {
-      this.recetasSubscription.unsubscribe(); // 🔥 Evita suscripciones duplicadas
+      this.recetasSubscription.unsubscribe(); // Evita suscripciones duplicadas
     }
 
-    this.recetas = []; // 🔥 Limpiar el array antes de recibir datos nuevos
+    this.recetas = []; // Limpiar el array antes de recibir datos nuevos
 
     this.recetasSubscription = this.firestoreSubscription
       .subscribeToCollection('recetas')
@@ -148,7 +148,7 @@ export class RecetasPage implements OnInit, OnDestroy {
     
   }
 
-  // 🔥 Desuscribirse de Firestore al salir de la página
+  // Desuscribirse de Firestore al salir de la página
   ngOnDestroy(): void {
     if (this.recetasSubscription) {
       this.recetasSubscription.unsubscribe();

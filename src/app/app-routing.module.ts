@@ -10,25 +10,27 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/login/login.page').then((m) => m.LoginPage),
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
-  {
-    path: 'register',
-    loadComponent: () => import('./pages/register/register.page').then((m) => m.RegisterPage),
+  
+  { path: 'register', 
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: 'home',
-    loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
     canActivate: [AuthGuard], // 🔥 Protegido
-  },
+},
+
   {
     path: 'recetas',
-    loadComponent: () => import('./pages/recetas/recetas.page').then((m) => m.RecetasPage),
+    loadChildren: () => import('./pages/recetas/recetas.module').then(m => m.RecetasPageModule),
     canActivate: [AuthGuard], // 🔥 Protegido
-  },
+},
+
   {
     path: 'favoritos',
-    loadComponent: () => import('./pages/favoritos/favoritos.page').then((m) => m.FavoritosPage),
+    loadChildren: () => import('./pages/favoritos/favoritos.module').then((m) => m.FavoritosPageModule),
     canActivate: [AuthGuard], // 🔥 Protegido
   },
 ];

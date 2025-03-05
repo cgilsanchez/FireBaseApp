@@ -1,29 +1,15 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { PasswordVisibilityPipe } from '../../pipes/password-visibility.pipe';
-import { HoverColorDirective } from 'src/app/directives/hover-color.directive';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/services/language.service';
-import { CommonModule } from '@angular/common'; // 🔥 IMPORTAR ESTO
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
-  standalone: true,
-  imports: [
-    CommonModule, // ✅ AGREGAR AQUÍ PARA QUE *ngIf FUNCIONE
-    ReactiveFormsModule,
-    RouterModule,
-    IonicModule,
-    PasswordVisibilityPipe,
-    HoverColorDirective,
-    TranslateModule
-  ],
+  standalone: false
 })
 export class LoginPage {
   loginForm: FormGroup;

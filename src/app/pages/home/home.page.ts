@@ -12,8 +12,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  standalone: true,
-  imports: [CommonModule, IonicModule, FormsModule, ItemComponent,TranslateModule],
+  standalone: false
 })
 export class HomePage implements OnInit {
   items: any[] = []; // Lista completa de chefs

@@ -40,7 +40,7 @@
         <ion-label position="floating">{{ 'CONFIRM_PASSWORD' | translate }}</ion-label>
         <ion-input formControlName="confirmPassword" type="password"></ion-input>
       </ion-item>
-      <div *ngIf="registerForm.errors?.mismatch && registerForm.get('confirmPassword')?.touched" class="error">
+      <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched" class="error">
         <small>{{ 'ERROR_CONFIRM_PASSWORD' | translate }}</small>
       </div>
 

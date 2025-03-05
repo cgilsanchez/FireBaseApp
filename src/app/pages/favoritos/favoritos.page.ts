@@ -8,8 +8,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   selector: 'app-favoritos',
   templateUrl: './favoritos.page.html',
   styleUrls: ['./favoritos.page.scss'],
-  standalone: true,
-  imports: [CommonModule, IonicModule,TranslateModule], 
+  standalone: false
 })
 export class FavoritosPage {
   recetasFavoritas: any[] = [];
