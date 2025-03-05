@@ -1,6 +1,6 @@
 <ion-content class="ion-padding">
-  <!-- 🔥 Contenedor de idioma -->
-  <!-- 🔥 Botón de idioma en la parte superior -->
+
+  <!--Botón de idioma en la parte superior -->
 <div class="language-container">
   <div class="language-profile" (click)="toggleLanguageMenu()">
     <ion-icon name="globe-outline"></ion-icon>
@@ -9,7 +9,7 @@
     <ion-icon *ngIf="!showLanguageMenu" name="caret-down-outline"></ion-icon>
   </div>
 
-  <!-- 🔥 Menú desplegable de idioma -->
+  <!--Menú desplegable de idioma -->
   <div class="language-dropdown" *ngIf="showLanguageMenu">
     <ion-list>
       <ion-item button (click)="changeLanguage('en')">

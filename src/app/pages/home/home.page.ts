@@ -15,16 +15,16 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   standalone: false
 })
 export class HomePage implements OnInit {
-  items: any[] = []; // Lista completa de chefs
-  filteredChefs: any[] = []; // Lista filtrada de chefs
-  searchText: string = ''; // Texto del buscador
-  collectionName = 'documentos'; // Nombre de la colección en Firestore
+  items: any[] = []; 
+  filteredChefs: any[] = []; 
+  searchText: string = ''; 
+  collectionName = 'documentos'; 
 
 
   constructor(private modalController: ModalController, private translate: TranslateService) {}
 
   ngOnInit(): void {
-    this.loadItems(); // Cargar los ítems al iniciar la página
+    this.loadItems();
   }
 
   async loadItems(): Promise<void> {
@@ -34,13 +34,13 @@ export class HomePage implements OnInit {
         id: doc.id,
         ...doc.data(),
       }));
-      this.filteredChefs = [...this.items]; // Inicialmente, todos los chefs visibles
+      this.filteredChefs = [...this.items];
     } catch (error) {
       console.error('Error al cargar los ítems:', error);
     }
   }
 
-  // 🔍 Filtrar chefs por nombre
+  
   filterChefs(event: any) {
     const searchTerm = event.target.value.toLowerCase();
     this.filteredChefs = this.items.filter(chef =>
@@ -48,11 +48,10 @@ export class HomePage implements OnInit {
     );
   }
 
-  // 📌 Abrir modal para crear un chef
+  
   async openCreateModal(): Promise<void> {
     const modal = await this.modalController.create({
       component: ItemComponent,
-      cssClass: 'item-modal',
     });
 
     modal.onDidDismiss().then((result) => {
@@ -64,12 +63,11 @@ export class HomePage implements OnInit {
     await modal.present();
   }
 
-  // 📌 Abrir modal para editar un chef
+  
   async openEditModal(item: any): Promise<void> {
     const modal = await this.modalController.create({
       component: ItemComponent,
       componentProps: { item },
-      cssClass: 'item-modal',
     });
 
     modal.onDidDismiss().then((result) => {
@@ -81,7 +79,6 @@ export class HomePage implements OnInit {
     await modal.present();
   }
 
-  // 🗑️ Eliminar un chef
   async deleteItem(id: string): Promise<void> {
     try {
       await deleteDoc(doc(db, this.collectionName, id));

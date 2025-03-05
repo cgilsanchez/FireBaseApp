@@ -18,12 +18,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   
 })
 export class RecetasPage implements OnInit, OnDestroy {
-  recetas: any[] = []; // Lista de recetas obtenidas de Firestore
+  recetas: any[] = []; 
   private recetasSubscription!: Subscription;
 
   constructor(
     private recetaService: RecetaService,
-    private firestoreSubscription: FirestoreSubscriptionService<any>, // 🔥 Inyectamos el servicio de suscripción
+    private firestoreSubscription: FirestoreSubscriptionService<any>, 
     private modalController: ModalController,
     private translate: TranslateService
   ) {}
@@ -34,16 +34,16 @@ export class RecetasPage implements OnInit, OnDestroy {
 
   ionViewWillEnter(): void {
     console.log("📌 Volviendo a la página de recetas, recargando...");
-    this.forceReloadRecetas(); //Cargar los datos de nuevo al entrar
+    this.forceReloadRecetas();
   }
 
-  // 🔥 Suscribirse en tiempo real a los cambios en la colección "recetas"
+
   subscribeToRecetas(): void {
     if (this.recetasSubscription) {
-      this.recetasSubscription.unsubscribe(); // Evita suscripciones duplicadas
+      this.recetasSubscription.unsubscribe(); 
     }
 
-    this.recetas = []; // Limpiar el array antes de recibir datos nuevos
+    this.recetas = []; 
 
     this.recetasSubscription = this.firestoreSubscription
       .subscribeToCollection('recetas')
@@ -53,23 +53,23 @@ export class RecetasPage implements OnInit, OnDestroy {
       });
   }
 
-  // 🔥 Cargar las recetas de Firestore manualmente cuando se entra a la página
+  
   async forceReloadRecetas(): Promise<void> {
     try {
       this.recetas = await this.recetaService.getRecetas();
-      console.log("📌 Recetas recargadas:", this.recetas);
+      console.log(" Recetas recargadas:", this.recetas);
     } catch (error) {
-      console.error("❌ Error al cargar recetas:", error);
+      console.error(" Error al cargar recetas:", error);
     }
   }
 
-  // 🔥 Actualizar el array de recetas en base a los cambios en Firestore
+  
   updateRecetas(change: CollectionChange<any>): void {
-    console.log('📌 Cambio en recetas:', change);
+    console.log(' Cambio en recetas:', change);
 
     switch (change.type) {
       case 'added':
-        // 🔥 Verificar si la receta ya está en la lista para evitar duplicados
+        
         if (!this.recetas.some(r => r.id === change.id)) {
           this.obtenerNombreChef(change.data.chefId).then(chefNombre => {
             change.data.chefNombre = chefNombre;
@@ -103,24 +103,22 @@ export class RecetasPage implements OnInit, OnDestroy {
     }
   }
 
-  // Método para marcar o desmarcar como favorito
   async toggleFavorito(receta: any, event: Event): Promise<void> {
     event.stopPropagation();
     receta.esFavorito = !receta.esFavorito;
     await this.recetaService.toggleFavorito(receta.id, receta.esFavorito);
   }
 
-  // Abrir el modal para crear una nueva receta
+
   async openCreateModal(): Promise<void> {
     const modal = await this.modalController.create({
       component: RecetaFormComponent,
-      cssClass: 'receta-modal',
     });
 
     await modal.present();
   }
 
-  // Abrir el modal para editar una receta existente
+
   async openEditModal(receta: any): Promise<void> {
     const modal = await this.modalController.create({
       component: RecetaFormComponent,
@@ -131,7 +129,7 @@ export class RecetasPage implements OnInit, OnDestroy {
     await modal.present();
   }
 
-  // 📌 Abrir el modal para ver detalles de la receta
+  
   async openDetailModal(receta: any): Promise<void> {
     const modal = await this.modalController.create({
       component: RecetaDetalleComponent,
@@ -142,13 +140,13 @@ export class RecetasPage implements OnInit, OnDestroy {
     await modal.present();
   }
 
-  // Eliminar una receta
+
   async deleteReceta(id: string): Promise<void> {
       await this.recetaService.deleteReceta(id);
     
   }
 
-  // Desuscribirse de Firestore al salir de la página
+
   ngOnDestroy(): void {
     if (this.recetasSubscription) {
       this.recetasSubscription.unsubscribe();

@@ -16,18 +16,18 @@ export class FavoritosPage {
   constructor(
     private recetaService: RecetaService, 
     private translate: TranslateService, 
-    private modalController: ModalController // ✅ Asegurar que esté definido aquí
+    private modalController: ModalController 
   ) {}
 
   ngOnInit(): void {
     this.loadFavoritos();
   }
 
-  // ✅ Método para abrir el modal de detalles
+
   async openDetailModal(receta: any): Promise<void> {
     const modal = await this.modalController.create({
-      component: RecetaDetalleComponent,  // ✅ Aquí se abre el modal de detalles
-      componentProps: { receta }, // ✅ Pasamos la receta seleccionada
+      component: RecetaDetalleComponent, 
+      componentProps: { receta }, 
     });
 
     await modal.present();

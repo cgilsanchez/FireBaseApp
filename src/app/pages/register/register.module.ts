@@ -3,21 +3,21 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core'; // 🔥 Importar TranslateModule
+import { TranslateModule } from '@ngx-translate/core'; 
 
 import { RegisterPageRoutingModule } from './register-routing.module';
-import { RegisterPage } from './register.page'; // Importamos la página
+import { RegisterPage } from './register.page'; 
 
 @NgModule({
-  declarations: [RegisterPage], // ✅ Declaramos RegisterPage en lugar de importarlo
+  declarations: [RegisterPage], 
   imports: [
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
     RouterModule,
     RegisterPageRoutingModule,
-    TranslateModule // ✅ Importar para las traducciones
+    TranslateModule 
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA], // ✅ Permitir componentes de Ionic
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class RegisterPageModule {}

@@ -5,7 +5,7 @@ import { AuthGuard } from './guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home', // 🔥 Redirige automáticamente al login
+    redirectTo: 'home', 
     pathMatch: 'full',
   },
   {
@@ -19,19 +19,19 @@ export const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-    canActivate: [AuthGuard], // 🔥 Protegido
+    canActivate: [AuthGuard], 
 },
 
   {
     path: 'recetas',
     loadChildren: () => import('./pages/recetas/recetas.module').then(m => m.RecetasPageModule),
-    canActivate: [AuthGuard], // 🔥 Protegido
+    canActivate: [AuthGuard],
 },
 
   {
     path: 'favoritos',
     loadChildren: () => import('./pages/favoritos/favoritos.module').then((m) => m.FavoritosPageModule),
-    canActivate: [AuthGuard], // 🔥 Protegido
+    canActivate: [AuthGuard], 
   },
   {
     path: 'about',

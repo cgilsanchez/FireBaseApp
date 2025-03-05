@@ -27,7 +27,7 @@ export class FirestoreSubscriptionService<T> implements OnDestroy {
 
     const colRef = collection(this.firestore, collectionName);
 
-    // ✅ Suscribirse a Firestore en tiempo real
+    
     const unsubscribe = onSnapshot(
       colRef,
       (snapshot: QuerySnapshot<DocumentData>) => {
@@ -41,7 +41,7 @@ export class FirestoreSubscriptionService<T> implements OnDestroy {
             changeData.data = { id: change.doc.id, ...change.doc.data() } as T;
           }
 
-          // 📌 Emitir cambios en una nueva referencia para que Angular lo detecte
+          
           subject.next({ ...changeData });
         });
       },

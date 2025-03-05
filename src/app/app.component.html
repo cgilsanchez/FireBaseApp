@@ -1,7 +1,7 @@
 <ion-app>
   <app-splash *ngIf="showSplash"></app-splash> <!-- 🔥 Splash Screen -->
 
-  <!-- 🔥 Barra de navegación fija en todas las páginas -->
+  <!-- Barra de navegación fija en todas las páginas -->
   <ion-header *ngIf="isAuthenticated && showToolbar">
     <ion-toolbar color="primary">
       <div class="header-container">
@@ -10,7 +10,7 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
     
-        <!-- Texto 'Bienvenido' centrado -->
+        <!-- Texto centrado -->
         <div class="header-center">
           <span class="welcome-text">{{ 'WELCOME' | translate }}</span>
         </div>
@@ -31,7 +31,7 @@
     
   </ion-header>
 
-  <!-- 🔥 Menú de cambio de idioma -->
+  <!-- Menú de cambio de idioma -->
   <div class="dropdown language-dropdown" *ngIf="showLanguageMenu">
     <p class="dropdown-title">{{ 'SELECT_LANGUAGE' | translate }}</p>
     <ion-item button (click)="changeLanguage('en')">
@@ -42,7 +42,7 @@
     </ion-item>
   </div>
 
-  <!-- 🔥 Menú desplegable del usuario -->
+  <!-- Menú desplegable del usuario -->
   <div class="dropdown user-dropdown" *ngIf="showDropdown">
     <p class="user-name">{{ user?.displayName || 'Usuario' }}</p>
     <p class="user-email">{{ user?.email }}</p>
@@ -51,7 +51,7 @@
     </ion-button>
   </div>
 
-  <!-- 🔥 Menú lateral -->
+  <!--  Menú lateral -->
   <ion-menu *ngIf="isAuthenticated" contentId="main-content" side="start">
     <ion-header>
       <ion-toolbar color="warning">

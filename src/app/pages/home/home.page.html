@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- 🔍 Barra de búsqueda -->
+  <!-- Barra de búsqueda -->
   <div class="search-container">
     <ion-searchbar 
       [(ngModel)]="searchText" 
@@ -18,7 +18,7 @@
     </ion-searchbar>
   </div>
 
-  <!-- 📌 Lista de Chefs -->
+  <!-- Lista de Chefs -->
   <div class="card-container">
     <ion-card class="custom-card" *ngFor="let item of filteredChefs">
       <ion-card-header class="card-header">

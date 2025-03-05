@@ -8,7 +8,7 @@
       <ion-card 
         *ngFor="let receta of recetasFavoritas" 
         class="receta-card" 
-        (click)="openDetailModal(receta)">  <!-- 🔥 Ahora abre el modal -->
+        (click)="openDetailModal(receta)">  
         
         <img *ngIf="receta.imagenUrl" [src]="receta.imagenUrl" alt="Imagen de la receta" class="receta-img" />
 

@@ -7,22 +7,22 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LanguageService {
   private readonly LANG_KEY = 'SELECTED_LANGUAGE';
-  private currentLang = new BehaviorSubject<string>('en'); // 🔥 Idioma inicial
+  private currentLang = new BehaviorSubject<string>('en'); 
 
   constructor(private translate: TranslateService) {
     this.initTranslate();
   }
 
   private initTranslate() {
-    const savedLang = localStorage.getItem(this.LANG_KEY) || 'en'; // 🔥 Cargar idioma guardado o establecer "en"
+    const savedLang = localStorage.getItem(this.LANG_KEY) || 'en'; 
     this.setLanguage(savedLang);
   }
 
   setLanguage(lang: string) {
-    this.translate.setDefaultLang(lang); // 🔥 Idioma por defecto
+    this.translate.setDefaultLang(lang); 
     this.translate.use(lang);
     localStorage.setItem(this.LANG_KEY, lang);
-    this.currentLang.next(lang); // 🔥 Notificar cambios de idioma en tiempo real
+    this.currentLang.next(lang); 
   }
 
   getCurrentLanguage(): string {
@@ -30,6 +30,6 @@ export class LanguageService {
   }
 
   getCurrentLanguageObservable() {
-    return this.currentLang.asObservable(); // 🔥 Permite suscribirse a los cambios de idioma
+    return this.currentLang.asObservable();
   }
 }

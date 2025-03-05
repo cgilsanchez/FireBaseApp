@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { FavoritosPageRoutingModule } from './favoritos-routing.module';
 import { FavoritosPage } from './favoritos.page';
-import { TranslateModule } from '@ngx-translate/core'; // ✅ Importar el módulo de traducción
+import { TranslateModule } from '@ngx-translate/core'; 
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core'; // ✅ Importar el módul
     FormsModule,
     IonicModule,
     FavoritosPageRoutingModule,
-    TranslateModule // ✅ Añadir para soporte de traducciones
+    TranslateModule 
   ],
   declarations: [FavoritosPage]
 })

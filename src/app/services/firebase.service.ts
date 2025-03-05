@@ -7,18 +7,18 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore';
-import { db } from '../app.module'; // Importamos la instancia de Firestore inicializada
+import { db } from '../app.module'; 
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
-  collectionName = 'documentos'; // Asegúrate de que coincide con el nombre exacto de la colección en Firestore
- // Cambia esto por tu colección en Firestore
+  collectionName = 'documentos'; 
+
 
   constructor() {}
 
-  // Crear un documento
+ 
   async createItem(data: any): Promise<void> {
     try {
       await addDoc(collection(db, this.collectionName), data);
@@ -28,7 +28,7 @@ export class FirebaseService {
     }
   }
 
-  // Leer todos los documentos
+
   async getItems(): Promise<any[]> {
     try {
       const querySnapshot = await getDocs(collection(db, this.collectionName));
@@ -39,7 +39,7 @@ export class FirebaseService {
     }
   }
 
-  // Actualizar un documento
+
   async updateItem(id: string, data: any): Promise<void> {
     try {
       const docRef = doc(db, this.collectionName, id);
@@ -50,7 +50,7 @@ export class FirebaseService {
     }
   }
 
-  // Eliminar un documento
+
   async deleteItem(id: string): Promise<void> {
     try {
       const docRef = doc(db, this.collectionName, id);

@@ -20,7 +20,7 @@ export class RecetaService {
 
   constructor() {}
 
-  // Subir imagen a Firebase Storage
+
   async uploadImage(file: File): Promise<string> {
     try {
       const storageRef = ref(this.storage, `recetas/${file.name}`);
@@ -32,7 +32,7 @@ export class RecetaService {
     }
   }
 
-  // Crear una nueva receta con imagen opcional
+
   async createReceta(data: any, imageFile?: File): Promise<void> {
     try {
       if (imageFile) {
@@ -45,21 +45,21 @@ export class RecetaService {
     }
   }
 
-  // Obtener todas las recetas
+
   async getRecetas(): Promise<any[]> {
     try {
       const querySnapshot = await getDocs(collection(db, this.collectionName));
       let recetas = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   
-      // 🔥 Obtener nombres de chefs desde la colección correcta
+
       const chefsSnapshot = await getDocs(collection(db, 'documentos'));
       const chefsMap: { [key: string]: string } = {};
   
       chefsSnapshot.docs.forEach((chef) => {
-        chefsMap[chef.id] = chef.data()['name'].trim(); // 🔥 Asegurar que no tenga espacios adicionales
+        chefsMap[chef.id] = chef.data()['name'].trim(); 
       });
   
-      // 🔥 Reemplazar chefId con el nombre del chef
+
       recetas = recetas.map((receta: any) => ({
         ...receta,
         chefNombre: receta.chefId ? chefsMap[receta.chefId] || 'Desconocido' : 'Desconocido',
@@ -100,12 +100,12 @@ export class RecetaService {
   }
   
 
-  // Obtener solo las recetas favoritas
+
   async getFavoritas(): Promise<any[]> {
     try {
       const querySnapshot = await getDocs(collection(db, this.collectionName));
       return querySnapshot.docs
-        .map((doc) => ({ id: doc.id, esFavorito: false, ...doc.data() })) // 🔥 Asegurar que esFavorito siempre está definido
+        .map((doc) => ({ id: doc.id, esFavorito: false, ...doc.data() })) 
         .filter((receta) => receta.esFavorito === true);
     } catch (error) {
       console.error('Error al obtener recetas favoritas:', error);
@@ -115,7 +115,7 @@ export class RecetaService {
   
   
   
-  // Actualizar una receta con imagen opcional
+
   async updateReceta(id: string, data: any, imageFile?: File): Promise<void> {
     try {
       if (imageFile) {
@@ -129,7 +129,7 @@ export class RecetaService {
     }
   }
 
-  // Eliminar una receta
+
   async deleteReceta(id: string): Promise<void> {
     try {
       const docRef = doc(db, this.collectionName, id);

@@ -16,10 +16,10 @@ export class PushNotificationsService {
     try {
       const perm = await Notification.requestPermission();
       if (perm === 'granted') {
-        console.log('🔔 Permiso concedido para notificaciones');
+        console.log('Permiso concedido para notificaciones');
         this.registerPush();
       } else {
-        console.log('🚫 Permiso denegado');
+        console.log('Permiso denegado');
       }
     } catch (error) {
       console.error('Error al solicitar permisos:', error);
@@ -32,17 +32,17 @@ export class PushNotificationsService {
       await PushNotifications.register();
 
       PushNotifications.addListener('registration', (token: Token) => {
-        console.log('📲 Token registrado:', token.value);
+        
         localStorage.setItem('pushToken', token.value);
       });
 
       PushNotifications.addListener('registrationError', (error: any) => {
-        console.error('❌ Error en el registro:', error);
+        
       });
 
       PushNotifications.addListener('pushNotificationReceived', (notification: PushNotificationSchema) => {
-        console.log('🔔 Notificación recibida:', notification);
-        alert(`📢 ${notification.title}: ${notification.body}`);
+        
+        alert(`${notification.title}: ${notification.body}`);
       });
 
       PushNotifications.addListener('pushNotificationActionPerformed', (action: ActionPerformed) => {
@@ -59,7 +59,6 @@ export class PushNotificationsService {
     try {
       const token = await getToken(this.messaging, { vapidKey: environment.firebaseConfig.vapidKey });
       if (token) {
-        console.log('📲 Token de notificación Firebase:', token);
         localStorage.setItem('pushToken', token);
       } else {
         console.warn('No se pudo obtener el token.');

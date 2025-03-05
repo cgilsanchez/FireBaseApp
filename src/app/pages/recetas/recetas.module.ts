@@ -14,7 +14,7 @@ import { ChefSelectorComponent } from 'src/app/components/chef-selector/chef-sel
 @NgModule({
   declarations: [
     RecetasPage,
-    RecetaDetalleComponent ,// ✅ Ahora declaramos la página correctamente
+    RecetaDetalleComponent ,
     RecetaFormComponent,
     ChefSelectorComponent
     
@@ -24,9 +24,9 @@ import { ChefSelectorComponent } from 'src/app/components/chef-selector/chef-sel
     FormsModule,
     ReactiveFormsModule,
     
-    IonicModule, // ✅ Importamos correctamente el módulo de Ionic
+    IonicModule, 
     RecetasPageRoutingModule,
-    TranslateModule ,// ✅ Importamos `TranslateModule` para que funcione `| translate`
+    TranslateModule ,
   ],
   exports: [
     RecetasPage

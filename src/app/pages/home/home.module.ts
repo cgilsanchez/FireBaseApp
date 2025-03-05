@@ -15,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     IonicModule,
     HomePageRoutingModule,
     ReactiveFormsModule,
-    TranslateModule // ✅ Importamos `TranslateModule` para los textos traducidos
+    TranslateModule 
   ],
   declarations: [HomePage,ItemComponent],
 })

@@ -8,11 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
   
 })
 export class SplashComponent implements OnInit {
-  @Input() showSplash: boolean = true; // Permite controlar si el Splash debe mostrarse
+  @Input() showSplash: boolean = true; 
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.showSplash = false; // Oculta el Splash después de 3 segundos
+      this.showSplash = false; 
     }, 3000);
   }
 }

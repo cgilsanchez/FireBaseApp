@@ -29,7 +29,7 @@ export class LoginPage {
       password: ['', Validators.required],
     });
 
-    // Obtener el idioma actual
+  
     this.currentLanguage = this.languageService.getCurrentLanguage();
   }
 

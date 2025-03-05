@@ -24,7 +24,7 @@ export class ItemComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
 
-    // Si hay un ítem, lo precargamos en el formulario
+  
     if (this.item) {
       this.isEditing = true;
       this.itemForm.patchValue(this.item);
