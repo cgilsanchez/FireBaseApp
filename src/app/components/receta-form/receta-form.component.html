@@ -7,9 +7,10 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content class="ion-padding">
-  <form [formGroup]="recetaForm" (ngSubmit)="save()">
-    
+  <form [formGroup]="recetaForm" (ngSubmit)="save()" style="display: flex; flex-direction: column; overflow-y: auto;">
+
     <!-- Campo de Título -->
     <ion-item>
       <ion-label position="stacked">{{ 'TITLE' | translate }}</ion-label>
@@ -32,13 +33,13 @@
     <!-- Descripción -->
     <ion-item>
       <ion-label position="stacked">{{ 'DESCRIPTION' | translate }}</ion-label>
-      <ion-textarea formControlName="descripcion"></ion-textarea>
+      <ion-textarea formControlName="descripcion" autoGrow="true" rows="6"></ion-textarea>
     </ion-item>
 
     <!-- Selección de Chef -->
     <app-chef-selector formControlName="chefId"></app-chef-selector>
 
-    <!-- Subida de Imagen -->
+    <!-- Subida de Imagen (Siempre visible) -->
     <ion-item>
       <ion-label>{{ 'IMAGE' | translate }}</ion-label>
       <input type="file" (change)="seleccionarImagen($event)">
@@ -46,11 +47,12 @@
 
     <ion-img *ngIf="imagenPreview" [src]="imagenPreview" alt="Vista previa"></ion-img>
 
-    <!-- Botón Guardar -->
+    <!-- Botón Guardar (Siempre visible) -->
     <div class="modal-footer">
       <ion-button expand="block" type="submit" [disabled]="recetaForm.invalid">
         {{ isEditing ? 'UPDATE' : 'CREATE' | translate }}
       </ion-button>
     </div>
+
   </form>
 </ion-content>

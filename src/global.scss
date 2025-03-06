@@ -327,3 +327,9 @@ ion-item {
   border-radius: 50%;
   object-fit: cover;
 }
+/* 📌 Corregir el textarea SOLO en el modal */
+.modal ion-textarea {
+  max-height: 200px !important; /* Forzar altura máxima solo en este modal */
+  height: auto !important;
+  overflow: auto !important; /* Permitir scroll si es necesario */
+}
