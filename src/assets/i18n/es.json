@@ -60,8 +60,8 @@
         "FAVORITE_RECIPES":"Lista de Favoritos",
         "FAVORITE":"No hay recetas favoritas",
         "ABOUT":"Sobre mí",
-        "ABOUT_D":"¡Hola! Soy Carlos Gil, estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma. Me encanta todo lo relacionado con la tecnología y la programación, y siempre estoy buscando aprender cosas nuevas. Disfruto creando aplicaciones y probando diferentes tecnologías para mejorar mis habilidades. Todavía estoy en proceso de descubrir en qué rama quiero especializarme, pero lo que tengo claro es que quiero seguir desarrollando y aprendiendo cada día más. " 
-    
+        "ABOUT_D":"¡Hola! Soy Carlos Gil, estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma. Me encanta todo lo relacionado con la tecnología y la programación, y siempre estoy buscando aprender cosas nuevas. Disfruto creando aplicaciones y probando diferentes tecnologías para mejorar mis habilidades. Todavía estoy en proceso de descubrir en qué rama quiero especializarme, pero lo que tengo claro es que quiero seguir desarrollando y aprendiendo cada día más. " ,
+        "SHARE": "Compartir"
     
     
     }

@@ -55,6 +55,6 @@
                 "ERROR_EMAIL": "Enter a valid email.",
                 "ERROR_PASSWORD": "Password must be at least 6 characters long.",
                 "ERROR_CONFIRM_PASSWORD": "Passwords do not match.",
-                "ABOUT_D":"Hi! I'm Carlos Gil, a 2nd-year student in Multi-Platform Application Development. I love everything related to technology and programming, and I'm always looking to learn new things. I enjoy creating applications and experimenting with different technologies to improve my skills. I'm still figuring out which field I want to specialize in, but one thing is clear—I want to keep developing and learning more every day." 
-                
+                "ABOUT_D":"Hi! I'm Carlos Gil, a 2nd-year student in Multi-Platform Application Development. I love everything related to technology and programming, and I'm always looking to learn new things. I enjoy creating applications and experimenting with different technologies to improve my skills. I'm still figuring out which field I want to specialize in, but one thing is clear—I want to keep developing and learning more every day." ,
+                "SHARE": "Share"
             }
