@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Share } from '@capacitor/share';
+import { ExportService } from 'src/app/services/export.service';
+
 
 @Component({
   selector: 'app-receta-detalle',
@@ -13,7 +15,7 @@ import { Share } from '@capacitor/share';
 export class RecetaDetalleComponent {
   @Input() receta: any;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController,private exportService: ExportService) {}
 
   close(): void {
     this.modalController.dismiss();
@@ -31,4 +33,17 @@ export class RecetaDetalleComponent {
       dialogTitle: 'Compartir Receta'
     });
   }
+
+descargarCSV(): void {
+  const receta = {
+    titulo: this.receta?.titulo || 'receta',
+    ingredientes: this.receta?.ingredientes || [],
+    descripcion: this.receta?.descripcion || '',
+    chef: this.receta?.chefNombre || 'Desconocido'
+  };
+
+  this.exportService.exportRecetaComoCSV(receta);
+}
+
+
 }
